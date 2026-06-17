@@ -1,6 +1,6 @@
 'use client';
 
-import { Play, Trash2, Eye, Clock } from 'lucide-react';
+import { Play, Trash2, Eye } from 'lucide-react';
 import type { SavedTest } from '@/lib/types';
 import type { Theme } from '@/lib/theme';
 import { formatTime, formatDate } from '@/lib/utils';

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
-import { Trophy, Eye, Bookmark, RotateCcw, Home, Sun, Moon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Trophy, Eye, Bookmark, RotateCcw, Sun, Moon } from 'lucide-react';
 import type { Score, DomainScore, ExamAttempt } from '@/types';
 import type { Theme } from '@/lib/theme';
 import { formatTime } from '@/lib/utils';
@@ -47,6 +47,7 @@ export function ResultsScreen({
   onBackToHome,
 }: ResultsScreenProps) {
   const passed = score.percentage >= 72;
+  const [submittedAt] = useState(() => Date.now());
 
   useEffect(() => {
     const domainScoresArray: DomainScore[] = Object.entries(domainScores).map(([domain, stats]) => ({
@@ -88,6 +89,7 @@ export function ResultsScreen({
 
       updateQuestionAnalytics(q.id, examId, isCorrect);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formatDate = (timestamp: number) => {
@@ -138,7 +140,7 @@ export function ResultsScreen({
             {mode === 'section' && selectedDomain && (
               <p className={`${theme.primaryLightText} mt-1`}>{selectedDomain}</p>
             )}
-            <p className={`${theme.bgTextSecondary} text-sm mt-2`}>{formatDate(Date.now())}</p>
+            <p className={`${theme.bgTextSecondary} text-sm mt-2`}>{formatDate(submittedAt)}</p>
           </div>
 
           {/* Score Summary */}

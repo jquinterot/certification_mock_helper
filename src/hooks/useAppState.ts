@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import type { ExamConfig } from '@/lib/exams/types';
-import type { AppPhase, ExamHistory as ExamHistoryType, WeaknessAnalysis } from '@/types';
+import type { AppPhase } from '@/types';
 import { useExam } from '@/hooks/useExam';
 import { useTimer } from '@/hooks/useTimer';
 import { useSavedTests } from '@/hooks/useSavedTests';

@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronLeft, ArrowRight, Clock, FileText, Sun, Moon } from 'lucide-react';
+import { ArrowRight, Clock, FileText, Sun, Moon } from 'lucide-react';
 import type { ExamConfig } from '@/lib/exams/types';
 import { getCategoryTheme, getIcon } from '@/lib/constants/ui';
 import type { Theme } from '@/lib/theme';

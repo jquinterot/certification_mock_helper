@@ -46,7 +46,6 @@ function QuestionNavigatorComponent({
   currentQuestion,
   answers,
   flaggedQuestions,
-  showResults: _showResults,
   onGoToQuestion,
   theme,
 }: QuestionNavigatorProps) {

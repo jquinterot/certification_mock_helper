@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { BookOpen, History, TrendingUp, AlertTriangle, Award, ChevronLeft, Sun, Moon } from 'lucide-react';
+import { BookOpen, History, TrendingUp, AlertTriangle, Sun, Moon } from 'lucide-react';
 import type { SavedTest, ExamHistory as ExamHistoryType, WeaknessAnalysis } from '@/types';
 import type { ExamMode } from '@/types';
 import type { Theme } from '@/lib/theme';

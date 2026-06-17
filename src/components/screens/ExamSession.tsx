@@ -41,7 +41,6 @@ interface ExamSessionProps {
 }
 
 export function ExamSession({
-  questions: _questions,
   activeQuestions,
   currentQuestion,
   answers,

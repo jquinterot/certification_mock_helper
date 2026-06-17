@@ -1,6 +1,6 @@
 'use client';
 
-import type { ExamAttempt, ExamHistory, QuestionAnalytics, WeaknessAnalysis, DomainScore } from '@/types';
+import type { ExamAttempt, ExamHistory, QuestionAnalytics, WeaknessAnalysis } from '@/types';
 
 const ATTEMPTS_KEY_PREFIX = 'exam-attempts-';
 const QUESTION_ANALYTICS_KEY = 'question-analytics';

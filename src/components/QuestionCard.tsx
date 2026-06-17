@@ -70,7 +70,6 @@ function QuestionCardComponent({
   isCorrect,
   showExplanation,
   onSelectAnswer,
-  onToggleExplanation: _onToggleExplanation,
   theme,
 }: QuestionCardProps) {
   const options = question.shuffledOptions;

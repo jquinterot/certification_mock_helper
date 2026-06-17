@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Certification Practice Hub
+
+A multi-certification exam practice platform built with Next.js 16, TypeScript, and Tailwind CSS.
+
+## Supported Certifications
+
+### AWS Cloud
+- **AWS ML Engineer Associate** (MLA-C01) - 4 test sets, 170 questions
+- **AWS Solutions Architect** (SAA-C03) - 2 test sets, 130 questions
+
+### ISTQB Testing
+- **ISTQB Foundation Level** (CTFL v4.0) - 2 test sets, 80 questions
+- **ISTQB Testing with GenAI** (CT-GenAI v1.1) - 3 test sets, 120 questions
+
+## Features
+
+- **Full Exam Mode** - Timed practice tests with 40-65 questions
+- **Section Mode** - Domain/chapter-specific practice
+- **Light/Dark Mode** - Theme toggle available on all screens
+- **Saved Tests** - Resume in-progress exams or review submitted ones
+- **Progress Tracking** - Domain-level breakdown and scoring
+- **Question Shuffling** - Randomized options to prevent memorization
+
+## Tech Stack
+
+- Next.js 16 (App Router, Turbopack)
+- TypeScript (strict mode)
+- Tailwind CSS
+- localStorage for persistence
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                    # Next.js App Router
+├── components/             # React components
+│   ├── screens/           # Exam session orchestration
+│   └── start-screen/      # Start screen sub-components
+├── hooks/                 # Custom React hooks
+├── lib/
+│   ├── exams/             # Exam configs & questions
+│   │   ├── aws-ml/
+│   │   ├── aws-saa/
+│   │   ├── istqb-foundation/
+│   │   └── istqb-genai/
+│   └── theme.ts          # Light/dark theme system
+└── types/                 # TypeScript interfaces
+```
 
-## Learn More
+## Architecture
 
-To learn more about Next.js, take a look at the following resources:
+See [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) for detailed architecture documentation.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Available Skills
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `code-decomposer` - Break down complex components
+- `dry-code-auditor` - Find code duplication
+- `question-quality-auditor` - Review exam questions
+- `istqb-exam-generator` - Generate ISTQB questions
+- `ml-exam-generator` - Generate AWS ML questions
+- `study-enhancer` - Suggest study improvements
+- `typescript-refactorer` - TypeScript optimization

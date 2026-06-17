@@ -1,65 +1,141 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { useAppState } from '@/hooks/useAppState';
+import { HomePage } from '@/components/HomePage';
+import { CategoryMenu } from '@/components/CategoryMenu';
+import { StartScreen } from '@/components/StartScreen';
+import { ResultsScreen } from '@/components/ResultsScreen';
+import { ExamSession } from '@/components/screens/ExamSession';
+import { ExamHistory } from '@/components/ExamHistory';
+import { getExamsByCategory } from '@/lib/exams';
+
+export default function AppPage() {
+  const state = useAppState();
+
+  if (state.phase === 'home') {
+    return <HomePage onSelectCategory={state.handleSelectCategory} theme={state.theme} themeMode={state.themeMode} onToggleTheme={state.toggleThemeMode} />;
+  }
+
+  if (state.phase === 'category') {
+    const exams = getExamsByCategory(state.selectedCategory);
+    return (
+      <CategoryMenu
+        category={state.selectedCategory}
+        exams={exams}
+        onSelectExam={state.handleSelectExam}
+        onBack={state.handleBackToHome}
+        theme={state.theme}
+        themeMode={state.themeMode}
+        onToggleTheme={state.toggleThemeMode}
+      />
+    );
+  }
+
+  if (state.phase === 'exam-start' && state.selectedExamConfig) {
+    return (
+      <StartScreen
+        examName={state.selectedExamConfig.name}
+        examSubtitle={state.selectedExamConfig.shortName}
+        durationMinutes={state.selectedExamConfig.durationMinutes}
+        passingScore={state.selectedExamConfig.passingScore}
+        savedTests={state.filteredSavedTests}
+        mode={state.examMode}
+        selectedDomain={state.selectedDomain}
+        testSet={state.selectedTestSet}
+        domains={state.domains}
+        domainStats={state.domainStats}
+        sectionDomainStats={state.sectionDomainStats}
+        totalQuestions={state.totalQuestions}
+        maxTestSets={state.maxTestSets}
+        theme={state.theme}
+        themeMode={state.themeMode}
+        onToggleTheme={state.toggleThemeMode}
+        examHistory={state.examHistory}
+        weaknessAnalysis={state.weaknessAnalysis}
+        onResumeTest={state.handleResumeTest}
+        onDeleteTest={state.deleteSavedTest}
+        onSetMode={state.setExamMode}
+        onSetDomain={state.setSelectedDomain}
+        onSetTestSet={state.setSelectedTestSet}
+        onStart={state.handleStartExam}
+        onViewHistory={state.handleViewHistory}
+        onBackToHome={state.handleBackToHome}
+      />
+    );
+  }
+
+  if (state.phase === 'results') {
+    return (
+      <ResultsScreen
+        score={state.exam.score}
+        domainScores={state.exam.domainScores}
+        timer={state.timer.timer}
+        testSet={state.exam.config.testSet}
+        mode={state.exam.config.mode}
+        selectedDomain={state.exam.config.selectedDomain}
+        flaggedCount={state.exam.flaggedCount}
+        theme={state.theme}
+        themeMode={state.themeMode}
+        onToggleTheme={state.toggleThemeMode}
+        examId={state.selectedExamId}
+        answers={state.exam.answers}
+        questions={state.questions}
+        onReview={state.handleReview}
+        onReviewFlagged={state.handleReviewFlagged}
+        onReset={state.handleReset}
+        onBackToHome={state.handleBackToHome}
+      />
+    );
+  }
+
+  if (state.phase === 'history' && state.selectedExamConfig) {
+    return (
+      <ExamHistory
+        examId={state.selectedExamId}
+        examName={state.selectedExamConfig.name}
+        attempts={state.examHistory?.attempts || []}
+        weaknessAnalysis={state.weaknessAnalysis}
+        theme={state.theme}
+        themeMode={state.themeMode}
+        onToggleTheme={state.toggleThemeMode}
+        onBack={state.handleBackFromHistory}
+        onStudyDomain={state.handleStudyDomain}
+      />
+    );
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <ExamSession
+      questions={state.questions}
+      activeQuestions={state.exam.activeQuestions}
+      currentQuestion={state.exam.currentQuestion}
+      answers={state.exam.answers}
+      showExplanation={state.exam.showExplanation}
+      flaggedQuestions={state.exam.flaggedQuestions}
+      showResults={state.exam.showResults}
+      timer={state.timer.timer}
+      config={state.exam.config}
+      flaggedCount={state.exam.flaggedCount}
+      answeredCount={state.exam.answeredCount}
+      theme={state.theme}
+      themeMode={state.themeMode}
+      onToggleTheme={state.toggleThemeMode}
+      onSelectAnswer={state.exam.selectAnswer}
+      onToggleFlag={state.exam.toggleFlag}
+      onToggleExplanation={state.exam.toggleExplanation}
+      onGoToPrevious={state.exam.goToPrevious}
+      onGoToNext={state.exam.goToNext}
+      onGoToQuestion={state.exam.goToQuestion}
+      onGoToNextFlagged={state.exam.goToNextFlagged}
+      onSubmit={state.handleSubmit}
+      onExit={state.handleExit}
+      onSave={state.handleSave}
+      showExitDialog={state.showExitDialog}
+      showSubmitDialog={state.showSubmitDialog}
+      onCloseExitDialog={() => state.setShowExitDialog(false)}
+      onCloseSubmitDialog={() => state.setShowSubmitDialog(false)}
+      onConfirmSubmit={state.handleConfirmSubmit}
+      onLeave={state.handleLeave}
+    />
   );
 }

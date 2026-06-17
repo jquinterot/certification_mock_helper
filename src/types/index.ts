@@ -46,6 +46,7 @@ export interface DomainScore {
 
 export interface SavedTest {
   id: string;
+  examId: string;
   timestamp: number;
   mode: 'full' | 'section';
   selectedDomain: string;

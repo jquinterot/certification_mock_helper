@@ -42,12 +42,7 @@ export function useAppState() {
   const [themeMode, setThemeMode] = useState<'light' | 'dark'>('dark');
 
   const filteredSavedTests = useMemo(() => {
-    return savedTests.filter((t) => {
-      if (selectedExamId === 'istqb-foundation') {
-        return t.questionCount <= 40;
-      }
-      return t.questionCount > 40;
-    });
+    return savedTests.filter((t) => t.examId === selectedExamId);
   }, [savedTests, selectedExamId]);
 
   const domainStats = useMemo(() => {
@@ -176,6 +171,7 @@ export function useAppState() {
     }
     const savedTest = {
       id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      examId: selectedExamId,
       timestamp: Date.now(),
       mode: exam.config.mode,
       selectedDomain: exam.config.selectedDomain,
@@ -191,11 +187,12 @@ export function useAppState() {
     };
     addSavedTest(savedTest);
     setPhase('results');
-  }, [exam, timer, currentSavedTestId, deleteSavedTest, addSavedTest, questionSeed]);
+  }, [exam, timer, currentSavedTestId, deleteSavedTest, addSavedTest, questionSeed, selectedExamId]);
 
   const handleSave = useCallback(() => {
     const savedTest = {
       id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      examId: selectedExamId,
       timestamp: Date.now(),
       mode: exam.config.mode,
       selectedDomain: exam.config.selectedDomain,
@@ -214,7 +211,7 @@ export function useAppState() {
     exam.reset();
     setShowExitDialog(false);
     setPhase('exam-start');
-  }, [exam, timer, addSavedTest, questionSeed]);
+  }, [exam, timer, addSavedTest, questionSeed, selectedExamId]);
 
   const handleExit = useCallback(() => {
     if (exam.showResults) {

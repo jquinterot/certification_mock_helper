@@ -19,7 +19,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: ["1-of-2", "2-of-2"]
+        include:
+          - shard: "1/2"
+            artifact_suffix: "1-of-2"
+          - shard: "2/2"
+            artifact_suffix: "2-of-2"
     container:
       image: mcr.microsoft.com/playwright:v1.61.0-jammy
     steps:
@@ -45,7 +49,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-${{ matrix.shard }}
+          name: playwright-report-${{ matrix.artifact_suffix }}
           path: playwright-report/
           retention-days: 7
 
@@ -53,7 +57,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-screenshots-${{ matrix.shard }}
+          name: playwright-screenshots-${{ matrix.artifact_suffix }}
           path: test-results/
           retention-days: 7
 
@@ -61,7 +65,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-traces-${{ matrix.shard }}
+          name: playwright-traces-${{ matrix.artifact_suffix }}
           path: .playwright-traces/
           retention-days: 7
 

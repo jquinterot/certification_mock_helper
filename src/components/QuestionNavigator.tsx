@@ -54,7 +54,7 @@ function QuestionNavigatorComponent({
   const isCorrect = (idx: number) => checkAnswer(questions[idx], answers[idx]);
 
   return (
-    <div className={`${theme.bgCard} backdrop-blur-lg rounded-2xl p-4 ${theme.borderColor} border shadow-xl sticky top-24`}>
+    <div className={`${theme.bgCard} backdrop-blur-lg rounded-2xl p-4 ${theme.borderColor} border shadow-xl sticky top-24`} data-test-id="question-navigator">
       <h3 className={`font-semibold mb-3 text-sm ${theme.bgText}`}>Question Navigator</h3>
       <div className="grid grid-cols-5 gap-2">
         {questions.map((_, idx) => (
@@ -69,6 +69,7 @@ function QuestionNavigatorComponent({
               theme
             )}
             aria-label={`Go to question ${idx + 1}`}
+            data-test-id={`question-navigator-item-${idx}`}
           >
             {idx + 1}
           </button>

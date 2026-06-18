@@ -117,6 +117,7 @@ export function ResultsScreen({
           <button
             onClick={onToggleTheme}
             className={`flex items-center gap-2 px-3 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
+            data-test-id="theme-toggle"
           >
             {themeMode === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             <span className="text-xs font-medium">{themeMode === 'dark' ? 'Light' : 'Dark'}</span>
@@ -125,13 +126,14 @@ export function ResultsScreen({
 
         <div className={`${theme.bgCard} backdrop-blur-lg rounded-2xl p-8 ${theme.borderColor} border shadow-2xl mb-6`}>
           <div className="text-center mb-8">
-            <div
-              className={`inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 ${
-                passed ? 'bg-green-500' : 'bg-red-500'
-              }`}
-            >
-              <Trophy className="w-12 h-12 text-white" aria-hidden="true" />
-            </div>
+          <div
+            className={`inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 ${
+              passed ? 'bg-green-500' : 'bg-red-500'
+            }`}
+            data-test-id="results-pass-fail-badge"
+          >
+            <Trophy className="w-12 h-12 text-white" aria-hidden="true" />
+          </div>
             <h1 className="text-3xl font-bold mb-2">
               {mode === 'section' ? 'Section Results' : 'Exam Results'}
             </h1>
@@ -145,15 +147,15 @@ export function ResultsScreen({
 
           {/* Score Summary */}
           <div className={`grid grid-cols-3 gap-4 mb-8`}>
-            <div className={`${theme.bgCard} rounded-xl p-4 text-center`}>
+            <div className={`${theme.bgCard} rounded-xl p-4 text-center`} data-test-id="score-correct">
               <p className={`text-3xl font-bold ${theme.primaryLightText}`}>{score.correct}</p>
               <p className={`text-sm ${theme.bgTextSecondary}`}>Correct</p>
             </div>
-            <div className={`${theme.bgCard} rounded-xl p-4 text-center`}>
+            <div className={`${theme.bgCard} rounded-xl p-4 text-center`} data-test-id="score-incorrect">
               <p className={`text-3xl font-bold text-red-500 dark:text-red-400`}>{score.total - score.correct}</p>
               <p className={`text-sm ${theme.bgTextSecondary}`}>Incorrect</p>
             </div>
-            <div className={`${theme.bgCard} rounded-xl p-4 text-center`}>
+            <div className={`${theme.bgCard} rounded-xl p-4 text-center`} data-test-id="score-percentage">
               <p className={`text-3xl font-bold ${passed ? 'text-green-500 dark:text-green-400' : 'text-red-500 dark:text-red-400'}`}>
                 {score.percentage}%
               </p>
@@ -162,7 +164,7 @@ export function ResultsScreen({
           </div>
 
           {/* Domain Breakdown */}
-          <div className={`${theme.bgCard} rounded-xl p-4 mb-8`}>
+          <div className={`${theme.bgCard} rounded-xl p-4 mb-8`} data-test-id="domain-breakdown">
             <h3 className={`font-semibold mb-4 ${theme.primaryLightText}`}>Domain Breakdown</h3>
             <div className="space-y-3">
               {Object.entries(domainScores).map(([domain, stats]) => (
@@ -174,7 +176,7 @@ export function ResultsScreen({
                       {stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0}%)
                     </span>
                   </div>
-                  <div className="w-full bg-white/10 rounded-full h-2">
+                  <div className="w-full bg-white/10 rounded-full h-2" data-test-id={`domain-${domain.toLowerCase().replace(/\s+/g, '-')}-bar`}>
                     <div
                       className={`${theme.primaryProgress} h-2 rounded-full transition-all`}
                       style={{
@@ -192,6 +194,7 @@ export function ResultsScreen({
             <button
               onClick={onReview}
               className="flex-1 min-w-[200px] bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition-all"
+              data-test-id="review-all-button"
             >
               <Eye className="w-5 h-5 inline mr-2" aria-hidden="true" />
               Review All Answers
@@ -200,6 +203,7 @@ export function ResultsScreen({
               <button
                 onClick={onReviewFlagged}
                 className="flex-1 min-w-[200px] bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 rounded-xl transition-all"
+                data-test-id="review-flagged-button"
               >
                 <Bookmark className="w-5 h-5 inline mr-2" aria-hidden="true" />
                 Review Flagged ({flaggedCount})
@@ -208,6 +212,7 @@ export function ResultsScreen({
             <button
               onClick={onReset}
               className={`flex-1 min-w-[200px] ${theme.primaryBg} ${theme.primaryBgHover} text-white font-bold py-3 rounded-xl transition-all`}
+              data-test-id="retake-button"
             >
               <RotateCcw className="w-5 h-5 inline mr-2" aria-hidden="true" />
               {mode === 'section' ? 'Choose Another Section' : 'Retake Exam'}

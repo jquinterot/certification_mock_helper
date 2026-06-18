@@ -76,10 +76,10 @@ function QuestionCardComponent({
   const correctAnswer = question.shuffledCorrectIndex;
 
   return (
-    <div className={`${theme.bgCard} backdrop-blur-lg rounded-2xl p-6 ${theme.borderColor} border shadow-xl mb-4`}>
+    <div className={`${theme.bgCard} backdrop-blur-lg rounded-2xl p-6 ${theme.borderColor} border shadow-xl mb-4`} data-test-id={`question-${questionIndex}`}>
       {/* Domain Badge */}
       <div className="mb-4">
-        <span className={`inline-block ${theme.explanationBadge} ${theme.explanationBadgeText} text-xs font-semibold px-3 py-1 rounded-full`}>
+        <span className={`inline-block ${theme.explanationBadge} ${theme.explanationBadgeText} text-xs font-semibold px-3 py-1 rounded-full`} data-test-id="domain-badge">
           {question.domain}
         </span>
       </div>
@@ -103,6 +103,7 @@ function QuestionCardComponent({
               className={getOptionClass(isSelected, isCorrectOption, showResult, showResults, theme)}
               disabled={showResults}
               aria-label={`Option ${String.fromCharCode(65 + idx)}: ${option}`}
+              data-test-id={`answer-option-${questionIndex}-${String.fromCharCode(65 + idx).toLowerCase()}`}
             >
               <div className="flex items-center gap-3">
                 <span className={getBadgeClass(showResult, isCorrectOption, isSelected, theme)}>
@@ -123,7 +124,7 @@ function QuestionCardComponent({
 
       {/* Explanation */}
       {(showExplanation || showResults) && (
-        <div className={`mt-6 p-4 rounded-xl border ${isCorrect ? 'bg-green-500/10 border-green-500/30' : 'bg-red-500/10 border-red-500/30'}`}>
+        <div className={`mt-6 p-4 rounded-xl border ${isCorrect ? 'bg-green-500/10 border-green-500/30' : 'bg-red-500/10 border-red-500/30'}`} data-test-id="explanation-panel">
           <div className="flex items-center gap-2 mb-2">
             {isCorrect ? (
               <>

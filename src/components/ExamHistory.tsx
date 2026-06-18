@@ -56,6 +56,7 @@ export function ExamHistory({
           <button
             onClick={onBack}
             className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} transition-colors`}
+            data-test-id="back-button"
           >
             Back to Home
           </button>
@@ -63,6 +64,7 @@ export function ExamHistory({
           <button
             onClick={onToggleTheme}
             className={`flex items-center gap-2 px-3 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
+            data-test-id="theme-toggle"
           >
             {themeMode === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             <span className="text-xs font-medium">{themeMode === 'dark' ? 'Light' : 'Dark'}</span>
@@ -78,15 +80,15 @@ export function ExamHistory({
         ) : (
           <>
             <div className="grid grid-cols-3 gap-4 mb-6">
-              <div className={`${theme.bgCard} backdrop-blur-lg rounded-xl p-4 ${theme.borderColor} border text-center`}>
+              <div className={`${theme.bgCard} backdrop-blur-lg rounded-xl p-4 ${theme.borderColor} border text-center`} data-test-id="best-score">
                 <p className={`text-3xl font-bold ${theme.primaryLightText}`}>{bestScore}%</p>
                 <p className={`text-sm ${theme.bgTextSecondary}`}>Best Score</p>
               </div>
-              <div className={`${theme.bgCard} backdrop-blur-lg rounded-xl p-4 ${theme.borderColor} border text-center`}>
+              <div className={`${theme.bgCard} backdrop-blur-lg rounded-xl p-4 ${theme.borderColor} border text-center`} data-test-id="average-score">
                 <p className={`text-3xl font-bold ${theme.primaryLightText}`}>{avgScore}%</p>
                 <p className={`text-sm ${theme.bgTextSecondary}`}>Average</p>
               </div>
-              <div className={`${theme.bgCard} backdrop-blur-lg rounded-xl p-4 ${theme.borderColor} border text-center`}>
+              <div className={`${theme.bgCard} backdrop-blur-lg rounded-xl p-4 ${theme.borderColor} border text-center`} data-test-id="total-attempts">
                 <p className={`text-3xl font-bold ${theme.bgText}`}>{attempts.length}</p>
                 <p className={`text-sm ${theme.bgTextSecondary}`}>Attempts</p>
               </div>
@@ -100,7 +102,7 @@ export function ExamHistory({
                 </div>
                 <div className="space-y-3">
                   {weaknessAnalysis.weakestDomains.slice(0, 3).map((weakness, idx) => (
-                    <div key={weakness.domain} className="flex items-center justify-between">
+                    <div key={weakness.domain} className="flex items-center justify-between" data-test-id={`weakness-area-${idx}`}>
                       <div className="flex items-center gap-3">
                         <span className={`${idx === 0 ? 'text-red-400' : 'text-yellow-400'}`}>
                           <Target className="w-4 h-4" />
@@ -119,6 +121,7 @@ export function ExamHistory({
                         <button
                           onClick={() => onStudyDomain(weakness.domain)}
                           className={`${theme.primaryBg} ${theme.primaryBgHover} px-3 py-1 rounded-lg text-sm transition-all`}
+                          data-test-id={`study-button-${weakness.domain.toLowerCase().replace(/\s+/g, '-')}`}
                         >
                           Study
                         </button>
@@ -139,6 +142,7 @@ export function ExamHistory({
                   <div
                     key={attempt.id}
                     className="bg-white/5 rounded-xl p-4 border border-white/10"
+                    data-test-id={`attempt-${attempt.id}`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
@@ -168,6 +172,7 @@ export function ExamHistory({
                           onClick={() => handleDeleteAttempt(attempt.id)}
                           className="text-slate-400 hover:text-red-400 transition-colors p-1"
                           title="Delete attempt"
+                          data-test-id={`delete-attempt-${attempt.id}`}
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>

@@ -25,6 +25,7 @@ export function CategoryMenu({ category, exams, onSelectExam, onBack, theme, the
         <button
           onClick={onBack}
           className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} mb-8 transition-colors`}
+          data-test-id="back-button"
         >
           Back to Home
         </button>
@@ -42,6 +43,7 @@ export function CategoryMenu({ category, exams, onSelectExam, onBack, theme, the
           <button
             onClick={onToggleTheme}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
+            data-test-id="theme-toggle"
           >
             {themeMode === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             <span className="text-sm font-medium">{themeMode === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
@@ -55,6 +57,7 @@ export function CategoryMenu({ category, exams, onSelectExam, onBack, theme, the
               key={exam.id}
               onClick={() => onSelectExam(exam.id)}
               className={`group relative p-6 rounded-2xl border ${colors.border} ${colors.bg} ${colors.hover} backdrop-blur-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl text-left`}
+              data-test-id={`exam-card-${exam.id}`}
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className={`p-3 rounded-xl bg-gradient-to-br ${colors.gradient} text-white flex-shrink-0`}>

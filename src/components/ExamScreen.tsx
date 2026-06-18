@@ -74,6 +74,7 @@ export function ExamScreen({
               onClick={onExit}
               className={`flex items-center gap-2 px-3 py-2 ${theme.bgButtonHover} rounded-lg transition-colors text-sm font-medium`}
               aria-label="Exit exam"
+              data-test-id="exit-button"
             >
               Back to Home
             </button>
@@ -91,6 +92,7 @@ export function ExamScreen({
               onClick={onToggleTheme}
               className={`p-2 rounded-lg ${theme.bgButton} transition-all hover:scale-105`}
               aria-label="Toggle theme"
+              data-test-id="theme-toggle"
             >
               {themeMode === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
@@ -100,6 +102,7 @@ export function ExamScreen({
                 onClick={onSave}
                 className="hidden sm:flex items-center gap-2 px-3 py-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 text-sm rounded-lg transition-colors"
                 aria-label="Save test and exit"
+                data-test-id="save-exit-button"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-4 4m0 0l-4-4m4 4V4" />
@@ -113,6 +116,7 @@ export function ExamScreen({
                 onClick={onSubmit}
                 className="hidden sm:flex items-center gap-2 px-3 py-2 bg-green-500/20 hover:bg-green-500/30 text-green-400 text-sm rounded-lg transition-colors"
                 aria-label="Submit exam and view results"
+                data-test-id="submit-exam-button"
               >
                 <CheckCircle2 className="w-4 h-4" />
                 Submit Exam
@@ -129,7 +133,7 @@ export function ExamScreen({
                 <span>elapsed</span>
               </div>
             ) : (
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-center gap-2 text-sm" data-test-id="timer-display">
                 <svg className={`w-4 h-4 ${theme.primaryLightText}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <circle cx="12" cy="12" r="10" strokeWidth={2} />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6l4 2" />
@@ -140,12 +144,12 @@ export function ExamScreen({
 
             {!showResults && (
               <>
-                <div className="text-sm">
+                <div className="text-sm" data-test-id="answered-count">
                   <span className={`${theme.primaryLightText} font-semibold`}>{Object.keys(answers).length}</span>
                   <span className={theme.bgTextSecondary}>/{questions.length} answered</span>
                 </div>
                 {flaggedCount > 0 && (
-                  <div className="flex items-center gap-1 text-sm text-yellow-400">
+                  <div className="flex items-center gap-1 text-sm text-yellow-400" data-test-id="flagged-count">
                     <Flag className="w-4 h-4" fill="currentColor" aria-hidden="true" />
                     <span>{flaggedCount}</span>
                   </div>
@@ -156,7 +160,7 @@ export function ExamScreen({
         </div>
 
         {/* Progress Bar */}
-        <div className={`w-full ${theme.bgButton} h-1`}>
+        <div className={`w-full ${theme.bgButton} h-1`} data-test-id="progress-bar">
           <div
             className={`${theme.primaryProgress} h-1 transition-all`}
             style={{ width: `${questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0}%` }}
@@ -181,6 +185,7 @@ export function ExamScreen({
                           : 'hover:bg-white/10 text-slate-400'
                       }`}
                       aria-label={flaggedQuestions.has(currentQuestion) ? 'Unflag question' : 'Flag for review'}
+                      data-test-id="flag-button"
                     >
                       <Flag className="w-4 h-4" fill={flaggedQuestions.has(currentQuestion) ? 'currentColor' : 'none'} />
                       <span className="hidden sm:inline">{flaggedQuestions.has(currentQuestion) ? 'Flagged' : 'Flag'}</span>
@@ -202,55 +207,60 @@ export function ExamScreen({
                 />
 
                 {/* Navigation */}
-                <div className="flex items-center justify-between mb-6">
-                  <button
-                    onClick={onGoToPrevious}
-                    disabled={isFirst}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <ChevronLeft className="w-5 h-5" aria-hidden="true" />
-                    Previous
-                  </button>
-
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-between mb-6">
                     <button
-                      onClick={() => onToggleExplanation(currentQuestion)}
-                      className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"
+                      onClick={onGoToPrevious}
+                      disabled={isFirst}
+                      className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      data-test-id="previous-button"
                     >
-                      {showExplanation[currentQuestion] ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                      {showExplanation[currentQuestion] ? 'Hide' : 'Show'} Explanation
+                      <ChevronLeft className="w-5 h-5" aria-hidden="true" />
+                      Previous
                     </button>
 
-                    {flaggedCount > 0 && !showResults && (
+                    <div className="flex items-center gap-2">
                       <button
-                        onClick={onGoToNextFlagged}
-                        className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 rounded-xl transition-colors"
-                        title="Jump to next flagged question"
+                        onClick={() => onToggleExplanation(currentQuestion)}
+                        className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"
+                        data-test-id="show-explanation-button"
                       >
-                        <Flag className="w-4 h-4" fill="currentColor" />
-                        Next Flagged
+                        {showExplanation[currentQuestion] ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                        {showExplanation[currentQuestion] ? 'Hide' : 'Show'} Explanation
+                      </button>
+
+                      {flaggedCount > 0 && !showResults && (
+                        <button
+                          onClick={onGoToNextFlagged}
+                          className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 rounded-xl transition-colors"
+                          title="Jump to next flagged question"
+                          data-test-id="next-flagged-button"
+                        >
+                          <Flag className="w-4 h-4" fill="currentColor" />
+                          Next Flagged
+                        </button>
+                      )}
+                    </div>
+
+                    {isLast && !showResults ? (
+                      <button
+                        onClick={onSubmit}
+                        className="flex items-center gap-2 px-6 py-2 bg-green-500 hover:bg-green-600 rounded-xl transition-colors font-semibold"
+                        data-test-id="submit-exam-button"
+                      >
+                        Submit Exam
+                        <CheckCircle2 className="w-5 h-5" aria-hidden="true" />
+                      </button>
+                    ) : isLast && showResults ? null : (
+                      <button
+                        onClick={onGoToNext}
+                        className={`flex items-center gap-2 px-4 py-2 ${theme.primaryBg} ${theme.primaryBgHover} rounded-xl transition-colors`}
+                        data-test-id="next-button"
+                      >
+                        Next
+                        <ChevronRight className="w-5 h-5" aria-hidden="true" />
                       </button>
                     )}
                   </div>
-
-                  {isLast && !showResults ? (
-                    <button
-                      onClick={onSubmit}
-                      className="flex items-center gap-2 px-6 py-2 bg-green-500 hover:bg-green-600 rounded-xl transition-colors font-semibold"
-                    >
-                      Submit Exam
-                      <CheckCircle2 className="w-5 h-5" aria-hidden="true" />
-                    </button>
-                  ) : isLast && showResults ? null : (
-                    <button
-                      onClick={onGoToNext}
-                      className={`flex items-center gap-2 px-4 py-2 ${theme.primaryBg} ${theme.primaryBgHover} rounded-xl transition-colors`}
-                    >
-                      Next
-                      <ChevronRight className="w-5 h-5" aria-hidden="true" />
-                    </button>
-                  )}
-                </div>
               </>
             )}
           </div>

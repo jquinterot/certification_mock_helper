@@ -18,6 +18,7 @@ export function TestSetCard({ active, onClick, number, count, theme }: TestSetCa
       className={`p-4 rounded-xl border transition-all flex flex-col items-center gap-2 ${
         active ? `${theme.selectedAnswerBg} ${theme.selectedAnswerBorder} text-white` : `${theme.bgCard} ${theme.borderColor} text-slate-700 dark:text-slate-300 hover:${theme.bgCardHover}`
       }`}
+      data-test-id={`testset-card-${number}`}
     >
       <FileText className={`w-8 h-8 ${theme.primaryLightText}`} />
       <span className="font-semibold">Test Set {number}</span>

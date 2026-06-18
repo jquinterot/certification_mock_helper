@@ -23,6 +23,7 @@ export function SavedTestList({ savedTests, theme, onResumeTest, onDeleteTest }:
             className={`flex items-center gap-3 ${theme.bgCard} p-3 rounded-xl border transition-colors ${
               savedTest.status === 'submitted' ? 'border-green-500/30' : theme.borderColor
             }`}
+            data-test-id={`saved-test-${savedTest.id}`}
           >
             <button
               onClick={() => onResumeTest(savedTest)}

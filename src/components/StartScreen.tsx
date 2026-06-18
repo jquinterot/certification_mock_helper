@@ -106,6 +106,7 @@ export function StartScreen({
           <button
             onClick={onBackToHome}
             className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} mb-6 transition-colors`}
+            data-test-id="back-button"
           >
             Back to Home
           </button>
@@ -116,6 +117,7 @@ export function StartScreen({
           <button
             onClick={onToggleTheme}
             className={`flex items-center gap-2 px-3 py-2 rounded-lg ${theme.bgButton} ${theme.borderColor} border transition-all hover:scale-105`}
+            data-test-id="theme-toggle"
           >
             {themeMode === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             <span className="text-xs font-medium">{themeMode === 'dark' ? 'Light' : 'Dark'}</span>
@@ -141,6 +143,7 @@ export function StartScreen({
                 <button
                   onClick={onViewHistory}
                   className={`flex items-center gap-1 text-xs ${theme.primaryLightText} transition-colors`}
+                  data-test-id="view-history-button"
                 >
                   <History className="w-3 h-3" />
                   View History
@@ -148,21 +151,21 @@ export function StartScreen({
               )}
             </div>
             <div className="grid grid-cols-3 gap-3">
-              <div className="text-center">
+              <div className="text-center" data-test-id="progress-best-score">
                 <p className={`text-xl font-bold ${theme.primaryLightText}`}>{examHistory.bestScore}%</p>
                 <p className={`text-xs ${theme.bgTextSecondary}`}>Best</p>
               </div>
-              <div className="text-center">
+              <div className="text-center" data-test-id="progress-average-score">
                 <p className={`text-xl font-bold ${theme.primaryLightText}`}>{examHistory.averageScore}%</p>
                 <p className={`text-xs ${theme.bgTextSecondary}`}>Average</p>
               </div>
-              <div className="text-center">
+              <div className="text-center" data-test-id="progress-attempts">
                 <p className={`text-xl font-bold ${theme.bgText}`}>{examHistory.totalAttempts}</p>
                 <p className={`text-xs ${theme.bgTextSecondary}`}>Attempts</p>
               </div>
             </div>
             {weakestDomain && (
-              <div className={`mt-3 flex items-center gap-2 bg-red-500/10 rounded-lg p-2 border border-red-500/20`}>
+              <div className={`mt-3 flex items-center gap-2 bg-red-500/10 rounded-lg p-2 border border-red-500/20`} data-test-id="weakest-domain">
                 <AlertTriangle className="w-4 h-4 text-red-400" />
                 <span className={`text-xs ${theme.bgTextSecondary}`}>
                   Weakest: <span className="text-red-400 font-medium">{weakestDomain.domain}</span> ({weakestDomain.averageScore}%)
@@ -222,6 +225,7 @@ export function StartScreen({
           onClick={onStart}
           disabled={needsDomainSelection || isInDomainSelectionStep}
           className={`w-full ${theme.primaryBg} ${theme.primaryBgHover} text-white font-bold py-4 rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
+          data-test-id="start-exam-button"
         >
           {needsDomainSelection || isInDomainSelectionStep
             ? 'Select a Domain to Start'

@@ -44,6 +44,7 @@ export function HomePage({ onSelectCategory, theme, themeMode, onToggleTheme }: 
           <button
             onClick={onToggleTheme}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
+            data-test-id="theme-toggle"
           >
             {themeMode === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             <span className="text-sm font-medium">{themeMode === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
@@ -60,6 +61,7 @@ export function HomePage({ onSelectCategory, theme, themeMode, onToggleTheme }: 
                 key={category.name}
                 onClick={() => onSelectCategory(category.name)}
                 className={`group relative p-8 rounded-2xl border ${catTheme.border} ${catTheme.bg} ${catTheme.hover} backdrop-blur-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl text-left`}
+                data-test-id={`category-card-${category.name.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className={`p-3 rounded-xl bg-gradient-to-br ${catTheme.gradient} text-white`}>
@@ -83,15 +85,15 @@ export function HomePage({ onSelectCategory, theme, themeMode, onToggleTheme }: 
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4">
-          <div className={`${theme.bgCard} rounded-xl p-4 text-center ${theme.borderColor} border`}>
+          <div className={`${theme.bgCard} rounded-xl p-4 text-center ${theme.borderColor} border`} data-test-id="stat-certifications">
             <p className={`text-3xl font-bold ${theme.primaryLightText}`}>{stats.certifications}</p>
             <p className={`text-sm ${theme.bgTextSecondary}`}>Certifications</p>
           </div>
-          <div className={`${theme.bgCard} rounded-xl p-4 text-center ${theme.borderColor} border`}>
+          <div className={`${theme.bgCard} rounded-xl p-4 text-center ${theme.borderColor} border`} data-test-id="stat-test-sets">
             <p className={`text-3xl font-bold ${theme.primaryLightText}`}>{stats.testSets}</p>
             <p className={`text-sm ${theme.bgTextSecondary}`}>Test Sets</p>
           </div>
-          <div className={`${theme.bgCard} rounded-xl p-4 text-center ${theme.borderColor} border`}>
+          <div className={`${theme.bgCard} rounded-xl p-4 text-center ${theme.borderColor} border`} data-test-id="stat-total-questions">
             <p className={`text-3xl font-bold ${theme.primaryLightText}`}>{stats.totalQuestions}</p>
             <p className={`text-sm ${theme.bgTextSecondary}`}>Total Questions</p>
           </div>

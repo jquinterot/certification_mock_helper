@@ -32,6 +32,7 @@ export function SubmitDialog({
       role="dialog"
       aria-modal="true"
       aria-labelledby="submit-dialog-title"
+      data-test-id="submit-dialog"
     >
       <div className={`${theme.bgCard} border ${theme.borderColor} rounded-2xl p-6 max-w-md w-full shadow-2xl`}>
         <div className="text-center mb-6">
@@ -60,6 +61,7 @@ export function SubmitDialog({
           <button
             onClick={onConfirm}
             className="w-full flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-xl transition-all"
+            data-test-id="submit-dialog-confirm"
           >
             <CheckCircle2 className="w-5 h-5" aria-hidden="true" />
             Submit & View Report
@@ -68,6 +70,7 @@ export function SubmitDialog({
           <button
             onClick={onCancel}
             className={`w-full ${theme.bgTextSecondary} hover:${theme.bgText} py-2 transition-colors text-sm`}
+            data-test-id="submit-dialog-cancel"
           >
             Cancel — Continue Exam
           </button>

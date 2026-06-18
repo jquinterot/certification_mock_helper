@@ -32,6 +32,7 @@ export function ExitDialog({
       role="dialog"
       aria-modal="true"
       aria-labelledby="exit-dialog-title"
+      data-test-id="exit-dialog"
     >
       <div className={`${theme.bgCard} border ${theme.borderColor} rounded-2xl p-6 max-w-md w-full shadow-2xl`}>
         <div className="text-center mb-6">
@@ -55,6 +56,7 @@ export function ExitDialog({
           <button
             onClick={onSave}
             className={`w-full flex items-center justify-center gap-2 ${theme.primaryBg} ${theme.primaryBgHover} text-white font-semibold py-3 rounded-xl transition-all`}
+            data-test-id="exit-dialog-save"
           >
             <Save className="w-5 h-5" aria-hidden="true" />
             Save & Exit
@@ -63,6 +65,7 @@ export function ExitDialog({
           <button
             onClick={onLeave}
             className={`w-full flex items-center justify-center gap-2 ${theme.bgButton} ${theme.bgButtonHover} ${theme.bgText} font-semibold py-3 rounded-xl transition-all`}
+            data-test-id="exit-dialog-leave"
           >
             <LogOut className="w-5 h-5" aria-hidden="true" />
             Leave Without Saving
@@ -71,6 +74,7 @@ export function ExitDialog({
           <button
             onClick={onCancel}
             className={`w-full ${theme.bgTextSecondary} hover:${theme.bgText} py-2 transition-colors text-sm`}
+            data-test-id="exit-dialog-cancel"
           >
             Cancel — Continue Exam
           </button>

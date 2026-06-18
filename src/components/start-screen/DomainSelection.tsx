@@ -82,15 +82,16 @@ export function DomainSelection({
           const domainLabel = section.domain.split(':')[0];
           const domainName = section.domain.split(':').slice(1).join(':').trim();
           return (
-            <button
-              key={section.domain}
-              onClick={() => handleSelectDomain(section.domain)}
-              className={`w-full text-left p-4 rounded-xl border transition-all ${
-                selectedDomain === section.domain
-                  ? `${theme.selectedAnswerBg} ${theme.selectedAnswerBorder} text-white`
-                  : `${theme.bgCard} ${theme.borderColor} text-slate-700 dark:text-slate-300 hover:${theme.bgCardHover}`
-              }`}
-            >
+          <button
+            key={section.domain}
+            onClick={() => handleSelectDomain(section.domain)}
+            className={`w-full text-left p-4 rounded-xl border transition-all ${
+              selectedDomain === section.domain
+                ? `${theme.selectedAnswerBg} ${theme.selectedAnswerBorder} text-white`
+                : `${theme.bgCard} ${theme.borderColor} text-slate-700 dark:text-slate-300 hover:${theme.bgCardHover}`
+            }`}
+            data-test-id={`domain-card-${section.domain.split(':')[0].toLowerCase().replace(/\s+/g, '-')}`}
+          >
               <div className="flex items-center justify-between">
                 <div>
                   <p className={`text-lg font-bold ${theme.bgText}`}>{domainLabel}</p>

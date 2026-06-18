@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1/2, 2/2]
+        shard: ["1-of-2", "2-of-2"]
     container:
       image: mcr.microsoft.com/playwright:v1.61.0-jammy
     steps:
@@ -29,7 +29,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install dependencies
@@ -76,7 +76,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install Playwright
         run: npm install --no-save @playwright/test

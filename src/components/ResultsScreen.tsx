@@ -107,6 +107,7 @@ export function ResultsScreen({
           <button
             onClick={onBackToHome}
             className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} mb-6 transition-colors`}
+            data-test-id="back-button"
           >
             Back to Home
           </button>

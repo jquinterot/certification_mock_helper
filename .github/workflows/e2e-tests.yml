@@ -93,7 +93,7 @@ jobs:
           merge-multiple: true
 
       - name: Merge HTML reports
-        run: npx playwright merge-reports --reporter html ./all-reports --output-dir ./merged-report
+        run: npx playwright merge-reports --reporter html ./merged-report ./all-reports
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

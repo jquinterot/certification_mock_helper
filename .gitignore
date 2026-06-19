@@ -44,3 +44,16 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 /playwright/.cache/
+/blob-report/
+
+# security
+*.key
+*.cert
+*.p12
+*.pfx
+secrets/
+.secrets/
+.idea/
+.vscode/
+*.swp
+*.swo

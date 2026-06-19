@@ -1,269 +1,281 @@
 import type { ExamQuestion } from '@/types';
 
 export const questions: ExamQuestion[] = [
-  // Questions 1-10 (Test Set 1)
+  // K1 - Remember (2 questions)
   {
     id: 1,
     domain: "Chapter 4: Test Techniques",
-    question: "What is the main purpose of equivalence partitioning?",
+    question: "Which of the following is a black-box test technique?",
     options: [
-      "To test all possible input values",
-      "To divide input data into partitions that are expected to behave the same way",
-      "To test only the boundary values",
-      "To test all possible paths through the code"
+      "Statement testing",
+      "Decision table testing",
+      "Branch testing",
+      "Path testing"
     ],
     correctAnswer: 1,
-    explanation: "Equivalence partitioning divides input data into partitions (equivalence classes) that are expected to behave the same way. Testing one value from each partition is sufficient."
+    explanation: "Decision table testing is a black-box technique that tests combinations of conditions. Statement testing, branch testing, and path testing are all white-box techniques that require knowledge of the code."
   },
   {
     id: 2,
     domain: "Chapter 4: Test Techniques",
-    question: "In boundary value analysis, which values are typically tested for a range of 1 to 100?",
+    question: "Which of the following experience-based test techniques relies on the tester's intuition and experience to identify potential defects?",
     options: [
-      "Only the minimum value (1)",
-      "Only the maximum value (100)",
-      "The minimum, maximum, and values just inside and outside the boundaries (0, 1, 100, 101)",
-      "All values from 1 to 100"
+      "Use case testing",
+      "Equivalence partitioning",
+      "Error guessing",
+      "State transition testing"
     ],
     correctAnswer: 2,
-    explanation: "Boundary value analysis tests values at the boundaries: the minimum, maximum, and values just inside and outside the boundaries (0, 1, 100, 101 for a range of 1 to 100)."
+    explanation: "Error guessing is an experience-based technique that relies on the tester's intuition and experience. Use case testing and state transition testing are specification-based, and equivalence partitioning is a structured black-box technique."
   },
+
+  // K2 - Understand (4 questions)
   {
     id: 3,
     domain: "Chapter 4: Test Techniques",
-    question: "What is a decision table used for?",
+    question: "What is the main advantage of state transition testing?",
     options: [
-      "To test the performance of the system",
-      "To test combinations of inputs and conditions that affect processing",
-      "To test the user interface layout",
-      "To test the database schema"
+      "It tests all possible combinations of inputs",
+      "It can test systems that behave differently depending on previous states or events",
+      "It eliminates the need for requirements documentation",
+      "It provides 100% statement coverage"
     ],
     correctAnswer: 1,
-    explanation: "Decision tables are used to test combinations of inputs and conditions that affect processing. They are useful for complex business rules."
+    explanation: "State transition testing is useful for systems that behave differently depending on previous states or events. It models the system as a set of states and transitions between them. It does not test all input combinations (that's decision table testing), nor does it guarantee coverage metrics."
   },
   {
     id: 4,
     domain: "Chapter 4: Test Techniques",
-    question: "Which test technique is based on the tester's experience and intuition?",
+    question: "Which statement BEST describes the difference between statement coverage and decision coverage?",
     options: [
-      "Equivalence partitioning",
-      "Boundary value analysis",
-      "Error guessing",
-      "Decision table testing"
+      "They are identical measures of test thoroughness",
+      "100% decision coverage guarantees 100% statement coverage, but not vice versa",
+      "100% statement coverage guarantees 100% decision coverage, but not vice versa",
+      "Statement coverage is a black-box technique, while decision coverage is a white-box technique"
     ],
     correctAnswer: 2,
-    explanation: "Error guessing is an experience-based technique where the tester uses their experience and intuition to guess where defects might occur."
+    explanation: "Statement coverage exercises each statement at least once, while decision coverage exercises each decision outcome (both true and false). 100% statement coverage does NOT guarantee 100% decision coverage because a decision with only one outcome tested still has its statement covered. But 100% decision coverage does guarantee 100% statement coverage."
   },
   {
     id: 5,
     domain: "Chapter 4: Test Techniques",
-    question: "What is the main advantage of state transition testing?",
+    question: "Which of the following BEST describes exploratory testing?",
     options: [
-      "It is only applicable to web applications",
-      "It can test systems that behave differently depending on previous conditions or history",
-      "It requires no documentation of the system under test",
-      "It can only test static systems"
+      "Testing that is performed without any documentation or planning",
+      "Simultaneous learning, test design, and test execution guided by a test charter",
+      "Testing that is always performed after all scripted tests are completed",
+      "A technique that replaces all other test techniques"
     ],
-    correctAnswer: 1,
-    explanation: "State transition testing is useful for testing systems that behave differently depending on previous conditions or history (e.g., finite state machines)."
+    correctAnswer: 3,
+    explanation: "Exploratory testing is simultaneous learning, test design, and test execution, often guided by a test charter (not unstructured). It does not replace other techniques but complements them. It is experience-based and can be performed at any time, not just after scripted tests."
   },
   {
     id: 6,
     domain: "Chapter 4: Test Techniques",
-    question: "What does statement coverage measure?",
+    question: "In a state transition diagram, what does a transition represent?",
     options: [
-      "The percentage of executable statements that have been exercised by the test suite",
-      "The percentage of decision outcomes that have been exercised by the test suite",
-      "The percentage of requirements that have been tested",
-      "The percentage of test cases that have passed"
+      "A condition of the system at a particular point in time",
+      "An action performed by the system when entering a state",
+      "A change from one state to another triggered by an event",
+      "A test case that covers all possible states"
     ],
     correctAnswer: 0,
-    explanation: "Statement coverage measures the percentage of executable statements in the source code that have been exercised by the test suite."
+    explanation: "In a state transition model, a transition represents a change from one state to another, which is triggered by an event. A state represents a condition of the system, and an action is the output produced during or after a transition. A transition itself is not a test case."
   },
+
+  // K3 - Apply (3 questions - scenario/exercise based)
   {
     id: 7,
     domain: "Chapter 4: Test Techniques",
-    question: "What is the difference between statement coverage and branch coverage?",
+    question: "A bank's loan approval system accepts loan amounts from $10,000 to $500,000. Using equivalence partitioning, which of the following sets of test values covers all equivalence classes (valid and invalid)?",
     options: [
-      "Statement coverage measures executable statements, while branch coverage measures decision outcomes (true and false branches)",
-      "Statement coverage is always 100%, while branch coverage is never 100%",
-      "Statement coverage is only used for black-box testing, while branch coverage is only used for white-box testing",
-      "There is no difference between them"
+      "$5,000; $50,000; $600,000",
+      "$10,000; $50,000; $500,000",
+      "$5,000; $50,000; $600,000; $10,000; $500,000",
+      "$9,999; $10,000; $500,000; $500,001"
     ],
-    correctAnswer: 0,
-    explanation: "Statement coverage measures the percentage of executable statements exercised, while branch coverage measures the percentage of decision outcomes (both true and false branches) exercised."
+    correctAnswer: 3,
+    explanation: "For the range $10,000 to $500,000, there are three equivalence classes: below minimum (invalid), within range (valid), and above maximum (invalid). The minimum set to cover all three classes includes one value from each partition: $9,999 (below), any value in range, and $500,001 (above). Option D includes values from all three partitions. Option A includes valid values from valid and two invalid partitions but misses the boundary precision. Option B only covers the valid partition."
   },
   {
     id: 8,
     domain: "Chapter 4: Test Techniques",
-    question: "Which test technique is most suitable for testing a login feature with multiple valid and invalid inputs?",
+    question: "An online store offers a discount based on order value: 0% for orders under $50, 5% for $50-$99, 10% for $100-$199, 15% for $200 and above. Using 2-value BVA on each boundary, which set of test values covers ALL boundaries?",
     options: [
-      "Performance testing",
-      "Equivalence partitioning and boundary value analysis",
-      "Usability testing",
-      "Security testing"
+      "$49, $50, $99, $100, $199, $200",
+      "$49, $50, $51, $99, $100, $101, $199, $200, $201",
+      "$0, $50, $100, $200",
+      "$48, $50, $98, $100, $198, $200, $202"
     ],
-    correctAnswer: 1,
-    explanation: "Equivalence partitioning and boundary value analysis are black-box techniques suitable for testing inputs with multiple valid and invalid values."
+    correctAnswer: 0,
+    explanation: "The boundaries are at $50, $100, and $200. Using 2-value BVA, we test each boundary value and the value just outside: $49/$50, $99/$100, and $199/$200. Option B uses 3-value BVA which is more thorough but not what was asked. Option C misses boundary-adjacent values. Option D uses incorrect offset values."
   },
   {
     id: 9,
     domain: "Chapter 4: Test Techniques",
-    question: "What is exploratory testing?",
+    question: "A system allows users to rate a product from 1 to 5 stars. Users can also choose not to rate (0 stars). The valid inputs are 0 (no rating) and 1-5 (ratings). Using equivalence partitioning, how many valid and invalid equivalence classes are there?",
     options: [
-      "A formal test technique with predefined test cases",
-      "An informal test technique where the tester actively designs and executes tests simultaneously",
-      "A technique that only tests the user interface",
-      "A technique that requires no test documentation"
+      "1 valid class, 1 invalid class",
+      "2 valid classes, 2 invalid classes",
+      "6 valid classes, 2 invalid classes",
+      "2 valid classes, 1 invalid class"
     ],
     correctAnswer: 1,
-    explanation: "Exploratory testing is an experience-based technique where the tester actively designs and executes tests simultaneously, learning about the system as they test."
+    explanation: "The valid partitions are: {0} (no rating) and {1,2,3,4,5} (valid ratings) = 2 valid classes. The invalid partitions are: values less than 0 (e.g., -1) and values greater than 5 (e.g., 6) = 2 invalid classes. So there are 2 valid and 2 invalid equivalence classes."
   },
+
+  // K4 - Analyze (1 question)
   {
     id: 10,
     domain: "Chapter 4: Test Techniques",
-    question: "Which test technique is typically used to test the flow of a use case?",
+    question: "A vending machine delivers a drink when the correct amount is inserted. It accepts coins of 10, 20, and 50 cents. A drink costs 80 cents. The machine has the following states: 'Idle', 'Coin inserted', and 'Drink dispensed'. Which of the following test sequences would cover the MOST transitions in the state transition model?",
     options: [
-      "Use case testing",
-      "Statement testing",
-      "Branch testing",
-      "Static analysis"
+      "Insert 80 cents → Drink dispensed → Return to idle",
+      "Insert 10 cents → Insert 20 cents → Insert 50 cents → Drink dispensed → Return to idle",
+      "Insert 10 cents → Insert 20 cents → Insert 10 cents → Insert 50 cents (overpayment) → Drink dispensed → Return to idle",
+      "Insert 50 cents → Cancel → Return to idle → Insert 10 cents → Insert 20 cents → Insert 50 cents → Cancel → Return to idle"
     ],
-    correctAnswer: 0,
-    explanation: "Use case testing is used to test the flow of a use case, including the main success scenario and alternative paths."
+    correctAnswer: 3,
+    explanation: "Option D covers the most transitions: Idle→Coin inserted (50c), Coin inserted→Idle (cancel), Idle→Coin inserted (10c), Coin inserted→Coin inserted (20c, 50c), Coin inserted→Idle (cancel). This tests the cancel transition, coin insertion at different states, and the return-to-idle transition. The other options cover fewer transitions. This question requires analyzing the state model to determine which test sequence exercises the most transitions."
   }
 ];
 
 export const questions2: ExamQuestion[] = [
-  // Questions 11-20 (Test Set 2)
+  // K1 - Remember (2 questions)
   {
-    id: 1,
+    id: 11,
     domain: "Chapter 4: Test Techniques",
-    question: "In equivalence partitioning, if a valid input range is 1 to 100, which of the following is an invalid equivalence class?",
+    question: "Which of the following is an experience-based test technique?",
     options: [
-      "Values between 1 and 100 inclusive",
-      "Values less than 1",
-      "Values between 1 and 50",
-      "Values between 51 and 100"
-    ],
-    correctAnswer: 1,
-    explanation: "In equivalence partitioning, valid equivalence classes are ranges of valid inputs (1 to 100), while invalid equivalence classes are ranges outside the valid input (values less than 1 and values greater than 100). Values between 1 and 50 or 51 and 100 are subsets of the valid class, not distinct equivalence classes."
-  },
-  {
-    id: 2,
-    domain: "Chapter 4: Test Techniques",
-    question: "Using 3-value boundary value analysis (BVA) for a valid range of 10 to 50, which test values should be selected?",
-    options: [
-      "9, 10, 50, 51",
-      "10, 50",
-      "9, 10, 11, 49, 50, 51",
-      "8, 9, 10, 50, 51, 52"
-    ],
-    correctAnswer: 2,
-    explanation: "3-value BVA includes the boundary value itself, the value just below the boundary, and the value just above the boundary. For a range of 10 to 50, the test values are 9, 10, 11 (lower boundary) and 49, 50, 51 (upper boundary). 2-value BVA would only include 9, 10, 50, 51."
-  },
-  {
-    id: 3,
-    domain: "Chapter 4: Test Techniques",
-    question: "A decision table has 3 conditions. How many rules are needed for full coverage if all conditions are binary?",
-    options: [
-      "3",
-      "6",
-      "8",
-      "9"
-    ],
-    correctAnswer: 2,
-    explanation: "For a decision table with 3 binary conditions, the number of rules is 2^3 = 8. Each condition can be true or false, so the total number of combinations is 2 raised to the power of the number of conditions. For n binary conditions, there are 2^n rules."
-  },
-  {
-    id: 4,
-    domain: "Chapter 4: Test Techniques",
-    question: "In state transition testing, which of the following describes an event that causes a change from one state to another?",
-    options: [
-      "A state",
-      "A transition",
-      "An event",
-      "An action"
-    ],
-    correctAnswer: 2,
-    explanation: "An event is a trigger that causes a transition from one state to another. A state is a condition of the system, a transition is the change from one state to another, and an action is the output or behavior that occurs during or after a transition."
-  },
-  {
-    id: 5,
-    domain: "Chapter 4: Test Techniques",
-    question: "In use case testing, which element describes the sequence of interactions between an actor and the system?",
-    options: [
-      "The actor",
-      "The scenario",
-      "The precondition",
-      "The postcondition"
-    ],
-    correctAnswer: 1,
-    explanation: "In use case testing, a scenario describes the sequence of interactions between an actor and the system. An actor is the user or external system interacting with the system. Preconditions and postconditions describe the state before and after the use case."
-  },
-  {
-    id: 6,
-    domain: "Chapter 4: Test Techniques",
-    question: "A tester uses their experience to guess that a form might fail when submitting with special characters in the name field. Which test technique is being used?",
-    options: [
-      "Equivalence partitioning",
       "Boundary value analysis",
-      "Error guessing",
+      "Equivalence partitioning",
+      "Checklist-based testing",
       "Decision table testing"
     ],
     correctAnswer: 2,
-    explanation: "Error guessing is a test technique where the tester uses their experience and intuition to guess where defects might occur. It relies on common errors and past experience. Equivalence partitioning and BVA are systematic techniques, and decision table testing is used for complex business rules."
+    explanation: "Checklist-based testing is an experience-based technique. Boundary value analysis, equivalence partitioning, and decision table testing are all specification-based (black-box) techniques."
   },
   {
-    id: 7,
+    id: 12,
     domain: "Chapter 4: Test Techniques",
-    question: "Which statement BEST describes exploratory testing?",
+    question: "What does 100% statement coverage mean?",
     options: [
-      "Testing without any documentation or test cases",
-      "Simultaneous learning, test design, and test execution",
-      "Testing that is only performed after all test cases are written",
-      "Testing that follows a strict predefined script without deviation"
+      "Every decision outcome has been tested",
+      "Every line of code has been executed at least once",
+      "Every possible path through the code has been tested",
+      "Every requirement has been tested"
     ],
     correctAnswer: 1,
-    explanation: "Exploratory testing is an approach where the tester simultaneously learns about the system, designs tests, and executes them. It is not testing without documentation (test charters are often used), nor is it strictly predefined or performed only after test cases are written."
+    explanation: "100% statement coverage means that every executable statement in the code has been exercised at least once. It does not guarantee that every decision outcome has been tested (that's decision coverage), every path has been tested (that's path coverage), or every requirement has been tested (that's requirements coverage)."
+  },
+
+  // K2 - Understand (4 questions)
+  {
+    id: 13,
+    domain: "Chapter 4: Test Techniques",
+    question: "Which statement about decision table testing is CORRECT?",
+    options: [
+      "It can only be used when conditions have exactly two possible values",
+      "It systematically tests combinations of conditions and their resulting actions",
+      "It is only applicable to real-time systems",
+      "It replaces the need for all other test techniques"
+    ],
+    correctAnswer: 1,
+    explanation: "Decision table testing systematically tests combinations of conditions and their resulting actions. Conditions can have more than two values (not just binary). It is applicable to any system with complex business rules, not just real-time systems. It complements other techniques rather than replacing them."
   },
   {
-    id: 8,
+    id: 14,
     domain: "Chapter 4: Test Techniques",
-    question: "If an input field accepts values from 0 to 100, which values should be tested using 2-value boundary value analysis?",
+    question: "Why is achieving 100% decision coverage generally considered more thorough than 100% statement coverage?",
     options: [
-      "0, 50, 100",
-      "-1, 0, 1, 99, 100, 101",
-      "-1, 0, 100, 101",
-      "0, 100"
+      "Decision coverage requires fewer test cases than statement coverage",
+      "100% decision coverage ensures all decision outcomes (true and false) are tested, which may not be achieved by 100% statement coverage",
+      "Decision coverage is a black-box technique, while statement coverage is a white-box technique",
+      "Statement coverage only works for object-oriented code"
     ],
-    correctAnswer: 2,
-    explanation: "2-value boundary value analysis tests the boundary value and the value just outside the boundary. For a range of 0 to 100, the test values are -1, 0, 100, 101. The value just below the lower boundary (-1), the lower boundary (0), the upper boundary (100), and the value just above the upper boundary (101)."
+    correctAnswer: 1,
+    explanation: "100% decision coverage is more thorough because it ensures both true and false outcomes of every decision are tested. 100% statement coverage might execute every statement without testing both outcomes of a decision (e.g., an if-statement where only the true branch is tested). Decision coverage subsumes statement coverage."
   },
   {
-    id: 9,
+    id: 15,
     domain: "Chapter 4: Test Techniques",
-    question: "In a decision table, what does a rule represent?",
+    question: "What is the purpose of a test charter in exploratory testing?",
     options: [
-      "A single condition",
-      "A single action",
-      "A combination of conditions that lead to a set of actions",
-      "The number of conditions in the table"
+      "To replace all formal test cases with random testing",
+      "To provide a clear mission and scope for the exploratory testing session",
+      "To guarantee that all defects will be found",
+      "To eliminate the need for any test documentation"
     ],
-    correctAnswer: 2,
-    explanation: "In a decision table, a rule represents a specific combination of condition values (true/false) that leads to a set of actions. Each rule is a column that defines what actions should be taken when the conditions match that specific combination."
+    correctAnswer: 1,
+    explanation: "A test charter provides a clear mission and scope for the exploratory testing session. It defines what to test, how to test it, and what to look for. It does not replace formal test cases or guarantee all defects will be found, and it is itself a form of test documentation."
   },
   {
-    id: 10,
+    id: 16,
     domain: "Chapter 4: Test Techniques",
-    question: "Which black-box test technique is most suitable for testing a system with complex business rules involving multiple conditions?",
+    question: "Which of the following pairs of test techniques are BOTH white-box techniques?",
     options: [
-      "Equivalence partitioning",
-      "Boundary value analysis",
-      "Decision table testing",
-      "State transition testing"
+      "Equivalence partitioning and boundary value analysis",
+      "Statement testing and path testing",
+      "Decision table testing and state transition testing",
+      "Error guessing and exploratory testing"
+    ],
+    correctAnswer: 1,
+    explanation: "Statement testing and path testing are both white-box techniques because they require knowledge of the internal structure of the code. Equivalence partitioning and BVA are black-box techniques. Decision table testing and state transition testing are black-box techniques. Error guessing and exploratory testing are experience-based techniques."
+  },
+
+  // K3 - Apply (3 questions - scenario/exercise based)
+  {
+    id: 17,
+    domain: "Chapter 4: Test Techniques",
+    question: "A password field requires a minimum of 8 characters and a maximum of 20 characters. Using 2-value boundary value analysis, which values should be tested?",
+    options: [
+      "7, 8, 20, 21",
+      "8, 14, 20",
+      "7, 8, 9, 19, 20, 21",
+      "0, 8, 20, 21"
+    ],
+    correctAnswer: 0,
+    explanation: "2-value BVA tests each boundary value and the value just outside. For a valid range of 8 to 20 characters: just below minimum (7), minimum (8), just within minimum (9 not needed for 2-value), just above maximum (21). Wait—2-value BVA tests the boundary and one value outside each boundary: 7, 8, 20, 21. Option C is 3-value BVA."
+  },
+  {
+    id: 18,
+    domain: "Chapter 4: Test Techniques",
+    question: "A library system charges no fine for books returned within 7 days, a $1 fine for 8-14 days late, a $5 fine for 15-30 days late, and $10 for more than 30 days late. Using equivalence partitioning, which set of test values covers ALL partitions with the MINIMUM number of tests?",
+    options: [
+      "3 days, 10 days, 20 days, 45 days",
+      "0 days, 7 days, 8 days, 14 days, 15 days, 30 days, 31 days",
+      "3 days, 10 days, 20 days",
+      "7 days, 8 days, 14 days, 15 days, 30 days, 31 days"
+    ],
+    correctAnswer: 0,
+    explanation: "There are four equivalence classes: within 7 days (no fine), 8-14 days ($1 fine), 15-30 days ($5 fine), and 31+ days ($10 fine). Option A tests one value from each of the four partitions with minimum tests: 3 (within 7), 10 (8-14), 20 (15-30), 45 (31+). Option B uses boundary values but doesn't represent minimum tests. Option C misses the 31+ partition."
+  },
+  {
+    id: 19,
+    domain: "Chapter 4: Test Techniques",
+    question: "Consider the following decision table for an insurance application:\n\n| Condition: Age < 25 | Y | Y | Y | Y | N | N | N | N |\n| Condition: Clean record | Y | Y | N | N | Y | Y | N | N |\n| Condition: Full coverage | Y | N | Y | N | Y | N | Y | N |\n\nHow many test cases are needed for full coverage of this decision table?",
+    options: [
+      "3",
+      "4",
+      "8",
+      "6"
     ],
     correctAnswer: 2,
-    explanation: "Decision table testing is most suitable for testing complex business rules involving multiple conditions. It systematically captures all combinations of conditions and their corresponding actions. Equivalence partitioning and BVA are better for input ranges, and state transition testing is for systems with distinct states."
+    explanation: "The decision table has 3 binary conditions. Full coverage requires testing all combinations: 2^3 = 8 test cases. Each condition can be true or false, and full coverage means every possible combination of conditions must be tested."
+  },
+
+  // K4 - Analyze (1 question)
+  {
+    id: 20,
+    domain: "Chapter 4: Test Techniques",
+    question: "A tester is testing an e-commerce checkout process with the following state transition model:\n\nStates: Browsing → Cart → Checkout → Payment → Confirmation\nEvents: Add to cart, Proceed to checkout, Submit payment, Continue shopping, Cancel\n\nThe tester needs to write tests that achieve high transition coverage. Which of the following statements is TRUE?",
+    options: [
+      "A single test that goes from Browsing to Confirmation covers all transitions",
+      "Testing only the 'happy path' (Browsing→Cart→Checkout→Payment→Confirmation) achieves 100% transition coverage",
+      "Testing both the happy path and the cancel transitions from each state provides better transition coverage than the happy path alone",
+      "Transition coverage cannot be measured in state transition testing"
+    ],
+    correctAnswer: 2,
+    explanation: "The happy path only covers 4 forward transitions. To achieve high transition coverage, the tester must also test 'Cancel' transitions from each state (Cart→Browsing, Checkout→Cart, Payment→Cart) and 'Continue shopping' (Cart→Browsing). These additional transitions would not be covered by the happy path alone. Option A is wrong because a single path doesn't cover cancel transitions. Option B is wrong because the happy path misses many transitions. Option D is wrong because transition coverage can be measured."
   }
 ];

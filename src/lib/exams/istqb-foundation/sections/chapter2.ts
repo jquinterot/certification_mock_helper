@@ -7,12 +7,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 2: Testing Throughout the SDLC",
     question: "In the V-model, which test level corresponds to the requirements specification phase?",
     options: [
+      "Acceptance testing",
       "Unit testing",
       "Integration testing",
-      "System testing",
-      "Acceptance testing"
+      "System testing"
     ],
-    correctAnswer: 3,
+    correctAnswer: 0,
     explanation: "In the V-model, acceptance testing corresponds to the requirements specification phase. Each development phase has a corresponding testing phase on the opposite side of the V."
   },
   {
@@ -22,10 +22,10 @@ export const questions: ExamQuestion[] = [
     options: [
       "System testing",
       "Acceptance testing",
-      "Unit testing",
-      "Regression testing"
+      "Regression testing",
+      "Unit testing"
     ],
-    correctAnswer: 2,
+    correctAnswer: 3,
     explanation: "Unit testing is typically performed by the developers themselves. It tests the smallest testable components of the software."
   },
   {
@@ -34,11 +34,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the main focus of integration testing?",
     options: [
       "Testing individual functions in isolation",
-      "Testing interfaces and interactions between components or systems",
       "Testing the complete system against user requirements",
+      "Testing interfaces and interactions between components or systems",
       "Testing the system under heavy load conditions"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Integration testing focuses on interfaces and interactions between integrated components or systems. It verifies that components work together correctly."
   },
   {
@@ -72,12 +72,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 2: Testing Throughout the SDLC",
     question: "What is the main purpose of maintenance testing?",
     options: [
-      "To verify that the software still meets user requirements after changes",
       "To test the software during the initial development phase",
       "To replace the need for regression testing",
-      "To verify that the development team is following coding standards"
+      "To verify that the development team is following coding standards",
+      "To verify that the software still meets user requirements after changes"
     ],
-    correctAnswer: 0,
+    correctAnswer: 3,
     explanation: "Maintenance testing verifies that the software still meets requirements after changes (corrections, enhancements, or environment changes) and includes regression testing."
   },
   {
@@ -86,11 +86,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the primary goal of shift-left testing?",
     options: [
       "To delay testing until the end of the development cycle",
-      "To start testing as early as possible in the software development lifecycle",
       "To move testing to the right side of the V-model",
+      "To start testing as early as possible in the software development lifecycle",
       "To eliminate the need for unit testing"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Shift-left testing is the approach of starting testing as early as possible in the software development lifecycle. This helps find defects early when they are cheaper to fix and reduces the risk of late-stage issues."
   },
   {
@@ -111,12 +111,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 2: Testing Throughout the SDLC",
     question: "What is the difference between black-box and white-box testing?",
     options: [
-      "Black-box testing is performed by developers, while white-box testing is performed by testers",
       "Black-box testing is based on requirements and specifications, while white-box testing is based on the internal structure of the software",
+      "Black-box testing is performed by developers, while white-box testing is performed by testers",
       "Black-box testing is only used for unit testing, while white-box testing is only used for system testing",
       "There is no difference between black-box and white-box testing"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Black-box testing is based on requirements and specifications, without knowledge of the internal code. White-box testing is based on the internal structure of the software, such as code, architecture, and data flow."
   },
   {
@@ -125,11 +125,11 @@ export const questions: ExamQuestion[] = [
     question: "Which of the following is a type of change-related testing?",
     options: [
       "Performance testing",
-      "Regression testing",
       "Usability testing",
-      "Security testing"
+      "Security testing",
+      "Regression testing"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Regression testing is a type of change-related testing. It verifies that existing functionality still works after changes have been made to the software. Other types of change-related testing include confirmation testing (re-testing)."
   }
 ];
@@ -167,12 +167,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 2: Testing Throughout the SDLC",
     question: "What is confirmation testing?",
     options: [
-      "Testing that confirms the system meets all requirements",
       "Re-testing a defect after it has been fixed to verify that the fix works",
+      "Testing that confirms the system meets all requirements",
       "Testing that confirms the test plan is complete",
       "Testing that confirms the project is on schedule"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Confirmation testing (also known as re-testing) is the process of testing a defect after it has been fixed to verify that the fix works and that the defect is no longer present."
   },
   {
@@ -181,11 +181,11 @@ export const questions2: ExamQuestion[] = [
     question: "What is the main difference between smoke testing and sanity testing?",
     options: [
       "Smoke testing is performed daily, while sanity testing is performed weekly",
-      "Smoke testing is a shallow and wide approach to verify the critical functionalities, while sanity testing is a narrow and deep approach to verify specific functionality after changes",
       "Smoke testing is performed by developers, while sanity testing is performed by testers",
-      "There is no difference between smoke testing and sanity testing"
+      "There is no difference between smoke testing and sanity testing",
+      "Smoke testing is a shallow and wide approach to verify the critical functionalities, while sanity testing is a narrow and deep approach to verify specific functionality after changes"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Smoke testing is a shallow and wide approach to verify the critical functionalities of the system. Sanity testing is a narrow and deep approach to verify specific functionality after changes. Both are types of change-related testing."
   },
   {
@@ -219,12 +219,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 2: Testing Throughout the SDLC",
     question: "What is a test approach?",
     options: [
-      "A document that describes the test environment",
       "The implementation of the test strategy for a specific project, including the test techniques and test levels to be used",
+      "A document that describes the test environment",
       "A list of all test cases for the project",
       "A report that summarizes the test results"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "A test approach is the implementation of the test strategy for a specific project. It includes the test techniques, test levels, and test types to be used. The test strategy is a higher-level document, while the test approach is tailored to the specific project."
   },
   {
@@ -234,10 +234,10 @@ export const questions2: ExamQuestion[] = [
     options: [
       "Component testing",
       "Integration testing",
-      "System testing",
-      "Acceptance testing"
+      "Acceptance testing",
+      "System testing"
     ],
-    correctAnswer: 2,
+    correctAnswer: 3,
     explanation: "System testing is typically performed in a test environment that is similar to the production environment. It verifies the complete system against the specified requirements and includes both functional and non-functional testing."
   },
   {
@@ -246,11 +246,11 @@ export const questions2: ExamQuestion[] = [
     question: "What is the main purpose of a test plan?",
     options: [
       "To document the test cases for a specific feature",
-      "To describe the scope, approach, resources, and schedule of testing activities",
       "To record the defects found during testing",
+      "To describe the scope, approach, resources, and schedule of testing activities",
       "To provide a detailed report of test results"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "A test plan describes the scope, approach, resources, and schedule of testing activities. It is a high-level document that guides the testing process."
   },
   {
@@ -259,11 +259,11 @@ export const questions2: ExamQuestion[] = [
     question: "A software team is working on an iterative project using Scrum. At the end of each sprint, the team demonstrates the working software to the product owner. Which test level is most likely being performed during this demonstration?",
     options: [
       "Component testing",
+      "Acceptance testing",
       "Integration testing",
-      "System testing",
-      "Acceptance testing"
+      "System testing"
     ],
-    correctAnswer: 3,
+    correctAnswer: 1,
     explanation: "During the sprint review, the team demonstrates working software to the product owner. This is a form of acceptance testing, where the product owner validates that the implemented features meet the user stories and acceptance criteria."
   }
 ];

@@ -7,12 +7,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 1: Introduction to GenAI for Testing",
     question: "What is the primary difference between a foundation model and an instruction-tuned model?",
     options: [
-      "Foundation models are smaller and faster",
       "Foundation models are trained on broad data, while instruction-tuned models are fine-tuned on task-specific instructions",
+      "Foundation models are smaller and faster",
       "Foundation models cannot generate text",
       "Instruction-tuned models are always open-source"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Foundation models are trained on broad, general data and can perform many tasks. Instruction-tuned models are further fine-tuned on specific instruction-following datasets, making them better at understanding and executing user commands."
   },
   {
@@ -21,11 +21,11 @@ export const questions: ExamQuestion[] = [
     question: "What is a 'context window' in a Large Language Model (LLM)?",
     options: [
       "The physical screen where the model outputs text",
-      "The maximum number of tokens the model can process in a single input",
       "The training dataset size",
-      "The model's memory footprint"
+      "The model's memory footprint",
+      "The maximum number of tokens the model can process in a single input"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "The context window is the maximum number of tokens (words/subwords) that an LLM can process in a single input. It limits how much information can be included in one prompt, which affects test log analysis and long requirement documents."
   },
   {
@@ -34,11 +34,11 @@ export const questions: ExamQuestion[] = [
     question: "Which of the following best describes the 'attention mechanism' in transformer models?",
     options: [
       "A mechanism that reduces the model's memory usage",
-      "A mechanism that allows the model to focus on relevant parts of the input when generating output",
       "A mechanism that encrypts the input data",
+      "A mechanism that allows the model to focus on relevant parts of the input when generating output",
       "A mechanism that speeds up training by 100x"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "The attention mechanism allows the model to focus on relevant parts of the input when generating each part of the output. This is the core innovation that enables transformers to capture long-range dependencies in text."
   },
   {
@@ -59,12 +59,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 1: Introduction to GenAI for Testing",
     question: "What is a multimodal LLM?",
     options: [
-      "A model that can only process text",
       "A model that can process multiple types of input (text, images, audio)",
+      "A model that can only process text",
       "A model trained on multiple programming languages",
       "A model that runs on multiple servers"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "A multimodal LLM can process and understand multiple types of input data, such as text, images, and audio. This is useful for testing applications that involve screenshots, UI elements, or voice interfaces."
   },
   {
@@ -73,11 +73,11 @@ export const questions: ExamQuestion[] = [
     question: "Which of the following best describes 'embeddings' in the context of LLMs?",
     options: [
       "Visual representations of the model architecture",
-      "Dense numerical vectors that represent semantic meaning of text",
       "The process of training a model on multiple datasets",
-      "Error messages displayed during model inference"
+      "Error messages displayed during model inference",
+      "Dense numerical vectors that represent semantic meaning of text"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Embeddings are dense numerical vectors that capture the semantic meaning of text. They enable semantic similarity search, which is essential for Retrieval-Augmented Generation (RAG) systems in testing."
   },
   {
@@ -86,11 +86,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the primary advantage of using Small Language Models (SLMs) over Large Language Models for certain testing tasks?",
     options: [
       "SLMs are always more accurate",
-      "SLMs are more efficient and cost-effective for specific, narrow tasks",
       "SLMs can process unlimited context",
+      "SLMs are more efficient and cost-effective for specific, narrow tasks",
       "SLMs do not require any training data"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Small Language Models (SLMs) are more efficient and cost-effective for specific, narrow tasks. They have fewer parameters, making them faster and cheaper to run, which is ideal for repetitive testing tasks like generating test data."
   },
   {
@@ -111,12 +111,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 1: Introduction to GenAI for Testing",
     question: "What is the purpose of 'pre-training' in foundation models?",
     options: [
-      "To make the model smaller",
       "To train the model on broad data to learn general language patterns",
+      "To make the model smaller",
       "To remove all parameters",
       "To make the model run faster"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Pre-training involves training a model on broad data to learn general language patterns and world knowledge. This foundation can then be fine-tuned for specific tasks like testing."
   },
   {
@@ -125,11 +125,11 @@ export const questions: ExamQuestion[] = [
     question: "Which of the following is a limitation of LLMs in testing?",
     options: [
       "They cannot generate text",
-      "They may produce hallucinations or incorrect information",
       "They are too small to process text",
-      "They only work with images"
+      "They only work with images",
+      "They may produce hallucinations or incorrect information"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "LLMs may produce hallucinations - generated content that is incorrect or not based on the input. This is a critical risk in testing where accuracy is essential."
   },
   {
@@ -138,11 +138,11 @@ export const questions: ExamQuestion[] = [
     question: "Which of the following is a key difference between a foundation model and a reasoning model?",
     options: [
       "Foundation models are always open-source",
-      "Reasoning models are designed for step-by-step logical analysis and typically slower",
       "Foundation models cannot process text",
+      "Reasoning models are designed for step-by-step logical analysis and typically slower",
       "Reasoning models are always smaller"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Reasoning models are designed for step-by-step logical analysis, making them suitable for complex tasks like test planning. They are typically slower and more expensive than foundation or instruction-tuned models."
   },
   {
@@ -165,12 +165,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 2: Prompt Engineering for Testing",
     question: "What are the six components of a structured prompt for testing?",
     options: [
-      "Title, subtitle, body, conclusion, appendix, references",
       "Role, context, instruction, input data, constraints, output format",
+      "Title, subtitle, body, conclusion, appendix, references",
       "Introduction, problem statement, solution, evaluation, conclusion, future work",
       "User, password, database, API, endpoint, response"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "The six components of a structured prompt for testing are: Role (who the AI should act as), Context (background information), Instruction (what to do), Input Data (the specific content to process), Constraints (limitations), and Output Format (desired structure)."
   },
   {
@@ -179,11 +179,11 @@ export const questions: ExamQuestion[] = [
     question: "Which prompting technique is MOST appropriate for generating consistent Gherkin scenarios for similar user stories?",
     options: [
       "Prompt chaining",
-      "Few-shot prompting",
       "Meta prompting",
-      "Zero-shot prompting"
+      "Zero-shot prompting",
+      "Few-shot prompting"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Few-shot prompting provides examples of the desired output format, which is ideal for generating consistent Gherkin scenarios. By showing 2-3 examples, the model learns the pattern and produces consistent, structured output."
   },
   {
@@ -192,11 +192,11 @@ export const questions: ExamQuestion[] = [
     question: "Which prompting technique is MOST appropriate for breaking down a complex test planning task into sequential steps?",
     options: [
       "Few-shot prompting",
-      "Prompt chaining",
       "Meta prompting",
+      "Prompt chaining",
       "Random prompting"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Prompt chaining breaks down complex tasks into sequential steps, where the output of one prompt becomes the input of the next. This is ideal for complex test planning that requires multiple stages of analysis."
   },
   {
@@ -217,12 +217,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 2: Prompt Engineering for Testing",
     question: "What is 'meta prompting' in the context of software testing?",
     options: [
-      "Prompting the model to generate prompts for other models",
       "Asking the model to analyze and improve its own prompts",
+      "Prompting the model to generate prompts for other models",
       "Using multiple LLMs simultaneously",
       "Encrypting the prompt before sending"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Meta prompting involves asking the model to analyze and improve its own prompts. For example, you might ask the model to review a prompt for ambiguities and suggest improvements before using it for test case generation."
   },
   {
@@ -231,11 +231,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the primary risk of using zero-shot prompting for complex test case generation?",
     options: [
       "The model will always produce incorrect results",
-      "The output may be inconsistent and lack domain-specific structure",
       "The model will refuse to generate anything",
-      "Zero-shot prompting is always more expensive"
+      "Zero-shot prompting is always more expensive",
+      "The output may be inconsistent and lack domain-specific structure"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Zero-shot prompting (no examples) may produce inconsistent output that lacks domain-specific structure. Without examples, the model might not understand the expected format or level of detail for test cases."
   },
   {
@@ -244,11 +244,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the primary risk of using a high temperature setting (e.g., 0.9) for test case generation?",
     options: [
       "The model will run slower",
-      "The output may be too creative and inconsistent, producing non-deterministic test cases",
       "The API cost will be lower",
+      "The output may be too creative and inconsistent, producing non-deterministic test cases",
       "The model will refuse to generate"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "A high temperature increases randomness and creativity, which can lead to inconsistent, non-deterministic test cases. For test case generation, consistency and reproducibility are often more important than creativity."
   },
   {
@@ -284,10 +284,10 @@ export const questions: ExamQuestion[] = [
     options: [
       "Diversity score",
       "Execution success rate",
-      "Relevance score",
-      "Time efficiency"
+      "Time efficiency",
+      "Relevance score"
     ],
-    correctAnswer: 2,
+    correctAnswer: 3,
     explanation: "The relevance score measures how well generated test cases align with the requirements. While diversity, execution success rate, and time efficiency are useful metrics, relevance directly evaluates coverage adequacy."
   },
   {
@@ -296,11 +296,11 @@ export const questions: ExamQuestion[] = [
     question: "Which technique is MOST appropriate for iteratively improving a prompt that generates test data?",
     options: [
       "Increasing the model size",
-      "Evaluating output and refining constraints based on results",
       "Using a different LLM entirely",
+      "Evaluating output and refining constraints based on results",
       "Removing all constraints"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Iterative prompt improvement involves evaluating the generated output against requirements, identifying gaps, and refining the prompt's constraints and instructions. This is the most effective approach for improving prompt quality."
   },
   {
@@ -321,12 +321,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 2: Prompt Engineering for Testing",
     question: "Which of the following is a limitation of few-shot prompting?",
     options: [
-      "It always produces perfect results",
       "It requires high-quality examples that may not always be available",
+      "It always produces perfect results",
       "It is faster than zero-shot prompting",
       "It works with any model size"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Few-shot prompting requires high-quality examples that demonstrate the desired output format. If good examples are not available, the technique may not be effective, and the model may learn incorrect patterns."
   },
   {
@@ -335,11 +335,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the primary purpose of 'prompt templates' in a testing organization?",
     options: [
       "To make prompts look pretty",
-      "To standardize and reuse effective prompts across the team",
       "To reduce the model's memory usage",
-      "To encrypt prompt data"
+      "To encrypt prompt data",
+      "To standardize and reuse effective prompts across the team"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Prompt templates standardize and reuse effective prompts across the team. This ensures consistency in test case generation and allows best practices to be shared. Templates can be parameterized for different contexts."
   },
 
@@ -349,12 +349,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 3: Managing Risks of GenAI in Testing",
     question: "What is a 'hallucination' in the context of LLM-generated test cases?",
     options: [
-      "The model generates test cases that are completely fabricated and not based on requirements",
       "The model produces too many test cases",
       "The model crashes during generation",
+      "The model generates test cases that are completely fabricated and not based on requirements",
       "The model generates test cases that are too simple"
     ],
-    correctAnswer: 0,
+    correctAnswer: 2,
     explanation: "A hallucination occurs when the LLM generates test cases that are fabricated, incorrect, or not based on the actual requirements. The model may invent requirements, steps, or expected results that don't exist."
   },
   {
@@ -375,12 +375,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 3: Managing Risks of GenAI in Testing",
     question: "Which risk is MOST relevant when sending production-equivalent test data to a public LLM API?",
     options: [
-      "The model will generate too many test cases",
       "Data privacy and security violations (GDPR, HIPAA)",
+      "The model will generate too many test cases",
       "The test cases will be too complex",
       "The API will be too slow"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Sending production-equivalent test data containing PII or sensitive information to a public LLM API violates data privacy regulations (GDPR, HIPAA). This is a critical risk in regulated industries."
   },
   {
@@ -389,11 +389,11 @@ export const questions: ExamQuestion[] = [
     question: "Which ISO standard provides a framework for AI management systems?",
     options: [
       "ISO 9001",
-      "ISO/IEC 42001:2023",
       "ISO 27001",
-      "ISO 14001"
+      "ISO 14001",
+      "ISO/IEC 42001:2023"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "ISO/IEC 42001:2023 is the international standard for AI management systems. It provides a framework for organizations to manage AI risks and opportunities responsibly."
   },
   {
@@ -402,11 +402,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the EU AI Act's primary focus regarding AI systems?",
     options: [
       "Promoting AI innovation without restrictions",
-      "Regulating AI systems based on risk levels and ensuring safety",
       "Banning all AI applications",
+      "Regulating AI systems based on risk levels and ensuring safety",
       "Standardizing AI training datasets"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "The EU AI Act regulates AI systems based on risk levels (minimal, limited, high, unacceptable). It ensures safety, transparency, and accountability, with strict requirements for high-risk AI applications."
   },
   {
@@ -429,12 +429,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
     question: "What is Retrieval-Augmented Generation (RAG) in the context of testing tools?",
     options: [
-      "A method for generating random test data",
       "A technique that retrieves relevant test artifacts from a knowledge base to augment LLM prompts",
+      "A method for generating random test data",
       "A way to train LLMs from scratch",
       "A protocol for API testing"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "RAG retrieves relevant test artifacts (requirements, test cases, defect history) from a vector database and includes them in the LLM prompt. This grounds the model's responses in actual project data rather than relying solely on training data."
   },
   {
@@ -443,11 +443,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the role of a vector database in a RAG-based testing tool?",
     options: [
       "To store test execution results",
-      "To store embeddings of test artifacts for semantic similarity search",
       "To manage user authentication",
-      "To compile test code"
+      "To compile test code",
+      "To store embeddings of test artifacts for semantic similarity search"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "A vector database stores embeddings of test artifacts (requirements, test cases, documentation). It enables semantic similarity search, allowing the system to retrieve the most relevant artifacts for a given query."
   },
   {
@@ -456,11 +456,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the primary purpose of fine-tuning an LLM for testing tasks?",
     options: [
       "To reduce the model's size",
-      "To adapt the model's behavior to specific testing terminology and patterns",
       "To make the model run faster",
+      "To adapt the model's behavior to specific testing terminology and patterns",
       "To eliminate the need for prompts"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Fine-tuning adapts a pre-trained LLM to specific testing tasks by training it on testing-specific datasets. This improves the model's understanding of testing terminology, patterns, and domain-specific requirements."
   },
   {
@@ -483,12 +483,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "What is 'Shadow AI' in the context of testing organizations?",
     options: [
-      "AI systems that run on dark servers",
       "Unauthorized use of AI tools by team members without organizational approval or oversight",
+      "AI systems that run on dark servers",
       "AI models that generate dark-themed test cases",
       "AI systems that only work at night"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Shadow AI refers to the unauthorized use of AI tools by team members without organizational approval, governance, or oversight. This poses risks to data security, compliance, and quality consistency."
   },
   {
@@ -497,11 +497,11 @@ export const questions: ExamQuestion[] = [
     question: "Which of the following is a key criterion for selecting an LLM for a specific testing task?",
     options: [
       "The model's color scheme",
-      "The model's performance on the specific task type, cost, and context window size",
       "The model's training location",
-      "The model's file size"
+      "The model's file size",
+      "The model's performance on the specific task type, cost, and context window size"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Key criteria for selecting an LLM include: performance on the specific task type (e.g., test case generation), cost per token, context window size, latency, and compliance with organizational requirements."
   },
   {
@@ -510,11 +510,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the primary purpose of a phased approach to GenAI adoption in a test organization?",
     options: [
       "To reduce the number of testers needed",
-      "To manage risks, build skills, and demonstrate value incrementally",
       "To implement all tools simultaneously",
+      "To manage risks, build skills, and demonstrate value incrementally",
       "To avoid using any AI tools"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "A phased approach to GenAI adoption manages risks by starting with pilot projects, building team skills, and demonstrating value before scaling. This reduces disruption and allows lessons to be learned early."
   },
   {
@@ -539,12 +539,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 1: Introduction to GenAI for Testing",
     question: "Which of the following AI types involves training a model to maximize a reward signal through trial and error?",
     options: [
+      "Reinforcement learning",
       "Supervised learning",
       "Unsupervised learning",
-      "Reinforcement learning",
       "Transfer learning"
     ],
-    correctAnswer: 2,
+    correctAnswer: 0,
     explanation: "Reinforcement learning involves training an agent to maximize a reward signal through trial and error. This is used in RLHF (Reinforcement Learning from Human Feedback) to align LLM outputs with human preferences."
   },
   {
@@ -553,11 +553,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a generative AI model architecture primarily used for generating images from text descriptions?",
     options: [
       "Transformer",
-      "Diffusion Model",
       "Recurrent Neural Network (RNN)",
-      "Convolutional Neural Network (CNN)"
+      "Convolutional Neural Network (CNN)",
+      "Diffusion Model"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Diffusion Models are generative AI architectures primarily used for generating images from text descriptions. They work by gradually denoising random noise to create coherent images, which is useful for generating test screenshots or UI mockups."
   },
   {
@@ -566,11 +566,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which technique is used to reduce the size of an LLM while maintaining performance, making it suitable for deployment on resource-constrained testing environments?",
     options: [
       "Data augmentation",
-      "Model quantization",
       "Feature engineering",
+      "Model quantization",
       "Cross-validation"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Model quantization reduces the precision of model weights (e.g., from 32-bit to 8-bit or 4-bit), significantly reducing model size and memory requirements. This makes LLMs deployable on resource-constrained environments without major performance loss."
   },
   {
@@ -591,12 +591,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 1: Introduction to GenAI for Testing",
     question: "What is the purpose of model pruning in the context of LLMs for testing?",
     options: [
-      "To increase the model's training data",
       "To remove unnecessary parameters and reduce model size without significant performance loss",
+      "To increase the model's training data",
       "To add more layers to the model",
       "To change the model's architecture"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Model pruning removes unnecessary or redundant parameters from a neural network. This reduces model size, memory footprint, and inference time while maintaining acceptable performance for testing tasks."
   },
   {
@@ -605,11 +605,11 @@ export const questions2: ExamQuestion[] = [
     question: "What is the primary risk of model overfitting when fine-tuning an LLM for a specific testing task?",
     options: [
       "The model becomes too general and forgets testing terminology",
-      "The model memorizes the training data and performs poorly on new test scenarios",
       "The model becomes unable to generate text",
-      "The model requires less computational power"
+      "The model requires less computational power",
+      "The model memorizes the training data and performs poorly on new test scenarios"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Overfitting occurs when a model memorizes the training data rather than learning general patterns. When fine-tuning an LLM for testing, overfitting causes poor performance on new test scenarios that differ from the training examples."
   },
   {
@@ -618,11 +618,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a key characteristic of pre-training in foundation models compared to fine-tuning?",
     options: [
       "Pre-training requires less data than fine-tuning",
-      "Pre-training learns general language patterns on broad data, while fine-tuning adapts to specific tasks",
       "Pre-training is only for image models",
+      "Pre-training learns general language patterns on broad data, while fine-tuning adapts to specific tasks",
       "Fine-tuning is always performed before pre-training"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Pre-training involves training on massive, broad datasets to learn general language patterns and world knowledge. Fine-tuning then adapts the pre-trained model to specific tasks or domains using smaller, task-specific datasets."
   },
   {
@@ -645,12 +645,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 2: Prompt Engineering for Testing",
     question: "Which prompting technique, updated in CT-GenAI v1.1, involves providing a single example to guide the model's output?",
     options: [
-      "Zero-shot prompting",
       "One-shot prompting",
+      "Zero-shot prompting",
       "Few-shot prompting",
       "Meta prompting"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "One-shot prompting provides a single example to guide the model's output. This was updated in CT-GenAI v1.1 (replacing 'few-shot' in some contexts) and is useful when you have one good example but not multiple."
   },
   {
@@ -659,11 +659,11 @@ export const questions2: ExamQuestion[] = [
     question: "A testing team notices that their LLM-generated test cases are inconsistent. The prompt has not changed. Which technique should they apply to improve consistency?",
     options: [
       "Increase the temperature to 1.0",
-      "Use a fixed random seed and lower temperature for reproducibility",
       "Remove all constraints from the prompt",
-      "Use a different LLM provider for each request"
+      "Use a different LLM provider for each request",
+      "Use a fixed random seed and lower temperature for reproducibility"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Using a fixed random seed and lower temperature ensures reproducibility. A lower temperature reduces randomness, and a fixed seed makes the output deterministic, improving consistency across test case generation sessions."
   },
   {
@@ -672,11 +672,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a prompt injection attack in the context of LLM-based testing tools?",
     options: [
       "A user accidentally typing the wrong prompt",
-      "A malicious input that overrides the system prompt to make the LLM ignore its instructions",
       "A network firewall blocking the API request",
+      "A malicious input that overrides the system prompt to make the LLM ignore its instructions",
       "A model running out of memory"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "A prompt injection attack involves crafting malicious input that overrides the system prompt, causing the LLM to ignore its original instructions. This is a security risk when testing tools process user-provided input or requirements."
   },
   {
@@ -697,12 +697,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 2: Prompt Engineering for Testing",
     question: "Which of the following is an example of handling ambiguous requirements with prompt engineering?",
     options: [
-      "Ignoring the ambiguity and generating random test cases",
       "Adding a constraint that asks the model to flag ambiguities and generate tests for all possible interpretations",
+      "Ignoring the ambiguity and generating random test cases",
       "Refusing to generate any test cases",
       "Using only manual testing"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Handling ambiguous requirements involves adding constraints that ask the model to flag ambiguities and generate tests for all possible interpretations. This ensures coverage and identifies requirements that need clarification."
   },
   {
@@ -711,11 +711,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which iterative technique involves generating test cases, evaluating them, and then refining the prompt based on evaluation results?",
     options: [
       "Random prompting",
-      "Iterative prompt refinement with feedback loops",
       "Single-shot generation",
-      "Manual testing only"
+      "Manual testing only",
+      "Iterative prompt refinement with feedback loops"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Iterative prompt refinement with feedback loops involves generating test cases, evaluating them against criteria (relevance, coverage), and then refining the prompt based on gaps. This continuous improvement process maximizes output quality."
   },
   {
@@ -723,12 +723,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 2: Prompt Engineering for Testing",
     question: "What is the purpose of 'prompt versioning' in a testing team?",
     options: [
-      "To track changes to prompts over time and ensure reproducibility",
       "To make prompts run faster",
       "To encrypt prompt data",
+      "To track changes to prompts over time and ensure reproducibility",
       "To reduce the number of tokens"
     ],
-    correctAnswer: 0,
+    correctAnswer: 2,
     explanation: "Prompt versioning tracks changes to prompts over time, ensuring reproducibility. This is essential for testing teams where different prompt versions may produce different test cases, affecting test coverage and results."
   },
   {
@@ -751,12 +751,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 3: Managing Risks of GenAI in Testing",
     question: "Which of the following is a technique for anonymizing test data before sending it to an LLM?",
     options: [
-      "Sending the data in plain text",
       "Replacing PII with synthetic or masked values",
+      "Sending the data in plain text",
       "Increasing the temperature",
       "Using a larger model"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Replacing PII with synthetic or masked values is a technique for anonymizing test data before sending it to an LLM. This reduces privacy risks while maintaining the data's utility for testing."
   },
   {
@@ -765,11 +765,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which NIST framework provides guidance on AI risk management?",
     options: [
       "NIST Cybersecurity Framework",
-      "NIST AI Risk Management Framework (AI RMF)",
       "NIST SP 800-53",
-      "NIST Cloud Security Framework"
+      "NIST Cloud Security Framework",
+      "NIST AI Risk Management Framework (AI RMF)"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "The NIST AI Risk Management Framework (AI RMF) provides guidance on managing AI risks. It is designed to help organizations manage risks associated with AI systems, including those used in testing."
   },
   {
@@ -778,11 +778,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a mitigation strategy for bias in LLM-generated test cases?",
     options: [
       "Always using the highest temperature",
-      "Reviewing generated test cases for biased assumptions and diversifying training data",
       "Using only one LLM provider",
+      "Reviewing generated test cases for biased assumptions and diversifying training data",
       "Removing all constraints from prompts"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Reviewing generated test cases for biased assumptions and diversifying training data are mitigation strategies for bias. LLMs may inherit biases from training data, which can affect test case quality and coverage."
   },
   {
@@ -790,12 +790,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 3: Managing Risks of GenAI in Testing",
     question: "What is the environmental risk associated with using large LLMs for testing?",
     options: [
-      "The models consume significant energy and contribute to carbon emissions",
       "The models produce physical waste",
+      "The models consume significant energy and contribute to carbon emissions",
       "The models require water cooling",
       "The models emit radiation"
     ],
-    correctAnswer: 0,
+    correctAnswer: 1,
     explanation: "Large LLMs consume significant energy during training and inference, contributing to carbon emissions. This is an environmental risk that organizations should consider when adopting GenAI for testing."
   },
   {
@@ -803,12 +803,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 3: Managing Risks of GenAI in Testing",
     question: "What is the primary purpose of using a random seed when generating test cases with an LLM?",
     options: [
-      "To make the model run faster",
       "To ensure reproducibility by controlling the randomness in the model's output",
+      "To make the model run faster",
       "To increase the model's creativity",
       "To reduce API costs"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "A random seed ensures reproducibility by controlling the randomness in the model's output. With the same seed and temperature, the model will generate the same output, which is important for reproducible testing."
   },
   {
@@ -817,11 +817,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a distinction between data anonymization and pseudonymization?",
     options: [
       "There is no difference",
-      "Anonymization irreversibly removes identifying information, while pseudonymization replaces identifiers with tokens that can be reversed",
       "Pseudonymization is stronger than anonymization",
-      "Anonymization is only for images"
+      "Anonymization is only for images",
+      "Anonymization irreversibly removes identifying information, while pseudonymization replaces identifiers with tokens that can be reversed"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Anonymization irreversibly removes identifying information so the data subject cannot be re-identified. Pseudonymization replaces identifiers with tokens (pseudonyms) that can be reversed with a key, providing a weaker but sometimes reversible form of protection."
   },
   {
@@ -830,11 +830,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is the MOST secure environment for processing sensitive test data with an LLM?",
     options: [
       "Public API endpoint with no encryption",
-      "On-premise deployment with no external data transmission",
       "Shared cloud instance with other organizations",
+      "On-premise deployment with no external data transmission",
       "Public chat interface"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "On-premise deployment ensures sensitive test data never leaves the organization's infrastructure. This is the most secure option for regulated industries where data residency and privacy are critical."
   },
   {
@@ -857,12 +857,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
     question: "What is the purpose of 'chunking' in a RAG pipeline for testing?",
     options: [
-      "To make the model run faster",
       "To break large test documents into smaller pieces for efficient retrieval",
+      "To make the model run faster",
       "To encrypt the data",
       "To compress the model"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Chunking breaks large test documents into smaller pieces that can be efficiently embedded and retrieved. This ensures that the most relevant sections are retrieved and included in the LLM prompt."
   },
   {
@@ -871,11 +871,11 @@ export const questions2: ExamQuestion[] = [
     question: "What is an 'LLM-powered agent' in the context of test automation?",
     options: [
       "A human tester who uses LLMs",
-      "An autonomous or semi-autonomous system that uses LLMs to perform testing tasks",
       "A type of database for storing test results",
-      "A manual testing technique"
+      "A manual testing technique",
+      "An autonomous or semi-autonomous system that uses LLMs to perform testing tasks"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "An LLM-powered agent is an autonomous or semi-autonomous system that uses LLMs to perform testing tasks. It can plan, execute, and evaluate tests with minimal human intervention, using tools and APIs."
   },
   {
@@ -884,11 +884,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a popular vector database for RAG-based testing tools?",
     options: [
       "MySQL",
-      "Pinecone, Weaviate, or Chroma",
       "Excel",
+      "Pinecone, Weaviate, or Chroma",
       "FTP server"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Pinecone, Weaviate, and Chroma are popular vector databases designed for storing embeddings and performing semantic similarity search. They are commonly used in RAG-based testing tools for retrieving relevant test artifacts."
   },
   {
@@ -909,12 +909,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
     question: "Which of the following is a model serving framework optimized for LLM inference throughput?",
     options: [
-      "Apache Tomcat",
       "vLLM or TensorRT-LLM",
+      "Apache Tomcat",
       "Microsoft Word",
       "Postman"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "vLLM and TensorRT-LLM are serving frameworks optimized for LLM inference throughput. They use techniques like PagedAttention and kernel optimization to maximize GPU utilization and reduce inference latency."
   },
   {
@@ -923,11 +923,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a critical step in preparing data for fine-tuning an LLM for testing tasks?",
     options: [
       "Using raw, unprocessed data",
-      "Data cleaning, deduplication, and formatting into instruction-response pairs",
       "Deleting all test data",
-      "Using only image data"
+      "Using only image data",
+      "Data cleaning, deduplication, and formatting into instruction-response pairs"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Data preparation for fine-tuning involves cleaning (removing errors), deduplication (removing duplicates), and formatting data into instruction-response pairs. High-quality training data is essential for effective fine-tuning."
   },
   {
@@ -936,11 +936,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a technique for generating synthetic test data using LLMs?",
     options: [
       "Manual data entry",
-      "Using LLMs to generate realistic but artificial data that preserves statistical properties without exposing real data",
       "Copying production data directly",
+      "Using LLMs to generate realistic but artificial data that preserves statistical properties without exposing real data",
       "Deleting test data"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "LLMs can generate synthetic test data that is realistic and preserves statistical properties of real data without exposing actual sensitive information. This is useful for privacy-preserving testing."
   },
   {
@@ -963,12 +963,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "What is the primary purpose of a 'GenAI adoption roadmap' in a test organization?",
     options: [
-      "To immediately replace all testers with AI",
       "To plan phased implementation, identify use cases, and manage risks",
+      "To immediately replace all testers with AI",
       "To avoid using any AI tools",
       "To reduce testing budgets to zero"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "A GenAI adoption roadmap plans phased implementation, identifies high-value use cases, and manages risks. It ensures that GenAI adoption is strategic, controlled, and aligned with organizational goals."
   },
   {
@@ -977,11 +977,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a criterion for selecting between an LLM and an SLM for a testing task?",
     options: [
       "The model's logo color",
-      "The task complexity, cost constraints, and latency requirements",
       "The model's training location",
-      "The model's age"
+      "The model's age",
+      "The task complexity, cost constraints, and latency requirements"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Selection criteria include task complexity (simple tasks may use SLMs), cost constraints (SLMs are cheaper), and latency requirements (SLMs are faster). Complex reasoning tasks may require LLMs despite higher costs."
   },
   {
@@ -990,11 +990,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a metric for measuring ROI of GenAI tools in testing?",
     options: [
       "Number of testers fired",
-      "Time saved in test case generation, defect detection rate improvement, and cost per test case",
       "Number of AI tools purchased",
+      "Time saved in test case generation, defect detection rate improvement, and cost per test case",
       "Lines of code written"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "ROI of GenAI tools in testing is measured by time saved in test case generation, defect detection rate improvement, and cost per test case. These metrics demonstrate whether the tool investment is delivering value."
   },
   {
@@ -1015,12 +1015,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "Which of the following is a change management challenge when introducing GenAI to testing teams?",
     options: [
-      "Testers will automatically adapt without any issues",
       "Resistance to change, fear of job displacement, and need for new skills training",
+      "Testers will automatically adapt without any issues",
       "AI tools are always accepted immediately",
       "No training is needed"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Change management challenges include resistance to change, fear of job displacement, and the need for new skills training. Addressing these through communication, training, and demonstrating value is essential for successful adoption."
   },
   {
@@ -1029,11 +1029,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which role is MOST responsible for integrating LLM-based tools into existing test automation frameworks?",
     options: [
       "Manual tester",
-      "Test automation engineer",
       "Business analyst",
-      "Project manager"
+      "Project manager",
+      "Test automation engineer"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Test automation engineers are most responsible for integrating LLM-based tools into existing test automation frameworks. They have the technical skills to build APIs, handle tool integration, and maintain the automation infrastructure."
   },
   {
@@ -1042,11 +1042,11 @@ export const questions2: ExamQuestion[] = [
     question: "What is the primary purpose of governance policies for GenAI usage in testing organizations?",
     options: [
       "To prevent all use of AI tools",
-      "To ensure responsible, secure, and compliant use of AI tools across the organization",
       "To eliminate all testing roles",
+      "To ensure responsible, secure, and compliant use of AI tools across the organization",
       "To reduce testing budgets"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Governance policies for GenAI usage ensure responsible, secure, and compliant use of AI tools. They address data privacy, security, compliance, quality control, and ethical considerations."
   },
   {
@@ -1073,12 +1073,12 @@ export const questions3: ExamQuestion[] = [
     domain: "Chapter 1: Introduction to GenAI for Testing",
     question: "Which of the following is a type of generative AI model used for text generation?",
     options: [
-      "Support Vector Machine",
       "Generative Adversarial Network (GAN)",
+      "Support Vector Machine",
       "Decision Tree",
       "K-Means Clustering"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Generative Adversarial Networks (GANs) are a type of generative AI model. While primarily used for images, they represent the generative approach. LLMs are the primary text generation models in testing."
   },
   {
@@ -1087,11 +1087,11 @@ export const questions3: ExamQuestion[] = [
     question: "What is the primary difference between a vision-language model and a text-only LLM?",
     options: [
       "Vision-language models are always smaller",
-      "Vision-language models can process both images and text",
       "Vision-language models cannot generate text",
-      "Text-only LLMs are always more accurate"
+      "Text-only LLMs are always more accurate",
+      "Vision-language models can process both images and text"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Vision-language models (VLMs) can process both images and text, enabling them to understand visual content. This is useful for testing applications involving UI elements, screenshots, and visual interfaces."
   },
   {
@@ -1100,11 +1100,11 @@ export const questions3: ExamQuestion[] = [
     question: "What is the purpose of 'positional encoding' in transformer models?",
     options: [
       "To encrypt the input data",
-      "To provide information about the position of tokens in the sequence",
       "To compress the model size",
+      "To provide information about the position of tokens in the sequence",
       "To speed up training"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Positional encoding provides information about the position of tokens in the sequence. Since transformers process all tokens simultaneously, they need positional encoding to understand word order."
   },
   {
@@ -1125,12 +1125,12 @@ export const questions3: ExamQuestion[] = [
     domain: "Chapter 1: Introduction to GenAI for Testing",
     question: "What is the purpose of 'fine-tuning' a pre-trained model?",
     options: [
-      "To make the model smaller",
       "To adapt the model to specific tasks or domains with additional training",
+      "To make the model smaller",
       "To remove all parameters",
       "To make the model run faster"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Fine-tuning adapts a pre-trained model to specific tasks or domains by training it on additional, task-specific data. This improves performance on the target task while retaining general knowledge."
   },
   {
@@ -1139,11 +1139,11 @@ export const questions3: ExamQuestion[] = [
     question: "What is the primary advantage of using a reasoning model for test planning?",
     options: [
       "Reasoning models are always faster",
-      "Reasoning models can perform step-by-step logical analysis and identify edge cases",
       "Reasoning models are always cheaper",
-      "Reasoning models require less context"
+      "Reasoning models require less context",
+      "Reasoning models can perform step-by-step logical analysis and identify edge cases"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Reasoning models excel at step-by-step logical analysis, which helps identify edge cases, dependencies, and risks in test planning. While they are slower and more expensive, their analytical capabilities are valuable for complex tasks."
   },
   {
@@ -1152,11 +1152,11 @@ export const questions3: ExamQuestion[] = [
     question: "A testing team needs to choose between an LLM and an SLM for generating test data. The task is simple, requires high throughput, and cost is a concern. Which is the MOST appropriate choice?",
     options: [
       "LLM for maximum accuracy",
-      "SLM for efficiency and cost-effectiveness",
       "Both simultaneously",
+      "SLM for efficiency and cost-effectiveness",
       "Neither, use manual testing"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "For simple, high-throughput tasks where cost is a concern, an SLM (Small Language Model) is the most appropriate choice. SLMs are faster, cheaper, and more efficient for narrow tasks like test data generation."
   },
   {
@@ -1179,12 +1179,12 @@ export const questions3: ExamQuestion[] = [
     domain: "Chapter 2: Prompt Engineering for Testing",
     question: "Which of the following is a best practice for writing prompts for test case generation?",
     options: [
-      "Use vague language to allow creativity",
       "Be specific about output format, constraints, and requirements",
+      "Use vague language to allow creativity",
       "Keep prompts as short as possible",
       "Use technical jargon without explanation"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Specific prompts that clearly define output format, constraints, and requirements produce better results. Vague prompts lead to inconsistent output, while overly short prompts may miss critical context."
   },
   {
@@ -1193,11 +1193,11 @@ export const questions3: ExamQuestion[] = [
     question: "Which of the following is an example of the 'input data' component in a structured prompt for testing?",
     options: [
       "The model's training dataset",
-      "The specific user story, requirement, or code snippet to be tested",
       "The API key for authentication",
-      "The model's hyperparameters"
+      "The model's hyperparameters",
+      "The specific user story, requirement, or code snippet to be tested"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "The 'input data' component is the specific content the model should process (e.g., a user story, requirement, or code snippet). This is distinct from the context, instruction, and constraints components."
   },
   {
@@ -1206,11 +1206,11 @@ export const questions3: ExamQuestion[] = [
     question: "What is the primary advantage of using 'system prompts' in a testing tool?",
     options: [
       "They reduce API costs",
-      "They set consistent behavior, role, and constraints across all user interactions",
       "They make the model run faster",
+      "They set consistent behavior, role, and constraints across all user interactions",
       "They eliminate the need for user prompts"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "System prompts set consistent behavior, role, and constraints across all user interactions. This ensures that all generated test cases adhere to the same standards and formatting rules."
   },
   {
@@ -1245,11 +1245,11 @@ export const questions3: ExamQuestion[] = [
     question: "Which of the following is a best practice for managing prompts in a testing team?",
     options: [
       "Each tester writes their own prompts without sharing",
-      "Maintain a prompt library with version control and documentation",
       "Use the same prompt for all testing tasks",
-      "Never review or update prompts"
+      "Never review or update prompts",
+      "Maintain a prompt library with version control and documentation"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Maintaining a prompt library with version control and documentation ensures consistency, allows knowledge sharing, and enables continuous improvement. It prevents the 'prompt drift' problem where different team members use different prompts."
   },
   {
@@ -1258,11 +1258,11 @@ export const questions3: ExamQuestion[] = [
     question: "What is the primary purpose of 'output format constraints' in a prompt for test case generation?",
     options: [
       "To make the output look good",
-      "To ensure the generated test cases can be parsed and integrated with test management tools",
       "To reduce the number of tokens",
+      "To ensure the generated test cases can be parsed and integrated with test management tools",
       "To make the model run faster"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Output format constraints ensure generated test cases are structured in a way that can be parsed and integrated with test management tools, automation frameworks, and CI/CD pipelines."
   },
   {
@@ -1299,11 +1299,11 @@ export const questions3: ExamQuestion[] = [
     question: "Which of the following is a type of bias that occurs when training data reflects historical prejudices or inequalities?",
     options: [
       "Selection bias",
-      "Historical bias",
       "Confirmation bias",
-      "Measurement bias"
+      "Measurement bias",
+      "Historical bias"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Historical bias occurs when training data reflects historical prejudices, stereotypes, or inequalities. When an LLM is trained on this data, it may reproduce these biases in generated test cases or assumptions."
   },
   {
@@ -1312,11 +1312,11 @@ export const questions3: ExamQuestion[] = [
     question: "What is the primary purpose of AI model cards in the context of testing?",
     options: [
       "To store the model's training data",
-      "To document the model's intended use, limitations, biases, and performance metrics",
       "To encrypt the model weights",
+      "To document the model's intended use, limitations, biases, and performance metrics",
       "To replace test documentation"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "AI model cards document a model's intended use, limitations, known biases, performance metrics, and ethical considerations. This transparency helps testing teams understand when and how to use the model appropriately."
   },
   {
@@ -1337,12 +1337,12 @@ export const questions3: ExamQuestion[] = [
     domain: "Chapter 3: Managing Risks of GenAI in Testing",
     question: "Which of the following is a data minimization technique for using LLMs in testing?",
     options: [
-      "Sending all production data to the LLM",
       "Using only the minimum necessary data and anonymizing sensitive fields",
+      "Sending all production data to the LLM",
       "Storing all test data in public repositories",
       "Using the largest possible datasets"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Data minimization involves using only the minimum necessary data and anonymizing sensitive fields. This reduces privacy risks and ensures compliance with regulations like GDPR."
   },
   {
@@ -1351,11 +1351,11 @@ export const questions3: ExamQuestion[] = [
     question: "A tester is using an LLM to generate test cases for a healthcare application. The user stories contain patient names and medical record numbers. Which risk is MOST critical?",
     options: [
       "The model will generate too few test cases",
-      "Sending protected health information (PHI) to an external LLM API violates HIPAA",
       "The test cases will be too complex",
-      "The model will run too slowly"
+      "The model will run too slowly",
+      "Sending protected health information (PHI) to an external LLM API violates HIPAA"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Sending protected health information (PHI) to an external LLM API violates HIPAA and other privacy regulations. The tester must anonymize data, use a private LLM, or process data on-premise."
   },
   {
@@ -1364,11 +1364,11 @@ export const questions3: ExamQuestion[] = [
     question: "Which of the following is a characteristic of a reasoning error vs. a hallucination?",
     options: [
       "Reasoning errors are always intentional",
-      "Reasoning errors involve incorrect logic applied to real information, while hallucinations invent false information",
       "Reasoning errors are always correct",
+      "Reasoning errors involve incorrect logic applied to real information, while hallucinations invent false information",
       "There is no difference between them"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "A reasoning error involves incorrect logic or flawed reasoning applied to real information. A hallucination involves inventing false information. Both require detection, but reasoning errors are identified through logical analysis while hallucinations require fact-checking."
   },
   {
@@ -1391,12 +1391,12 @@ export const questions3: ExamQuestion[] = [
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
     question: "What is the primary purpose of 'semantic similarity retrieval' in a RAG system?",
     options: [
-      "To find exact keyword matches",
       "To find content with similar meaning regardless of exact words",
+      "To find exact keyword matches",
       "To encrypt the data",
       "To compress the model"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Semantic similarity retrieval finds content with similar meaning regardless of exact words. This is more powerful than keyword search because it understands concepts and context."
   },
   {
@@ -1405,11 +1405,11 @@ export const questions3: ExamQuestion[] = [
     question: "Which of the following is a benefit of fine-tuning an LLM for testing?",
     options: [
       "It reduces the model's size",
-      "It improves the model's understanding of domain-specific testing terminology",
       "It makes the model run faster",
-      "It eliminates the need for prompts"
+      "It eliminates the need for prompts",
+      "It improves the model's understanding of domain-specific testing terminology"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Fine-tuning improves the model's understanding of domain-specific testing terminology and patterns. This leads to better test case generation, defect analysis, and test planning."
   },
   {
@@ -1418,11 +1418,11 @@ export const questions3: ExamQuestion[] = [
     question: "What is the primary purpose of 'prompt management' in LLMOps?",
     options: [
       "To make prompts look good",
-      "To version, test, and deploy prompts systematically",
       "To reduce the model's memory usage",
+      "To version, test, and deploy prompts systematically",
       "To encrypt prompt data"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Prompt management in LLMOps involves versioning, testing, and deploying prompts systematically. This ensures consistency and allows tracking of which prompt versions produce the best results."
   },
   {
@@ -1430,12 +1430,12 @@ export const questions3: ExamQuestion[] = [
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
     question: "Which of the following is a component of a RAG pipeline?",
     options: [
-      "Chunking, embedding, retrieval, generation",
       "Training, validation, testing, deployment",
+      "Chunking, embedding, retrieval, generation",
       "Planning, coding, testing, deployment",
       "Input, processing, output, storage"
     ],
-    correctAnswer: 0,
+    correctAnswer: 1,
     explanation: "A RAG pipeline typically includes: chunking (breaking documents into pieces), embedding (converting to vectors), retrieval (finding relevant chunks), and generation (using retrieved context to generate output)."
   },
   {
@@ -1443,12 +1443,12 @@ export const questions3: ExamQuestion[] = [
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
     question: "What is the primary advantage of using a vector database over a traditional database for RAG?",
     options: [
-      "Vector databases are always faster",
       "Vector databases enable semantic similarity search based on meaning",
+      "Vector databases are always faster",
       "Vector databases are cheaper",
       "Vector databases are easier to set up"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Vector databases enable semantic similarity search based on meaning rather than exact keyword matches. This is essential for RAG systems that need to find relevant content based on conceptual similarity."
   },
   {
@@ -1457,11 +1457,11 @@ export const questions3: ExamQuestion[] = [
     question: "Which of the following is a risk of using LLM-powered agents for testing?",
     options: [
       "They are always more accurate than humans",
-      "They may make decisions without human oversight that have unintended consequences",
       "They cannot process text",
-      "They are always deterministic"
+      "They are always deterministic",
+      "They may make decisions without human oversight that have unintended consequences"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "LLM-powered agents may make decisions without human oversight that have unintended consequences. This is a risk that requires careful design of human-in-the-loop controls and approval workflows."
   },
   {
@@ -1470,11 +1470,11 @@ export const questions3: ExamQuestion[] = [
     question: "What is the primary purpose of 'feedback loops' in LLMOps for testing?",
     options: [
       "To make the model run faster",
-      "To improve the model's performance over time based on test results and human feedback",
       "To reduce the model's size",
+      "To improve the model's performance over time based on test results and human feedback",
       "To eliminate the need for prompts"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Feedback loops in LLMOps improve the model's performance over time based on test results and human feedback. This continuous improvement is essential for maintaining quality."
   },
   {
@@ -1497,12 +1497,12 @@ export const questions3: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "Which of the following is a risk of rapid GenAI adoption without proper planning?",
     options: [
-      "It always improves test quality",
       "It may lead to inconsistent practices, security risks, and wasted resources",
+      "It always improves test quality",
       "It reduces testing time",
       "It eliminates the need for test management"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Rapid GenAI adoption without proper planning may lead to inconsistent practices, security risks, and wasted resources. A phased approach with proper governance is essential."
   },
   {
@@ -1511,11 +1511,11 @@ export const questions3: ExamQuestion[] = [
     question: "What is the primary purpose of governance in GenAI adoption?",
     options: [
       "To prevent all use of AI tools",
-      "To ensure AI tools are used responsibly, securely, and consistently",
       "To eliminate all testing roles",
-      "To reduce testing budgets"
+      "To reduce testing budgets",
+      "To ensure AI tools are used responsibly, securely, and consistently"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Governance in GenAI adoption ensures that AI tools are used responsibly, securely, and consistently. It addresses data privacy, security, compliance, and quality control."
   },
   {
@@ -1524,11 +1524,11 @@ export const questions3: ExamQuestion[] = [
     question: "What is the primary purpose of a pilot project in GenAI adoption?",
     options: [
       "To immediately deploy AI across all teams",
-      "To test GenAI tools on a small scale, learn lessons, and demonstrate value",
       "To avoid using any AI tools",
+      "To test GenAI tools on a small scale, learn lessons, and demonstrate value",
       "To eliminate all testing roles"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "A pilot project tests GenAI tools on a small scale, allowing the organization to learn lessons, identify risks, and demonstrate value before scaling to larger teams."
   },
   {
@@ -1549,12 +1549,12 @@ export const questions3: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "A test manager is creating a GenAI adoption strategy for their team. They should start with which phase?",
     options: [
-      "Immediate deployment to all teams",
       "Pilot project with a small team to test and evaluate",
+      "Immediate deployment to all teams",
       "Avoiding all AI tools",
       "Replacing all testers with AI"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "A pilot project with a small team is the recommended starting phase for GenAI adoption. This allows the organization to test tools, identify risks, and demonstrate value before scaling to larger teams."
   },
   {
@@ -1563,11 +1563,11 @@ export const questions3: ExamQuestion[] = [
     question: "Which of the following is a risk of using public LLM APIs for testing in regulated industries?",
     options: [
       "The model is always more accurate",
-      "Sensitive data may be exposed to third-party providers",
       "The model is always faster",
-      "The model is always cheaper"
+      "The model is always cheaper",
+      "Sensitive data may be exposed to third-party providers"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Using public LLM APIs for testing in regulated industries may expose sensitive data to third-party providers. This requires data anonymization, use of private LLMs, or on-premise deployment."
   },
   {
@@ -1576,11 +1576,11 @@ export const questions3: ExamQuestion[] = [
     question: "Which of the following is essential for successful GenAI adoption in a testing team?",
     options: [
       "Replacing all human testers with AI",
-      "Combining AI tools with human expertise, oversight, and governance",
       "Using AI tools without any evaluation",
+      "Combining AI tools with human expertise, oversight, and governance",
       "Avoiding all AI tools"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Successful GenAI adoption combines AI tools with human expertise, oversight, and governance. AI tools enhance productivity, but human testers provide critical evaluation, domain knowledge, and quality assurance."
   },
   {

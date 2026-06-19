@@ -7,12 +7,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 1: Fundamentals of Testing",
     question: "Which of the following is a primary objective of testing according to the ISTQB CTFL v4.0 syllabus?",
     options: [
-      "To prove that the software is completely free of defects",
       "To provide information about the quality of the software and reduce the risk of failures in operation",
+      "To prove that the software is completely free of defects",
       "To ensure that all developers follow coding standards",
       "To replace the need for quality assurance processes"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Testing provides information about the quality of the software and reduces the risk of failures occurring during operation. It cannot prove that software is completely free of defects."
   },
   {
@@ -22,10 +22,10 @@ export const questions: ExamQuestion[] = [
     options: [
       "Testing should be performed after development is complete",
       "Exhaustive testing is possible for small software systems",
-      "Testing is context dependent",
-      "Defects are always caused by coding errors"
+      "Defects are always caused by coding errors",
+      "Testing is context dependent"
     ],
-    correctAnswer: 2,
+    correctAnswer: 3,
     explanation: "Testing is context dependent is one of the seven testing principles. Testing is done differently in different contexts (e.g., safety-critical software vs. commercial software)."
   },
   {
@@ -59,12 +59,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 1: Fundamentals of Testing",
     question: "According to the seven testing principles, which statement is correct?",
     options: [
-      "Beware of the pesticide paradox: running the same tests repeatedly will find new defects",
       "Early testing saves time and money",
+      "Beware of the pesticide paradox: running the same tests repeatedly will find new defects",
       "Defect clustering implies that defects are evenly distributed throughout the software",
       "Absence-of-errors fallacy means that finding and fixing many defects guarantees a successful product"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Early testing saves time and money is one of the seven testing principles. Testing should start as early as possible in the software development life cycle."
   },
   {
@@ -73,11 +73,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the 'pesticide paradox' in testing?",
     options: [
       "Running the same tests repeatedly will eventually find all defects",
-      "If the same tests are repeated over and over, eventually the same set of test cases will no longer find any new defects",
       "Using automated tools eliminates the need for manual testing",
-      "Testing is only effective when using the latest tools"
+      "Testing is only effective when using the latest tools",
+      "If the same tests are repeated over and over, eventually the same set of test cases will no longer find any new defects"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "The pesticide paradox states that if the same tests are repeated over and over, eventually the same set of test cases will no longer find any new defects. To overcome this, test cases need to be regularly reviewed and revised, and new and different tests need to be written."
   },
   {
@@ -86,11 +86,11 @@ export const questions: ExamQuestion[] = [
     question: "Which of the following is a test work product?",
     options: [
       "Source code",
-      "Test plan",
       "User manual",
+      "Test plan",
       "Design document"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Test work products include the test plan, test design specification, test cases, and test summary report. Source code, user manual, and design document are development work products, not test work products."
   },
   {
@@ -125,11 +125,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the 'absence-of-errors fallacy'?",
     options: [
       "Finding and fixing many defects guarantees a successful product",
-      "Finding and fixing defects does not help if the system built is unusable and does not fulfill the user's needs and expectations",
       "Testing can prove the absence of defects",
-      "Defects are always present in software"
+      "Defects are always present in software",
+      "Finding and fixing defects does not help if the system built is unusable and does not fulfill the user's needs and expectations"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "The absence-of-errors fallacy means that finding and fixing defects does not help if the system built is unusable and does not fulfill the user's needs and expectations. Testing should not only find defects but also validate that the software meets user requirements."
   }
 ];
@@ -141,12 +141,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 1: Fundamentals of Testing",
     question: "Which of the following is the correct sequence of test activities in the test process?",
     options: [
-      "Test planning, test analysis, test design, test implementation, test execution, test completion",
       "Test analysis, test planning, test design, test implementation, test execution, test completion",
       "Test planning, test design, test analysis, test implementation, test execution, test completion",
+      "Test planning, test analysis, test design, test implementation, test execution, test completion",
       "Test planning, test analysis, test implementation, test design, test execution, test completion"
     ],
-    correctAnswer: 0,
+    correctAnswer: 2,
     explanation: "The correct sequence of test activities in the test process is: test planning, test analysis, test design, test implementation, test execution, and test completion. Each activity has specific objectives and work products."
   },
   {
@@ -167,12 +167,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 1: Fundamentals of Testing",
     question: "What is the purpose of traceability between the test basis and test work products?",
     options: [
-      "To ensure that all test cases are executed",
       "To provide visibility into the relationship between requirements and tests, and to assess coverage",
+      "To ensure that all test cases are executed",
       "To track the time spent on testing activities",
       "To document the defects found during testing"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Traceability between the test basis and test work products provides visibility into the relationship between requirements and tests, helps assess coverage, and identifies the impact of changes to the test basis."
   },
   {
@@ -181,11 +181,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a root cause that could lead to defects and failures?",
     options: [
       "Running test cases in a regression suite",
-      "Ambiguous or incomplete requirements in the specification",
       "Executing test cases during the test execution phase",
-      "Writing test cases based on the acceptance criteria"
+      "Writing test cases based on the acceptance criteria",
+      "Ambiguous or incomplete requirements in the specification"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Ambiguous or incomplete requirements are a common root cause of defects. If requirements are unclear, developers may implement incorrect functionality, leading to defects. Running test cases, executing tests, and writing tests based on acceptance criteria are testing activities, not root causes."
   },
   {
@@ -194,11 +194,11 @@ export const questions2: ExamQuestion[] = [
     question: "What is the main principle behind the 'testing is context dependent' principle?",
     options: [
       "Testing should be performed the same way for all software systems",
-      "Testing is done differently in different contexts, such as safety-critical software vs. e-commerce websites",
       "Testing should only be performed in the development environment",
+      "Testing is done differently in different contexts, such as safety-critical software vs. e-commerce websites",
       "Testing is only dependent on the programming language used"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Testing is context dependent means that testing is done differently in different contexts. For example, safety-critical software is tested differently from an e-commerce website. The approach, techniques, and level of rigor depend on the context."
   },
   {
@@ -207,11 +207,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a characteristic of the 'whole-team approach' to testing?",
     options: [
       "Only testers are responsible for quality",
-      "Testers work in isolation from developers",
       "Everyone on the team is responsible for quality, and testers collaborate with other team members",
+      "Testers work in isolation from developers",
       "Testing is performed only at the end of the project"
     ],
-    correctAnswer: 2,
+    correctAnswer: 1,
     explanation: "In the whole-team approach, everyone on the team is responsible for quality, and testers collaborate with developers, business analysts, and other team members throughout the software development lifecycle."
   },
   {
@@ -219,12 +219,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 1: Fundamentals of Testing",
     question: "What is the purpose of tester independence?",
     options: [
-      "To ensure that testers are completely isolated from the development team",
       "To provide a different perspective and recognize different kinds of failures and defects",
+      "To ensure that testers are completely isolated from the development team",
       "To allow testers to skip writing test documentation",
       "To ensure that testers have no knowledge of the system under test"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Tester independence provides a different perspective and allows testers to recognize different kinds of failures and defects compared to developers. However, total independence may lead to communication issues and lack of collaboration."
   },
   {
@@ -232,12 +232,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 1: Fundamentals of Testing",
     question: "What is a test case?",
     options: [
-      "A set of preconditions, inputs, actions, expected results, and postconditions developed based on test conditions",
       "A document that describes the overall test strategy",
       "A tool used to automate test execution",
-      "A report that documents the defects found during testing"
+      "A report that documents the defects found during testing",
+      "A set of preconditions, inputs, actions, expected results, and postconditions developed based on test conditions"
     ],
-    correctAnswer: 0,
+    correctAnswer: 3,
     explanation: "A test case is a set of preconditions, inputs, actions (where applicable), expected results, and postconditions developed based on test conditions. It is used to verify a specific aspect of the software."
   },
   {

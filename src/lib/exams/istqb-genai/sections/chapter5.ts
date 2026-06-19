@@ -6,12 +6,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "What is 'Shadow AI' in testing organizations?",
     options: [
-      "AI systems that run on dark servers",
       "Unauthorized use of AI tools without organizational approval",
+      "AI systems that run on dark servers",
       "AI models that generate dark-themed test cases",
       "AI systems that only work at night"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Shadow AI refers to the unauthorized use of AI tools without organizational approval or oversight. This poses risks to data security, compliance, and quality consistency."
   },
   {
@@ -20,11 +20,11 @@ export const questions: ExamQuestion[] = [
     question: "Which of the following is a key criterion for selecting an LLM for a testing task?",
     options: [
       "The model's color scheme",
-      "The model's performance on the task, cost, and context window size",
       "The model's training location",
-      "The model's file size"
+      "The model's file size",
+      "The model's performance on the task, cost, and context window size"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Key criteria for selecting an LLM include: performance on the specific task, cost per token, context window size, and latency. These factors determine whether the model is suitable for the testing use case."
   },
   {
@@ -33,11 +33,11 @@ export const questions: ExamQuestion[] = [
     question: "What is the primary purpose of a phased approach to GenAI adoption?",
     options: [
       "To reduce the number of testers needed",
-      "To manage risks, build skills, and demonstrate value incrementally",
       "To implement all tools simultaneously",
+      "To manage risks, build skills, and demonstrate value incrementally",
       "To avoid using any AI tools"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "A phased approach to GenAI adoption manages risks by starting with pilot projects, building team skills, and demonstrating value before scaling. This reduces disruption and allows lessons to be learned."
   },
   {
@@ -58,12 +58,12 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "What is the primary purpose of a 'GenAI adoption roadmap'?",
     options: [
-      "To immediately replace all testers with AI",
       "To plan phased implementation, identify use cases, and manage risks",
+      "To immediately replace all testers with AI",
       "To avoid using any AI tools",
       "To reduce testing budgets to zero"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "A GenAI adoption roadmap plans phased implementation, identifies high-value use cases, and manages risks. It ensures that GenAI adoption is strategic, controlled, and aligned with organizational goals."
   },
   {
@@ -72,11 +72,11 @@ export const questions: ExamQuestion[] = [
     question: "Which of the following is a criterion for selecting between an LLM and an SLM?",
     options: [
       "The model's logo color",
-      "The task complexity, cost constraints, and latency requirements",
       "The model's training location",
-      "The model's age"
+      "The model's age",
+      "The task complexity, cost constraints, and latency requirements"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Selection criteria include task complexity (simple tasks may use SLMs), cost constraints (SLMs are cheaper), and latency requirements (SLMs are faster). Complex reasoning tasks may require LLMs despite higher costs."
   },
   {
@@ -85,11 +85,11 @@ export const questions: ExamQuestion[] = [
     question: "Which of the following is a risk of Shadow AI in testing?",
     options: [
       "It reduces testing costs",
-      "It may lead to data security violations and inconsistent quality",
       "It improves test coverage",
+      "It may lead to data security violations and inconsistent quality",
       "It eliminates the need for human testers"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Shadow AI may lead to data security violations (sensitive data sent to unauthorized APIs) and inconsistent quality (different tools used by different team members). This requires governance and oversight."
   },
   {
@@ -113,12 +113,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "What is the primary purpose of a 'GenAI adoption strategy' in a test organization?",
     options: [
-      "To immediately replace all testers with AI",
       "To define how GenAI will be used, managed, and governed in testing",
+      "To immediately replace all testers with AI",
       "To avoid using any AI tools",
       "To reduce testing budgets to zero"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "A GenAI adoption strategy defines how GenAI will be used, managed, and governed in testing. It addresses tool selection, data security, quality control, and team skills."
   },
   {
@@ -127,11 +127,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a risk of rapid GenAI adoption without proper planning?",
     options: [
       "It always improves test quality",
-      "It may lead to inconsistent practices, security risks, and wasted resources",
       "It reduces testing time",
-      "It eliminates the need for test management"
+      "It eliminates the need for test management",
+      "It may lead to inconsistent practices, security risks, and wasted resources"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Rapid GenAI adoption without proper planning may lead to inconsistent practices, security risks, and wasted resources. A phased approach with proper governance is essential."
   },
   {
@@ -140,11 +140,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a skill that becomes more important for testers in a GenAI-enabled team?",
     options: [
       "Manual test case creation without tools",
-      "Critical evaluation of AI-generated outputs and prompt engineering",
       "Avoiding all AI tools",
+      "Critical evaluation of AI-generated outputs and prompt engineering",
       "Working in isolation"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Critical evaluation of AI-generated outputs and prompt engineering become more important for testers. These skills ensure that AI tools are used effectively and that quality is maintained."
   },
   {
@@ -165,12 +165,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "Which of the following is a characteristic of successful GenAI adoption in testing?",
     options: [
-      "Replacing all human testers",
       "Combining AI tools with human expertise and oversight",
+      "Replacing all human testers",
       "Using AI tools without any evaluation",
       "Avoiding all AI tools"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Successful GenAI adoption combines AI tools with human expertise and oversight. AI tools enhance productivity, but human testers provide critical evaluation, domain knowledge, and quality assurance."
   },
   {
@@ -179,11 +179,11 @@ export const questions2: ExamQuestion[] = [
     question: "What is the primary purpose of a pilot project in GenAI adoption?",
     options: [
       "To immediately deploy AI across all teams",
-      "To test GenAI tools on a small scale, learn lessons, and demonstrate value",
       "To avoid using any AI tools",
-      "To eliminate all testing roles"
+      "To eliminate all testing roles",
+      "To test GenAI tools on a small scale, learn lessons, and demonstrate value"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "A pilot project tests GenAI tools on a small scale, allowing the organization to learn lessons, identify risks, and demonstrate value before scaling to larger teams."
   },
   {
@@ -192,11 +192,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a best practice for managing GenAI tools in a testing team?",
     options: [
       "Allowing each tester to use any tool they want without oversight",
-      "Establishing approved tools, usage guidelines, and review processes",
       "Avoiding all AI tools",
+      "Establishing approved tools, usage guidelines, and review processes",
       "Using only one tool for all tasks"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Establishing approved tools, usage guidelines, and review processes ensures that GenAI tools are used consistently and responsibly. This prevents Shadow AI and maintains quality."
   },
   {
@@ -217,12 +217,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "Which role is MOST responsible for integrating LLM-based tools into existing test automation frameworks?",
     options: [
-      "Manual tester",
       "Test automation engineer",
+      "Manual tester",
       "Business analyst",
       "Project manager"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Test automation engineers are most responsible for integrating LLM-based tools into existing test automation frameworks. They have the technical skills to build APIs, handle tool integration, and maintain the automation infrastructure."
   },
   {
@@ -231,11 +231,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is essential for successful GenAI adoption in a testing team?",
     options: [
       "Replacing all human testers with AI",
-      "Combining AI tools with human expertise, oversight, and governance",
       "Using AI tools without any evaluation",
-      "Avoiding all AI tools"
+      "Avoiding all AI tools",
+      "Combining AI tools with human expertise, oversight, and governance"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Successful GenAI adoption combines AI tools with human expertise, oversight, and governance. AI tools enhance productivity, but human testers provide critical evaluation, domain knowledge, and quality assurance."
   },
   {
@@ -244,11 +244,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a change management challenge when introducing GenAI to testing teams?",
     options: [
       "Testers will automatically adapt without any issues",
-      "Resistance to change, fear of job displacement, and need for new skills training",
       "AI tools are always accepted immediately",
+      "Resistance to change, fear of job displacement, and need for new skills training",
       "No training is needed"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "Change management challenges include resistance to change, fear of job displacement, and the need for new skills training. Addressing these through communication, training, and demonstrating value is essential for successful adoption."
   },
   {
@@ -269,12 +269,12 @@ export const questions2: ExamQuestion[] = [
     domain: "Chapter 5: Deploying and Integrating GenAI",
     question: "Which of the following is a best practice for integrating GenAI tools with existing test management systems?",
     options: [
-      "Replace all existing systems immediately",
       "Use APIs and connectors to integrate AI tools while maintaining current workflows",
+      "Replace all existing systems immediately",
       "Avoid all integration",
       "Use only manual data transfer"
     ],
-    correctAnswer: 1,
+    correctAnswer: 0,
     explanation: "Using APIs and connectors to integrate AI tools with existing test management systems preserves current workflows while adding AI capabilities. This minimizes disruption and allows gradual adoption."
   },
   {
@@ -283,11 +283,11 @@ export const questions2: ExamQuestion[] = [
     question: "Which of the following is a risk of using public LLM APIs for testing in regulated industries?",
     options: [
       "The model is always more accurate",
-      "Sensitive data may be exposed to third-party providers",
       "The model is always faster",
-      "The model is always cheaper"
+      "The model is always cheaper",
+      "Sensitive data may be exposed to third-party providers"
     ],
-    correctAnswer: 1,
+    correctAnswer: 3,
     explanation: "Using public LLM APIs for testing in regulated industries may expose sensitive data to third-party providers. This requires data anonymization, use of private LLMs, or on-premise deployment."
   },
   {
@@ -296,11 +296,11 @@ export const questions2: ExamQuestion[] = [
     question: "A test manager is creating a GenAI adoption strategy for their team. They should start with which phase?",
     options: [
       "Immediate deployment to all teams",
-      "Pilot project with a small team to test and evaluate",
       "Avoiding all AI tools",
+      "Pilot project with a small team to test and evaluate",
       "Replacing all testers with AI"
     ],
-    correctAnswer: 1,
+    correctAnswer: 2,
     explanation: "A pilot project with a small team is the recommended starting phase for GenAI adoption. This allows the organization to test tools, identify risks, and demonstrate value before scaling to larger teams."
   },
   {

@@ -45,12 +45,12 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test --shard=${{ matrix.shard }}
 
-      - name: Upload test report
+      - name: Upload blob report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-${{ matrix.artifact_suffix }}
-          path: playwright-report/
+          name: playwright-blob-report-${{ matrix.artifact_suffix }}
+          path: blob-report/
           retention-days: 7
 
       - name: Upload test screenshots
@@ -85,15 +85,15 @@ jobs:
       - name: Install Playwright
         run: npm install --no-save @playwright/test
 
-      - name: Download all test reports
+      - name: Download all blob reports
         uses: actions/download-artifact@v4
         with:
           path: all-reports
-          pattern: playwright-report-*
+          pattern: playwright-blob-report-*
           merge-multiple: true
 
-      - name: Merge HTML reports
-        run: npx playwright merge-reports --reporter html ./merged-report ./all-reports
+      - name: Merge reports
+        run: npx playwright merge-reports --reporter html ./all-reports
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -101,7 +101,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./merged-report
+          path: ./all-reports
 
       - name: Deploy to GitHub Pages
         id: deployment

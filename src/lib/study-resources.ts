@@ -59,20 +59,26 @@ const studyResources: Record<string, Record<string, StudyResource[]>> = {
     ],
   },
   'istqb-genai': {
-    'Chapter 1: Introduction to AI Testing': [
-      { label: 'ISTQB AI Testing', url: 'https://www.istqb.org/certifications/ai-testing' },
+    'Chapter 1: Introduction to GenAI for Testing': [
+      { label: 'ISTQB GenAI Syllabus', url: 'https://www.istqb.org/certifications/test-with-generative-ai' },
+      { label: 'Transformer Architecture Guide', url: 'https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)' },
     ],
-    'Chapter 2: Testing AI-Based Systems': [
-      { label: 'ISTQB AI Testing', url: 'https://www.istqb.org/certifications/ai-testing' },
+    'Chapter 2: Prompt Engineering for Testing': [
+      { label: 'ISTQB GenAI Syllabus', url: 'https://www.istqb.org/certifications/test-with-generative-ai' },
+      { label: 'Prompt Engineering Guide', url: 'https://www.promptingguide.ai/' },
     ],
-    'Chapter 3: Test Methods for AI-Based Systems': [
-      { label: 'ISTQB AI Testing', url: 'https://www.istqb.org/certifications/ai-testing' },
+    'Chapter 3: Managing Risks of GenAI in Testing': [
+      { label: 'ISTQB GenAI Syllabus', url: 'https://www.istqb.org/certifications/test-with-generative-ai' },
+      { label: 'EU AI Act', url: 'https://artificialintelligenceact.eu/' },
+      { label: 'NIST AI RMF', url: 'https://www.nist.gov/itl/ai-risk-management-framework' },
     ],
-    'Chapter 4: Testing AI-Based Systems Quality Characteristics': [
-      { label: 'ISTQB AI Testing', url: 'https://www.istqb.org/certifications/ai-testing' },
+    'Chapter 4: LLM-Powered Test Infrastructure': [
+      { label: 'ISTQB GenAI Syllabus', url: 'https://www.istqb.org/certifications/test-with-generative-ai' },
+      { label: 'RAG Guide', url: 'https://docs.llamaindex.ai/stable/getting_started/concept/' },
     ],
-    'Chapter 5: Test Management for AI-Based Systems': [
-      { label: 'ISTQB AI Testing', url: 'https://www.istqb.org/certifications/ai-testing' },
+    'Chapter 5: Deploying and Integrating GenAI': [
+      { label: 'ISTQB GenAI Syllabus', url: 'https://www.istqb.org/certifications/test-with-generative-ai' },
+      { label: 'ISO/IEC 42001', url: 'https://www.iso.org/standard/81230.html' },
     ],
   },
 };

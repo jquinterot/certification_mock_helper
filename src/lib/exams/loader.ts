@@ -6,7 +6,8 @@ import { questions as awsSaaQuestions1 } from './aws-saa/questions';
 import { questions2 as awsSaaQuestions2 } from './aws-saa/questions2';
 import { questions as istqbQuestions1 } from './istqb-foundation/questions';
 import { questions2 as istqbQuestions2 } from './istqb-foundation/questions2';
-import { questions as istqbGenaiQuestions1 } from './istqb-genai/questions';
+import { questions as istqbGenaiQuestions1, questions2 as istqbGenaiQuestions2 } from './istqb-genai/questions';
+import { questions as istqbGenaiQuestions3 } from './istqb-genai/questions3';
 import type { ExamQuestion } from '@/types';
 
 // AWS ML section questions
@@ -54,6 +55,11 @@ import { questions as istqbGenaiC4Q1 } from './istqb-genai/sections/chapter4';
 import { questions2 as istqbGenaiC4Q2 } from './istqb-genai/sections/chapter4';
 import { questions as istqbGenaiC5Q1 } from './istqb-genai/sections/chapter5';
 import { questions2 as istqbGenaiC5Q2 } from './istqb-genai/sections/chapter5';
+import { questions as istqbGenaiC1Q3 } from './istqb-genai/sections/chapter1_q3';
+import { questions as istqbGenaiC2Q3 } from './istqb-genai/sections/chapter2_q3';
+import { questions as istqbGenaiC3Q3 } from './istqb-genai/sections/chapter3_q3';
+import { questions as istqbGenaiC4Q3 } from './istqb-genai/sections/chapter4_q3';
+import { questions as istqbGenaiC5Q3 } from './istqb-genai/sections/chapter5_q3';
 
 export function getQuestions(examId: string, testSet: number): ExamQuestion[] {
   if (examId === 'aws-ml') {
@@ -70,6 +76,9 @@ export function getQuestions(examId: string, testSet: number): ExamQuestion[] {
     return testSet === 1 ? istqbQuestions1 : istqbQuestions2;
   }
   if (examId === 'istqb-genai') {
+    if (testSet === 1) return istqbGenaiQuestions1;
+    if (testSet === 2) return istqbGenaiQuestions2;
+    if (testSet === 3) return istqbGenaiQuestions3;
     return istqbGenaiQuestions1;
   }
   return awsMlQuestions1;
@@ -98,11 +107,11 @@ export function getSectionQuestions(examId: string, domain: string, testSet: num
       'Chapter 6: Test Tools and Automation': { 1: istqbC6Q1, 2: istqbC6Q2 },
     },
     'istqb-genai': {
-      'Chapter 1: Introduction to GenAI for Testing': { 1: istqbGenaiC1Q1, 2: istqbGenaiC1Q2 },
-      'Chapter 2: Prompt Engineering for Testing': { 1: istqbGenaiC2Q1, 2: istqbGenaiC2Q2 },
-      'Chapter 3: Managing Risks of GenAI in Testing': { 1: istqbGenaiC3Q1, 2: istqbGenaiC3Q2 },
-      'Chapter 4: LLM-Powered Test Infrastructure': { 1: istqbGenaiC4Q1, 2: istqbGenaiC4Q2 },
-      'Chapter 5: Deploying and Integrating GenAI': { 1: istqbGenaiC5Q1, 2: istqbGenaiC5Q2 },
+      'Chapter 1: Introduction to GenAI for Testing': { 1: istqbGenaiC1Q1, 2: istqbGenaiC1Q2, 3: istqbGenaiC1Q3 },
+      'Chapter 2: Prompt Engineering for Testing': { 1: istqbGenaiC2Q1, 2: istqbGenaiC2Q2, 3: istqbGenaiC2Q3 },
+      'Chapter 3: Managing Risks of GenAI in Testing': { 1: istqbGenaiC3Q1, 2: istqbGenaiC3Q2, 3: istqbGenaiC3Q3 },
+      'Chapter 4: LLM-Powered Test Infrastructure': { 1: istqbGenaiC4Q1, 2: istqbGenaiC4Q2, 3: istqbGenaiC4Q3 },
+      'Chapter 5: Deploying and Integrating GenAI': { 1: istqbGenaiC5Q1, 2: istqbGenaiC5Q2, 3: istqbGenaiC5Q3 },
     },
   };
 

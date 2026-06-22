@@ -1,4 +1,7 @@
-# Study Enhancer Skill
+---
+name: study-enhancer
+description: Use when adding study aids, progress tracking, analytics, or weakness identification features to the certification app. Covers study recommendations, progress visualization, and targeted practice.
+---
 
 ## Purpose
 Add study aids and analytics to help users prepare for certifications more effectively. Track progress, identify weaknesses, and provide targeted study recommendations.

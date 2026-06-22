@@ -1,4 +1,7 @@
-# TypeScript Refactorer Skill
+---
+name: typescript-refactorer
+description: Use when duplicate TypeScript types, name collisions, loose any types, or prop interfaces exceeding 10 properties are found. Consolidates types to a single source of truth and enforces strict typing.
+---
 
 ## Purpose
 Consolidate duplicate types, enforce strict typing, eliminate name collisions, and maintain a single source of truth for all TypeScript types in the codebase.

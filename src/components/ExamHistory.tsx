@@ -1,37 +1,29 @@
 'use client';
 
-import { History, TrendingUp, AlertTriangle, Trash2, Target, Sun, Moon } from 'lucide-react';
-import type { ExamAttempt, WeaknessAnalysis } from '@/types';
-import type { Theme } from '@/lib/theme';
+import { History, TrendingUp, AlertTriangle, Trash2, Target, Sun, Moon, ExternalLink } from 'lucide-react';
 import { formatTime } from '@/lib/utils';
-import { deleteAttempt } from '@/lib/study-history';
+import { useApp } from '@/contexts/AppContext';
+import { getStudyResources } from '@/lib/study-resources';
 
-interface ExamHistoryProps {
-  examId: string;
-  examName: string;
-  attempts: ExamAttempt[];
-  weaknessAnalysis: WeaknessAnalysis | null;
-  theme: Theme;
-  themeMode: 'light' | 'dark';
-  onToggleTheme: () => void;
-  onBack: () => void;
-  onStudyDomain: (domain: string) => void;
-}
+export function ExamHistory() {
+  const {
+    selectedExamId,
+    selectedExamConfig,
+    examHistory,
+    weaknessAnalysis,
+    theme,
+    themeMode,
+    toggleThemeMode,
+    handleBackFromHistory,
+    handleStudyDomain,
+    handleDeleteAttempt,
+  } = useApp();
 
-export function ExamHistory({
-  examId,
-  examName,
-  attempts,
-  weaknessAnalysis,
-  theme,
-  themeMode,
-  onToggleTheme,
-  onBack,
-  onStudyDomain,
-}: ExamHistoryProps) {
-  const handleDeleteAttempt = (attemptId: string) => {
-    deleteAttempt(examId, attemptId);
-    window.location.reload();
+  const attempts = examHistory?.attempts || [];
+  const examName = selectedExamConfig!.name;
+
+  const handleDelete = (attemptId: string) => {
+    handleDeleteAttempt(attemptId);
   };
 
   const formatDate = (timestamp: number) => {
@@ -54,7 +46,7 @@ export function ExamHistory({
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <button
-            onClick={onBack}
+            onClick={handleBackFromHistory}
             className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} transition-colors`}
             data-test-id="back-button"
           >
@@ -62,7 +54,7 @@ export function ExamHistory({
           </button>
           <h1 className="text-xl font-bold">{examName} - History</h1>
           <button
-            onClick={onToggleTheme}
+            onClick={toggleThemeMode}
             className={`flex items-center gap-2 px-3 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
             data-test-id="theme-toggle"
           >
@@ -94,40 +86,105 @@ export function ExamHistory({
               </div>
             </div>
 
+            {/* Score Trend Chart */}
+            {attempts.length > 1 && (
+              <div className="bg-white/10 dark:bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-white/20 dark:border-slate-700/50 mb-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <TrendingUp className={`w-5 h-5 ${theme.primaryLightText}`} />
+                  <h2 className={`font-semibold ${theme.primaryLightText}`}>Score Trend</h2>
+                </div>
+                <div className="flex items-end justify-between gap-2 h-40">
+                  {[...attempts].reverse().slice(-10).map((attempt, idx, arr) => {
+                    const height = Math.max(4, (attempt.percentage / 100) * 100);
+                    return (
+                      <div key={attempt.id} className="flex-1 flex flex-col items-center gap-1 group relative">
+                        <span className="text-xs font-semibold text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity absolute -top-6">
+                          {attempt.percentage}%
+                        </span>
+                        <div className="w-full flex items-end" style={{ height: '120px' }}>
+                          <div
+                            className={`w-full rounded-t-md transition-all hover:opacity-80 ${
+                              attempt.percentage >= 72
+                                ? 'bg-green-500'
+                                : 'bg-red-500'
+                            }`}
+                            style={{ height: `${height}%` }}
+                            title={`${attempt.percentage}% - ${attempt.passed ? 'Pass' : 'Fail'}`}
+                          />
+                        </div>
+                        <span className="text-xs text-slate-500">{arr.length - idx}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="flex items-center justify-center gap-4 mt-3 text-xs text-slate-500">
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded bg-green-500" />
+                    <span>Pass (&ge;72%)</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="w-3 h-3 rounded bg-red-500" />
+                    <span>Fail (&lt;72%)</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {weaknessAnalysis && weaknessAnalysis.weakestDomains.length > 0 && (
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mb-6">
+              <div className="bg-white/10 dark:bg-slate-800/50 backdrop-blur-lg rounded-2xl p-6 border border-white/20 dark:border-slate-700/50 mb-6">
                 <div className="flex items-center gap-2 mb-4">
                   <AlertTriangle className={`w-5 h-5 ${theme.primaryLightText}`} />
                   <h2 className={`font-semibold ${theme.primaryLightText}`}>Areas to Improve</h2>
                 </div>
-                <div className="space-y-3">
-                  {weaknessAnalysis.weakestDomains.slice(0, 3).map((weakness, idx) => (
-                    <div key={weakness.domain} className="flex items-center justify-between" data-test-id={`weakness-area-${idx}`}>
-                      <div className="flex items-center gap-3">
-                        <span className={`${idx === 0 ? 'text-red-400' : 'text-yellow-400'}`}>
-                          <Target className="w-4 h-4" />
-                        </span>
-                        <span className="text-slate-300">{weakness.domain}</span>
-                        <span className="text-slate-500 text-sm">
-                          ({weakness.questionCount} questions)
-                        </span>
+                <div className="space-y-4">
+                  {weaknessAnalysis.weakestDomains.slice(0, 3).map((weakness, idx) => {
+                    const resources = getStudyResources(selectedExamId, weakness.domain);
+                    return (
+                      <div key={weakness.domain} data-test-id={`weakness-area-${idx}`}>
+                        <div className="flex items-center justify-between flex-wrap gap-2">
+                          <div className="flex items-center gap-3">
+                            <span className={`${idx === 0 ? 'text-red-400' : 'text-yellow-400'}`}>
+                              <Target className="w-4 h-4" />
+                            </span>
+                            <span className="text-slate-300 dark:text-slate-200">{weakness.domain}</span>
+                            <span className="text-slate-500 text-sm">
+                              ({weakness.questionCount} questions)
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <span className={`font-semibold ${
+                              weakness.averageScore < 50 ? 'text-red-400' : 'text-yellow-400'
+                            }`}>
+                              {weakness.averageScore}%
+                            </span>
+                            <button
+                              onClick={() => handleStudyDomain(weakness.domain)}
+                              className={`${theme.primaryBg} ${theme.primaryBgHover} px-3 py-1 rounded-lg text-sm transition-all`}
+                              data-test-id={`study-button-${weakness.domain.toLowerCase().replace(/\s+/g, '-')}`}
+                            >
+                              Study
+                            </button>
+                          </div>
+                        </div>
+                        {resources.length > 0 && (
+                          <div className="ml-7 mt-2 flex flex-wrap gap-2">
+                            {resources.map((resource) => (
+                              <a
+                                key={resource.url}
+                                href={resource.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`flex items-center gap-1 text-xs ${theme.primaryLightText} hover:underline`}
+                              >
+                                <ExternalLink className="w-3 h-3" />
+                                {resource.label}
+                              </a>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className={`font-semibold ${
-                          weakness.averageScore < 50 ? 'text-red-400' : 'text-yellow-400'
-                        }`}>
-                          {weakness.averageScore}%
-                        </span>
-                        <button
-                          onClick={() => onStudyDomain(weakness.domain)}
-                          className={`${theme.primaryBg} ${theme.primaryBgHover} px-3 py-1 rounded-lg text-sm transition-all`}
-                          data-test-id={`study-button-${weakness.domain.toLowerCase().replace(/\s+/g, '-')}`}
-                        >
-                          Study
-                        </button>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -156,7 +213,7 @@ export function ExamHistory({
                             {attempt.mode === 'section' ? attempt.selectedDomain : `Set ${attempt.testSet}`}
                           </p>
                           <p className="text-slate-500 text-xs">
-                            {formatDate(attempt.completedAt)} • {formatTime(attempt.timeElapsed)}
+                            {formatDate(attempt.completedAt)} &bull; {formatTime(attempt.timeElapsed)}
                           </p>
                         </div>
                       </div>
@@ -169,7 +226,7 @@ export function ExamHistory({
                           {attempt.passed ? 'Pass' : 'Fail'}
                         </span>
                         <button
-                          onClick={() => handleDeleteAttempt(attempt.id)}
+                          onClick={() => handleDelete(attempt.id)}
                           className="text-slate-400 hover:text-red-400 transition-colors p-1"
                           title="Delete attempt"
                           data-test-id={`delete-attempt-${attempt.id}`}

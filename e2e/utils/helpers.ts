@@ -1,14 +1,3 @@
-import { test, expect, type Page } from '@playwright/test';
-
-async function cleanupAllData(page: Page) {
-  await page.evaluate(() => {
-    localStorage.clear();
-    sessionStorage.clear();
-  });
-}
-
-async function waitForPageLoad(page: Page) {
-  await page.waitForLoadState('networkidle');
-}
-
-export { cleanupAllData, waitForPageLoad };
+// Utility helpers have been moved to the fixture system (e2e/fixtures/index.ts).
+// This file is kept for backward-compatible re-exports of constants only.
+export * from './constants';

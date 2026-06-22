@@ -1,4 +1,7 @@
-# Project Context Skill
+---
+name: project-context
+description: Use ONLY when starting work on the certification_mock_helper project. Provides project structure overview, technology stack, exam architecture, and key file locations for onboarding.
+---
 
 Use this skill when starting work on the certification_mock_helper project.
 

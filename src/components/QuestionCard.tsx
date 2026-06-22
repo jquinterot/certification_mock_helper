@@ -4,10 +4,12 @@ import { memo } from 'react';
 import { CheckCircle2, XCircle } from 'lucide-react';
 import type { ShuffledQuestion } from '@/types';
 import { Theme } from '@/lib/theme';
+import { QuestionNotes } from './QuestionNotes';
 
 interface QuestionCardProps {
   question: ShuffledQuestion;
   questionIndex: number;
+  examId: string;
   selectedAnswer: number | number[] | undefined;
   showCorrectness: boolean;
   showResults: boolean;
@@ -64,6 +66,7 @@ function getBadgeClass(
 function QuestionCardComponent({
   question,
   questionIndex,
+  examId,
   selectedAnswer,
   showCorrectness,
   showResults,
@@ -141,6 +144,9 @@ function QuestionCardComponent({
           <p className={`leading-relaxed ${theme.bgTextSecondary}`}>{question.explanation}</p>
         </div>
       )}
+
+      {/* Personal Notes */}
+      <QuestionNotes key={`${examId}-${question.id}`} noteKey={`${examId}-${question.id}`} theme={theme} />
     </div>
   );
 }

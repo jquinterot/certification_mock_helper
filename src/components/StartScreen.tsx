@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 import { BookOpen, History, TrendingUp, AlertTriangle, Sun, Moon } from 'lucide-react';
-import type { SavedTest, ExamHistory as ExamHistoryType, WeaknessAnalysis } from '@/types';
 import type { ExamMode } from '@/types';
-import type { Theme } from '@/lib/theme';
+import { useApp } from '@/contexts/AppContext';
 import {
   SavedTestList,
   ModeSelection,
@@ -13,87 +12,51 @@ import {
   ExamInfo,
 } from './start-screen';
 
-interface SectionDomainStats {
-  domain: string;
-  set1Count: number;
-  set2Count: number;
-}
+export function StartScreen() {
+  const {
+    selectedExamConfig,
+    filteredSavedTests,
+    examMode,
+    selectedDomain,
+    selectedTestSet,
+    sectionDomainStats,
+    totalQuestions,
+    maxTestSets,
+    theme,
+    themeMode,
+    toggleThemeMode,
+    examHistory,
+    weaknessAnalysis,
+    handleResumeTest,
+    deleteSavedTest,
+    setExamMode,
+    setSelectedDomain,
+    setSelectedTestSet,
+    handleStartExam,
+    handleViewHistory,
+    handleBackToHome,
+  } = useApp();
 
-interface StartScreenProps {
-  examName: string;
-  examSubtitle: string;
-  durationMinutes: number;
-  passingScore: number;
-  savedTests: SavedTest[];
-  mode: ExamMode;
-  selectedDomain: string;
-  testSet: number;
-  domains: string[];
-  domainStats: Record<string, number>;
-  sectionDomainStats: SectionDomainStats[];
-  totalQuestions: number;
-  maxTestSets: number;
-  theme: Theme;
-  themeMode: 'light' | 'dark';
-  onToggleTheme: () => void;
-  examHistory?: ExamHistoryType | null;
-  weaknessAnalysis?: WeaknessAnalysis | null;
-  onResumeTest: (test: SavedTest) => void;
-  onDeleteTest: (id: string) => void;
-  onSetMode: (mode: ExamMode) => void;
-  onSetDomain: (domain: string) => void;
-  onSetTestSet: (set: number) => void;
-  onStart: () => void;
-  onViewHistory?: () => void;
-  onBackToHome?: () => void;
-}
-
-export function StartScreen({
-  examName,
-  examSubtitle,
-  durationMinutes,
-  passingScore,
-  savedTests,
-  mode,
-  selectedDomain,
-  testSet,
-  sectionDomainStats,
-  totalQuestions,
-  maxTestSets,
-  theme,
-  themeMode,
-  onToggleTheme,
-  examHistory,
-  weaknessAnalysis,
-  onResumeTest,
-  onDeleteTest,
-  onSetMode,
-  onSetDomain,
-  onSetTestSet,
-  onStart,
-  onViewHistory,
-  onBackToHome,
-}: StartScreenProps) {
   const [sectionStep, setSectionStep] = useState<'domain' | 'testset'>('domain');
 
   const selectedSectionStats = sectionDomainStats.find((s) => s.domain === selectedDomain);
   const sectionQuestionCount = selectedSectionStats
-    ? testSet === 1
+    ? selectedTestSet === 1
       ? selectedSectionStats.set1Count
       : selectedSectionStats.set2Count
     : 0;
 
-  const currentQuestionCount = mode === 'full' ? totalQuestions : sectionQuestionCount;
+  const currentQuestionCount = examMode === 'full' ? totalQuestions : sectionQuestionCount;
   const estimatedTime =
-    mode === 'full'
-      ? durationMinutes
+    examMode === 'full'
+      ? selectedExamConfig!.durationMinutes
       : selectedDomain
         ? sectionQuestionCount <= 10
           ? 15
           : 20
         : 0;
 
-  const isSectionMode = mode === 'section';
+  const isSectionMode = examMode === 'section';
   const needsDomainSelection = isSectionMode && !selectedDomain;
   const isInDomainSelectionStep = isSectionMode && sectionStep === 'domain';
 
@@ -102,9 +65,9 @@ export function StartScreen({
   return (
     <div className={`min-h-screen bg-gradient-to-br ${theme.bgGradientFrom} ${theme.bgGradientVia} ${theme.bgGradientTo} ${theme.bgText} flex items-center justify-center p-4`}>
       <div className={`max-w-2xl w-full ${theme.bgCard} backdrop-blur-lg rounded-2xl p-8 ${theme.borderColor} border shadow-2xl`}>
-        {onBackToHome && (
+        {handleBackToHome && (
           <button
-            onClick={onBackToHome}
+            onClick={handleBackToHome}
             className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} mb-6 transition-colors`}
             data-test-id="back-button"
           >
@@ -115,7 +78,7 @@ export function StartScreen({
         {/* Theme Toggle */}
         <div className="flex justify-end mb-4">
           <button
-            onClick={onToggleTheme}
+            onClick={toggleThemeMode}
             className={`flex items-center gap-2 px-3 py-2 rounded-lg ${theme.bgButton} ${theme.borderColor} border transition-all hover:scale-105`}
             data-test-id="theme-toggle"
           >
@@ -128,8 +91,8 @@ export function StartScreen({
           <div className={`inline-flex items-center justify-center w-20 h-20 ${theme.primaryBg} rounded-2xl mb-6 shadow-lg`}>
             <BookOpen className={`w-10 h-10 ${theme.bgText}`} />
           </div>
-          <h1 className="text-3xl font-bold mb-2">{examName}</h1>
-          <p className={`${theme.bgTextSecondary} text-lg`}>{examSubtitle}</p>
+          <h1 className="text-3xl font-bold mb-2">{selectedExamConfig!.name}</h1>
+          <p className={`${theme.bgTextSecondary} text-lg`}>{selectedExamConfig!.shortName}</p>
         </div>
 
         {examHistory && examHistory.totalAttempts > 0 && (
@@ -139,9 +102,9 @@ export function StartScreen({
                 <TrendingUp className={`w-4 h-4 ${theme.primaryLightText}`} />
                 <span className={`text-sm font-medium ${theme.bgTextSecondary}`}>Your Progress</span>
               </div>
-              {onViewHistory && (
+              {handleViewHistory && (
                 <button
-                  onClick={onViewHistory}
+                  onClick={handleViewHistory}
                   className={`flex items-center gap-1 text-xs ${theme.primaryLightText} transition-colors`}
                   data-test-id="view-history-button"
                 >
@@ -175,39 +138,39 @@ export function StartScreen({
           </div>
         )}
 
-        {savedTests.length > 0 && (
+        {filteredSavedTests.length > 0 && (
           <SavedTestList
-            savedTests={savedTests}
+            savedTests={filteredSavedTests}
             theme={theme}
-            onResumeTest={onResumeTest}
-            onDeleteTest={onDeleteTest}
+            onResumeTest={handleResumeTest}
+            onDeleteTest={deleteSavedTest}
           />
         )}
 
         <ModeSelection
-          mode={mode}
-          onSetMode={onSetMode}
+          mode={examMode}
+          onSetMode={setExamMode as (mode: ExamMode) => void}
           theme={theme}
           totalQuestions={totalQuestions}
         />
 
-        {mode === 'full' && (
+        {examMode === 'full' && (
           <TestSetSelection
-            testSet={testSet}
-            onSetTestSet={onSetTestSet}
+            testSet={selectedTestSet}
+            onSetTestSet={setSelectedTestSet}
             maxTestSets={maxTestSets}
             totalQuestions={totalQuestions}
             theme={theme}
           />
         )}
 
-        {mode === 'section' && (
+        {examMode === 'section' && (
           <DomainSelection
             selectedDomain={selectedDomain}
             sectionDomainStats={sectionDomainStats}
-            testSet={testSet}
-            onSetDomain={onSetDomain}
-            onSetTestSet={onSetTestSet}
+            testSet={selectedTestSet}
+            onSetDomain={setSelectedDomain}
+            onSetTestSet={setSelectedTestSet}
             sectionStep={sectionStep}
             setSectionStep={setSectionStep}
             theme={theme}
@@ -217,12 +180,12 @@ export function StartScreen({
         <ExamInfo
           currentQuestionCount={currentQuestionCount}
           estimatedTime={estimatedTime}
-          passingScore={passingScore}
+          passingScore={selectedExamConfig!.passingScore}
           theme={theme}
         />
 
         <button
-          onClick={onStart}
+          onClick={handleStartExam}
           disabled={needsDomainSelection || isInDomainSelectionStep}
           className={`w-full ${theme.primaryBg} ${theme.primaryBgHover} text-white font-bold py-4 rounded-xl transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
           data-test-id="start-exam-button"

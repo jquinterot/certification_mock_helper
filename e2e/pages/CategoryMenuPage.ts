@@ -13,7 +13,7 @@ export class CategoryMenuPage {
     this.examCards = page.locator('[data-test-id^="exam-card-"]');
   }
 
-  async getExamCard(examId: string): Promise<Locator> {
+  getExamCard(examId: string): Locator {
     return this.page.getByTestId(`exam-card-${examId}`);
   }
 

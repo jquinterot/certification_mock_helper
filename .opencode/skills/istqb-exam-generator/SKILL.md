@@ -1,4 +1,7 @@
-# ISTQB Exam Generator Skill
+---
+name: istqb-exam-generator
+description: Use when generating ISTQB exam questions for Foundation Level (CTFL) or Generative AI (CT-GenAI) certifications. Ensures K1-K3 cognitive levels, combination-answer formats, and syllabus-compliant topic coverage.
+---
 
 ## Purpose
 Generate high-quality, exam-style questions for ISTQB certifications. Covers ISTQB Foundation Level (CTFL) and ISTQB Testing with Generative AI.

@@ -1,4 +1,7 @@
-# AWS ML Engineer Associate Question Generator
+---
+name: ml-exam-generator
+description: Use when generating AWS ML Engineer Associate (MLA-C01) exam questions. Covers all exam domains, ensures question format matches the official exam, and maintains technical accuracy per AWS documentation.
+---
 
 ## Overview
 This skill generates realistic, exam-style questions for the AWS Certified Machine Learning Engineer - Associate (MLA-C01) exam. It ensures questions match the official exam format, cover all required topics, and maintain high quality.

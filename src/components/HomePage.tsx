@@ -3,16 +3,11 @@
 import { Award, ChevronRight, Sun, Moon } from 'lucide-react';
 import { allExams } from '@/lib/exams';
 import { getCategoryTheme, getIcon } from '@/lib/constants/ui';
-import type { Theme } from '@/lib/theme';
+import { useApp } from '@/contexts/AppContext';
 
-interface HomePageProps {
-  onSelectCategory: (category: string) => void;
-  theme: Theme;
-  themeMode: 'light' | 'dark';
-  onToggleTheme: () => void;
-}
+export function HomePage() {
+  const { handleSelectCategory, theme, themeMode, toggleThemeMode } = useApp();
 
-export function HomePage({ onSelectCategory, theme, themeMode, onToggleTheme }: HomePageProps) {
   const categories = [
     { name: 'AWS Cloud', description: 'Amazon Web Services certifications for cloud professionals', icon: 'Cloud' },
     { name: 'ISTQB Testing', description: 'International Software Testing Qualifications Board certifications', icon: 'Bug' },
@@ -42,7 +37,7 @@ export function HomePage({ onSelectCategory, theme, themeMode, onToggleTheme }: 
         {/* Theme Toggle */}
         <div className="flex justify-center mb-8">
           <button
-            onClick={onToggleTheme}
+            onClick={toggleThemeMode}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
             data-test-id="theme-toggle"
           >
@@ -59,12 +54,12 @@ export function HomePage({ onSelectCategory, theme, themeMode, onToggleTheme }: 
             return (
               <button
                 key={category.name}
-                onClick={() => onSelectCategory(category.name)}
+                onClick={() => handleSelectCategory(category.name)}
                 className={`group relative p-8 rounded-2xl border ${catTheme.border} ${catTheme.bg} ${catTheme.hover} backdrop-blur-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl text-left`}
                 data-test-id={`category-card-${category.name.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${catTheme.gradient} text-white`}>
+                  <div className={`p-3 rounded-xl bg-gradient-to-br ${catTheme.gradient} text-white flex-shrink-0`}>
                     {getIcon(category.icon, 'w-12 h-12')}
                   </div>
                   <ChevronRight className={`w-6 h-6 ${theme.bgTextSecondary} group-hover:${theme.bgText} group-hover:translate-x-1 transition-all`} />

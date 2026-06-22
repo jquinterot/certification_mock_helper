@@ -51,7 +51,7 @@ export class StartScreenPage {
     }
   }
 
-  async getDomainCard(domainKey: string): Promise<Locator> {
+  getDomainCard(domainKey: string): Locator {
     return this.page.getByTestId(`domain-card-${domainKey}`);
   }
 

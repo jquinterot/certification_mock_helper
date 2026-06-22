@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AWS ML Engineer Associate - Practice Exam",
-  description: "Practice exam for AWS Certified Machine Learning Engineer - Associate (MLA-C01) with 65 questions and explanations",
+  title: "Certification Mock Helper - Practice Exams",
+  description: "Practice exams for various certifications with detailed explanations and progress tracking",
 };
 
 export default function RootLayout({

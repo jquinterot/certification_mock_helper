@@ -1,4 +1,7 @@
-# Next.js Senior Architect & Developer Skill
+---
+name: nextjs-senior-architect
+description: Use when designing component architecture, planning React state management, or making structural decisions for Next.js applications. Covers component decomposition, hooks patterns, and rendering strategies.
+---
 
 ## Architecture Principles
 

@@ -1,4 +1,7 @@
-# Question Quality Auditor Skill
+---
+name: question-quality-auditor
+description: Use when validating exam questions against official syllabi, checking answer accuracy, verifying domain coverage, or auditing question quality. Detects wrong correctAnswer indices, ambiguous questions, and distribution imbalances.
+---
 
 ## Purpose
 Validate existing questions against official exam syllabi, check coverage of each domain/chapter, verify question accuracy, and identify gaps in the question bank.

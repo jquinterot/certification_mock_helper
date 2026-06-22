@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import type { ExamConfig } from '@/lib/exams/types';
 import type { AppPhase } from '@/types';
 import { useExam } from '@/hooks/useExam';
@@ -7,7 +7,7 @@ import { useSavedTests } from '@/hooks/useSavedTests';
 import { getQuestions, getSectionQuestions, getDomainStats } from '@/lib/exams/loader';
 import { getExamConfig } from '@/lib/exams';
 import { getTheme } from '@/lib/theme';
-import { getExamHistorySummary, getWeaknessAnalysis } from '@/lib/study-history';
+import { getExamHistorySummary, getWeaknessAnalysis, deleteAttempt } from '@/lib/study-history';
 import { shuffleQuestions } from '@/lib/questions/shuffle';
 
 function generateSessionSeed(): number {
@@ -40,6 +40,9 @@ export function useAppState() {
   const [showSubmitDialog, setShowSubmitDialog] = useState(false);
   const [currentSavedTestId, setCurrentSavedTestId] = useState<string | null>(null);
   const [themeMode, setThemeMode] = useState<'light' | 'dark'>('dark');
+  const [historyRefreshKey, setHistoryRefreshKey] = useState(0);
+  const [examDuration, setExamDuration] = useState(0);
+  const autoSubmittedRef = useRef(false);
 
   const filteredSavedTests = useMemo(() => {
     return savedTests.filter((t) => t.examId === selectedExamId);
@@ -70,7 +73,8 @@ export function useAppState() {
   const examHistory = useMemo(() => {
     if (!selectedExamId) return null;
     return getExamHistorySummary(selectedExamId);
-  }, [selectedExamId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedExamId, historyRefreshKey]);
 
   const weaknessAnalysis = useMemo(() => {
     if (!selectedExamId) return null;
@@ -107,6 +111,7 @@ export function useAppState() {
 
   const handleStartExam = useCallback(() => {
     setCurrentSavedTestId(null);
+    autoSubmittedRef.current = false;
     setQuestionSeed(generateSessionSeed());
     const config = {
       mode: examMode,
@@ -116,8 +121,13 @@ export function useAppState() {
     exam.start(config);
     timer.reset();
     timer.start();
+    const totalSeconds = (selectedExamConfig?.durationMinutes ?? 60) * 60;
+    const duration = examMode === 'section' && selectedExamConfig
+      ? Math.max(900, Math.round(totalSeconds * questions.length / selectedExamConfig.questionCount))
+      : totalSeconds;
+    setExamDuration(duration);
     setPhase('exam');
-  }, [exam, timer, examMode, selectedDomain, selectedTestSet]);
+  }, [exam, timer, examMode, selectedDomain, selectedTestSet, selectedExamConfig, questions.length]);
 
   const handleResumeTest = useCallback((savedTest: {
     id: string;
@@ -153,9 +163,15 @@ export function useAppState() {
       exam.resume(config, savedTest.currentQuestion, savedTest.answers, savedTest.flaggedQuestions);
       timer.set(savedTest.timer);
       timer.start();
+      autoSubmittedRef.current = false;
+      const totalSeconds = (selectedExamConfig?.durationMinutes ?? 60) * 60;
+      const duration = savedTest.mode === 'section' && selectedExamConfig
+        ? Math.max(900, Math.round(totalSeconds * savedTest.questionCount / selectedExamConfig.questionCount))
+        : totalSeconds;
+      setExamDuration(duration);
       setPhase('exam');
     }
-  }, [exam, timer]);
+  }, [exam, timer, selectedExamConfig]);
 
   const handleSubmit = useCallback(() => {
     setShowSubmitDialog(true);
@@ -170,7 +186,7 @@ export function useAppState() {
       setCurrentSavedTestId(null);
     }
     const savedTest = {
-      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
       examId: selectedExamId,
       timestamp: Date.now(),
       mode: exam.config.mode,
@@ -191,7 +207,7 @@ export function useAppState() {
 
   const handleSave = useCallback(() => {
     const savedTest = {
-      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
       examId: selectedExamId,
       timestamp: Date.now(),
       mode: exam.config.mode,
@@ -261,9 +277,28 @@ export function useAppState() {
     setPhase('exam-start');
   }, []);
 
+  const handleDeleteAttempt = useCallback((attemptId: string) => {
+    if (!selectedExamId) return;
+    deleteAttempt(selectedExamId, attemptId);
+    setHistoryRefreshKey((k) => k + 1);
+  }, [selectedExamId]);
+
   const toggleThemeMode = useCallback(() => {
     setThemeMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   }, []);
+
+  useEffect(() => {
+    if (
+      phase === 'exam' &&
+      examDuration > 0 &&
+      timer.timer >= examDuration &&
+      !exam.showResults &&
+      !autoSubmittedRef.current
+    ) {
+      autoSubmittedRef.current = true;
+      handleConfirmSubmit();
+    }
+  }, [timer.timer, examDuration, phase, exam.showResults, handleConfirmSubmit]);
 
   const totalQuestions = questions.length;
 
@@ -299,6 +334,7 @@ export function useAppState() {
     setShowSubmitDialog,
     themeMode,
     toggleThemeMode,
+    examDuration,
     handleSelectCategory,
     handleSelectExam,
     handleBackToHome,
@@ -317,5 +353,6 @@ export function useAppState() {
     handleViewHistory,
     handleStudyDomain,
     handleBackFromHistory,
+    handleDeleteAttempt,
   };
 }

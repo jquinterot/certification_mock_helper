@@ -1,4 +1,7 @@
-# Next.js App Router Migrator Skill
+---
+name: nextjs-app-router-migrator
+description: Use when converting client-side SPAs to Next.js App Router architecture with Server Components, route segments, streaming, and server actions. Covers migration from pages router or SPA patterns.
+---
 
 ## Purpose
 Convert client-side single-page apps to proper Next.js App Router architecture with Server Components, route segments, streaming, and server actions.

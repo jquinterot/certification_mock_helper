@@ -1,4 +1,7 @@
-# Code Decomposer Skill
+---
+name: code-decomposer
+description: Use when files exceed 300 lines or components mix multiple responsibilities. Breaks down large files into focused single-responsibility modules with proper separation of concerns.
+---
 
 ## Purpose
 Break down large files into focused, single-responsibility modules. Enforce file size limits and proper component architecture.

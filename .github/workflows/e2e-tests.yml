@@ -41,7 +41,7 @@ jobs:
         run: npm run build
 
       - name: Run Playwright tests
-        run: npx playwright test --shard=${{ matrix.shard }}
+        run: PLAYWRIGHT_FORCE_ASYNC_LOADER=1 npx playwright test --shard=${{ matrix.shard }}
 
       - name: Upload blob report
         if: always()

@@ -1,14 +1,15 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "target": "ES2020",
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true,
-    "strict": false,
+    "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "outDir": "../dist-e2e"
+    "noEmit": true,
+    "types": ["node"],
+    "lib": ["dom", "ES2022"]
   },
   "include": ["./**/*.ts"]
 }

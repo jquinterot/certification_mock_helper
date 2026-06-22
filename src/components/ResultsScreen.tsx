@@ -1,55 +1,36 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Trophy, Eye, Bookmark, RotateCcw, Sun, Moon } from 'lucide-react';
-import type { Score, DomainScore, ExamAttempt } from '@/types';
-import type { Theme } from '@/lib/theme';
+import type { ExamAttempt, DomainScore } from '@/types';
 import { formatTime } from '@/lib/utils';
 import { saveAttempt, updateQuestionAnalytics } from '@/lib/study-history';
+import { useApp } from '@/contexts/AppContext';
 
-interface ResultsScreenProps {
-  score: Score;
-  domainScores: Record<string, DomainScore>;
-  timer: number;
-  testSet: number;
-  mode: string;
-  selectedDomain: string;
-  flaggedCount: number;
-  theme: Theme;
-  themeMode: 'light' | 'dark';
-  onToggleTheme: () => void;
-  examId: string;
-  answers: Record<number, number | number[]>;
-  questions: Array<{ id: number; domain: string; correctAnswer: number | number[] }>;
-  onReview: () => void;
-  onReviewFlagged: () => void;
-  onReset: () => void;
-  onBackToHome?: () => void;
-}
+export function ResultsScreen() {
+  const {
+    exam,
+    timer,
+    theme,
+    themeMode,
+    toggleThemeMode,
+    selectedExamId,
+    questions,
+    handleReview,
+    handleReviewFlagged,
+    handleReset,
+    handleBackToHome,
+  } = useApp();
 
-export function ResultsScreen({
-  score,
-  domainScores,
-  timer,
-  testSet,
-  mode,
-  selectedDomain,
-  flaggedCount,
-  theme,
-  themeMode,
-  onToggleTheme,
-  examId,
-  answers,
-  questions,
-  onReview,
-  onReviewFlagged,
-  onReset,
-  onBackToHome,
-}: ResultsScreenProps) {
+  const { score, domainScores, config, flaggedCount, answers } = exam;
   const passed = score.percentage >= 72;
   const [submittedAt] = useState(() => Date.now());
+  const hasSavedRef = useRef(false);
 
   useEffect(() => {
+    if (hasSavedRef.current) return;
+    hasSavedRef.current = true;
+
     const domainScoresArray: DomainScore[] = Object.entries(domainScores).map(([domain, stats]) => ({
       domain,
       correct: stats.correct,
@@ -58,17 +39,17 @@ export function ResultsScreen({
     }));
 
     const attempt: ExamAttempt = {
-      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      examId,
-      testSet,
-      mode: mode as 'full' | 'section',
-      selectedDomain: selectedDomain || undefined,
+      id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+      examId: selectedExamId,
+      testSet: config.testSet,
+      mode: config.mode as 'full' | 'section',
+      selectedDomain: config.selectedDomain || undefined,
       score: score.correct,
       totalQuestions: score.total,
       percentage: score.percentage,
       passed,
       domainScores: domainScoresArray,
-      timeElapsed: timer,
+      timeElapsed: timer.timer,
       completedAt: Date.now(),
       answers,
     };
@@ -87,7 +68,7 @@ export function ResultsScreen({
         isCorrect = q.correctAnswer === userAnswer;
       }
 
-      updateQuestionAnalytics(q.id, examId, isCorrect);
+      updateQuestionAnalytics(q.id, selectedExamId, isCorrect);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -103,9 +84,9 @@ export function ResultsScreen({
   return (
     <div className={`min-h-screen bg-gradient-to-br ${theme.bgGradientFrom} ${theme.bgGradientVia} ${theme.bgGradientTo} ${theme.bgText} p-4`}>
       <div className="max-w-4xl mx-auto">
-        {onBackToHome && (
+        {handleBackToHome && (
           <button
-            onClick={onBackToHome}
+            onClick={handleBackToHome}
             className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} mb-6 transition-colors`}
             data-test-id="back-button"
           >
@@ -116,7 +97,7 @@ export function ResultsScreen({
         {/* Theme Toggle */}
         <div className="flex justify-end mb-4">
           <button
-            onClick={onToggleTheme}
+            onClick={toggleThemeMode}
             className={`flex items-center gap-2 px-3 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
             data-test-id="theme-toggle"
           >
@@ -136,12 +117,12 @@ export function ResultsScreen({
             <Trophy className="w-12 h-12 text-white" aria-hidden="true" />
           </div>
             <h1 className="text-3xl font-bold mb-2">
-              {mode === 'section' ? 'Section Results' : 'Exam Results'}
+              {config.mode === 'section' ? 'Section Results' : 'Exam Results'}
             </h1>
-            <p className={theme.bgTextSecondary}>Time: {formatTime(timer)}</p>
-            <p className={`${theme.primaryLightText} mt-1`}>Test Set {testSet}</p>
-            {mode === 'section' && selectedDomain && (
-              <p className={`${theme.primaryLightText} mt-1`}>{selectedDomain}</p>
+            <p className={theme.bgTextSecondary}>Time: {formatTime(timer.timer)}</p>
+            <p className={`${theme.primaryLightText} mt-1`}>Test Set {config.testSet}</p>
+            {config.mode === 'section' && config.selectedDomain && (
+              <p className={`${theme.primaryLightText} mt-1`}>{config.selectedDomain}</p>
             )}
             <p className={`${theme.bgTextSecondary} text-sm mt-2`}>{formatDate(submittedAt)}</p>
           </div>
@@ -193,7 +174,7 @@ export function ResultsScreen({
           {/* Actions */}
           <div className="flex gap-4 flex-wrap">
             <button
-              onClick={onReview}
+              onClick={handleReview}
               className="flex-1 min-w-[200px] bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition-all"
               data-test-id="review-all-button"
             >
@@ -202,7 +183,7 @@ export function ResultsScreen({
             </button>
             {flaggedCount > 0 && (
               <button
-                onClick={onReviewFlagged}
+                onClick={handleReviewFlagged}
                 className="flex-1 min-w-[200px] bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 rounded-xl transition-all"
                 data-test-id="review-flagged-button"
               >
@@ -211,12 +192,12 @@ export function ResultsScreen({
               </button>
             )}
             <button
-              onClick={onReset}
+              onClick={handleReset}
               className={`flex-1 min-w-[200px] ${theme.primaryBg} ${theme.primaryBgHover} text-white font-bold py-3 rounded-xl transition-all`}
               data-test-id="retake-button"
             >
               <RotateCcw className="w-5 h-5 inline mr-2" aria-hidden="true" />
-              {mode === 'section' ? 'Choose Another Section' : 'Retake Exam'}
+              {config.mode === 'section' ? 'Choose Another Section' : 'Retake Exam'}
             </button>
           </div>
         </div>

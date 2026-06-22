@@ -1,9 +1,4 @@
-import type { ExamQuestion } from '@/types';
-
-export interface ShuffledQuestion extends ExamQuestion {
-  shuffledOptions: string[];
-  shuffledCorrectIndex: number | number[];
-}
+import type { ExamQuestion, ShuffledQuestion } from '@/types';
 
 function seededRandom(seed: number): () => number {
   let state = seed;

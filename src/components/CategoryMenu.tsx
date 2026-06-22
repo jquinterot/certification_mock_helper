@@ -1,29 +1,21 @@
 'use client';
 
 import { ArrowRight, Clock, FileText, Sun, Moon } from 'lucide-react';
-import type { ExamConfig } from '@/lib/exams/types';
 import { getCategoryTheme, getIcon } from '@/lib/constants/ui';
-import type { Theme } from '@/lib/theme';
+import { getExamsByCategory } from '@/lib/exams';
+import { useApp } from '@/contexts/AppContext';
 
-interface CategoryMenuProps {
-  category: string;
-  exams: ExamConfig[];
-  onSelectExam: (examId: string) => void;
-  onBack: () => void;
-  theme: Theme;
-  themeMode: 'light' | 'dark';
-  onToggleTheme: () => void;
-}
-
-export function CategoryMenu({ category, exams, onSelectExam, onBack, theme, themeMode, onToggleTheme }: CategoryMenuProps) {
-  const colors = getCategoryTheme(category);
+export function CategoryMenu() {
+  const { selectedCategory, handleSelectExam, handleBackToHome, theme, themeMode, toggleThemeMode } = useApp();
+  const exams = getExamsByCategory(selectedCategory);
+  const colors = getCategoryTheme(selectedCategory);
 
   return (
     <div className={`min-h-screen bg-gradient-to-br ${theme.bgGradientFrom} ${theme.bgGradientVia} ${theme.bgGradientTo} ${theme.bgText} flex items-center justify-center p-4`}>
       <div className="max-w-4xl w-full">
         {/* Back Button */}
         <button
-          onClick={onBack}
+          onClick={handleBackToHome}
           className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} mb-8 transition-colors`}
           data-test-id="back-button"
         >
@@ -32,7 +24,7 @@ export function CategoryMenu({ category, exams, onSelectExam, onBack, theme, the
 
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold mb-2">{category}</h1>
+          <h1 className="text-3xl font-bold mb-2">{selectedCategory}</h1>
           <p className={theme.bgTextSecondary}>
             Select a certification to start practicing
           </p>
@@ -41,7 +33,7 @@ export function CategoryMenu({ category, exams, onSelectExam, onBack, theme, the
         {/* Theme Toggle */}
         <div className="flex justify-center mb-8">
           <button
-            onClick={onToggleTheme}
+            onClick={toggleThemeMode}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
             data-test-id="theme-toggle"
           >
@@ -55,7 +47,7 @@ export function CategoryMenu({ category, exams, onSelectExam, onBack, theme, the
           {exams.map((exam) => (
             <button
               key={exam.id}
-              onClick={() => onSelectExam(exam.id)}
+              onClick={() => handleSelectExam(exam.id)}
               className={`group relative p-6 rounded-2xl border ${colors.border} ${colors.bg} ${colors.hover} backdrop-blur-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl text-left`}
               data-test-id={`exam-card-${exam.id}`}
             >

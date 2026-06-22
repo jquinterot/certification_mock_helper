@@ -1,4 +1,7 @@
-# Database Architect Skill
+---
+name: database-architect
+description: Use when designing or implementing a persistence layer, replacing localStorage with a database, adding migrations, or creating data access patterns. Covers schema design, server actions, and ORM integration.
+---
 
 ## Purpose
 Design and implement a proper persistence layer to replace localStorage-only storage. Add database models, migrations, server actions, and data access patterns.

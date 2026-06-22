@@ -1,4 +1,7 @@
-# DRY Code Auditor Skill
+---
+name: dry-code-auditor
+description: Use when duplicate functions, dead code, hardcoded values, or scattered configuration are found across the codebase. Eliminates DRY violations, removes unused exports, and centralizes shared logic.
+---
 
 ## Purpose
 Eliminate duplicated code, dead exports, hardcoded values, and stale data. Enforce the Don't Repeat Yourself principle across the codebase.

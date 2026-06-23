@@ -1,543 +1,535 @@
+/**
+ * ISTQB® Certified Tester Foundation Level (CTFL) v4.0.1
+ * Practice Exam Questions - Sample Exam Set C
+ *
+ * Source: ISTQB_CTFL_v4.0_Sample-Exam-C v1.6
+ * Copyright © International Software Testing Qualifications Board
+ * Used with attribution under the ISTQB® copyright notice for non-commercial use.
+ */
+
 import type { ExamQuestion } from '@/types';
 
-export const questions2: ExamQuestion[] = [
-  // Chapter 1: Fundamentals of Testing (8%) - Questions 1-3
+export const questions: ExamQuestion[] = [
   {
     id: 1,
-    domain: "Chapter 1: Fundamentals of Testing",
-    question: "Which of the following is a valid reason why testing is necessary?",
+    domain: 'Chapter 1: Fundamentals of Testing',
+    question: 'Which of the following is a typical test objective?',
     options: [
-      "Testing identifies defects and failures, and helps evaluate work products",
-      "Testing proves that the software is completely free of defects",
-      "Testing guarantees that the software will meet all user requirements",
-      "Testing replaces the need for quality assurance processes"
+      'Validating that documented requirements are met',
+      'Causing failures and identifying defects',
+      'Initiating errors and identifying root causes',
+      'Verifying the test object meets user expectations',
     ],
-    correctAnswer: 0,
-    explanation: "Testing is necessary because it helps identify defects, failures, and root causes. It also evaluates work products such as requirements, user stories, designs, and code. Testing does not prove the absence of defects, guarantee full requirement coverage, or replace quality assurance."
+    correctAnswer: 1,
+    explanation: 'Causing failures and identifying defects is the most common objective of dynamic testing. The other options confuse validation with verification, or describe debugging rather than testing.',
   },
   {
     id: 2,
-    domain: "Chapter 1: Fundamentals of Testing",
-    question: "What is the main difference between testing and debugging?",
+    domain: 'Chapter 1: Fundamentals of Testing',
+    question: 'Which of the following statements BEST describes the difference between testing and debugging?',
     options: [
-      "Testing is performed by developers, while debugging is performed by testers",
-      "Testing is a dynamic process, while debugging is a static process",
-      "Testing is a static process, while debugging is a dynamic process",
-      "Testing is performed by testers, while debugging is performed by developers"
+      'Testing causes failures while debugging fixes failures',
+      'Testing is a negative activity while debugging is a positive activity',
+      'Testing determines that defects exist while debugging removes defects',
+      'Testing finds the cause of defects while debugging fixes the cause of defects',
     ],
-    correctAnswer: 3,
-    explanation: "Testing is a process that involves finding defects by executing test objects, and is typically performed by testers. Debugging is a development activity that involves finding, analyzing, and fixing defects, and is typically performed by developers. Both testing and debugging can involve dynamic and static aspects."
+    correctAnswer: 2,
+    explanation: 'Testing determines that defects exist (via reviews or by causing failures) while debugging is a separate developer activity that locates and removes those defects.',
   },
   {
     id: 3,
-    domain: "Chapter 1: Fundamentals of Testing",
-    question: "Which of the following is a root cause that could lead to defects and failures?",
+    domain: 'Chapter 1: Fundamentals of Testing',
+    question: 'The "absence-of-defects fallacy" is one of the principles of testing. Which of the following is an example of addressing this principle in practice?',
     options: [
-      "Running test cases in a regression suite",
-      "Executing test cases during the test execution phase",
-      "Ambiguous or incomplete requirements in the specification",
-      "Writing test cases based on the acceptance criteria"
-    ],
-    correctAnswer: 2,
-    explanation: "Ambiguous or incomplete requirements are a common root cause of defects. If requirements are unclear, developers may implement incorrect functionality, leading to defects. Running test cases, executing tests, and writing tests based on acceptance criteria are testing activities, not root causes."
-  },
-
-  // Chapter 2: Testing Throughout the SDLC (15%) - Questions 4-9
-  {
-    id: 4,
-    domain: "Chapter 2: Testing Throughout the SDLC",
-    question: "In the V-model, which test level corresponds to the requirements specification phase?",
-    options: [
-      "Integration testing",
-      "Acceptance testing",
-      "System testing",
-      "Component testing"
+      'Explaining that it is not possible for testing to show the absence of defects',
+      'Supporting the end users to perform acceptance testing',
+      'Ensuring that no implementation defects remain in the delivered system',
+      'Modifying tests that cause no failures to ensure few defects remain',
     ],
     correctAnswer: 1,
-    explanation: "In the V-model, each development phase on the left side has a corresponding test level on the right side. Acceptance testing corresponds to the requirements specification phase, system testing corresponds to functional specification, integration testing corresponds to architectural design, and component testing corresponds to detailed design."
+    explanation: 'The absence-of-defects fallacy states that verifying correctness does not guarantee user satisfaction, so supporting end users to perform acceptance testing validates that the system meets user needs.',
+  },
+  {
+    id: 4,
+    domain: 'Chapter 1: Fundamentals of Testing',
+    question: 'Which of the following test activities are MOST likely to involve the application of boundary value analysis and equivalence partitioning?',
+    options: [
+      'Test implementation',
+      'Test design',
+      'Test execution',
+      'Test monitoring',
+      'Test analysis',
+    ],
+    correctAnswer: [1, 4],
+    correctAnswers: [1, 4],
+    explanation: 'Boundary value analysis and equivalence partitioning are test techniques used in test design (to create test cases from coverage items) and in test analysis (to identify test conditions).',
   },
   {
     id: 5,
-    domain: "Chapter 2: Testing Throughout the SDLC",
-    question: "Which SDLC model is characterized by short iterations, incremental delivery, and close collaboration between cross-functional teams?",
+    domain: 'Chapter 1: Fundamentals of Testing',
+    question: 'Given the following testware: (1) Coverage items, (2) Change requests, (3) Test execution schedule, (4) Prioritized test conditions. And the following test activities: A. Test analysis, B. Test design, C. Test implementation, D. Test completion. Which of the following BEST shows the testware produced by the activities?',
     options: [
-      "Agile model",
-      "Waterfall model",
-      "V-model",
-      "Spiral model"
+      '1B, 2D, 3C, 4A',
+      '1B, 2D, 3A, 4C',
+      '1D, 2C, 3A, 4B',
+      '1D, 2C, 3B, 4A',
     ],
     correctAnswer: 0,
-    explanation: "The Agile model is characterized by short iterations, incremental delivery, and close collaboration between cross-functional teams. The Waterfall model is sequential, the V-model is an extension of Waterfall with corresponding test levels, and the Spiral model focuses on risk analysis."
+    explanation: 'Test design produces coverage items (1B), test completion produces change requests (2D), test implementation produces the execution schedule (3C), and test analysis produces prioritized test conditions (4A).',
   },
   {
     id: 6,
-    domain: "Chapter 2: Testing Throughout the SDLC",
-    question: "Which test activity is typically performed during the test planning phase?",
+    domain: 'Chapter 1: Fundamentals of Testing',
+    question: 'Which of the following statements about the different testing roles is MOST likely to be CORRECT?',
     options: [
-      "Designing test cases",
-      "Executing test cases",
-      "Analyzing test results",
-      "Defining the test scope, approach, and schedule"
+      'In Agile software development, the test management role is the primary responsibility of the team, while the testing role is primarily the responsibility of a single individual from outside the team',
+      'The testing role is primarily responsible for test monitoring and test control, while the test management role is primarily responsible for test planning and test completion',
+      'In Agile software development, test management activities that span multiple teams are handled by a test manager outside the team, while some test management tasks are handled by the team itself',
+      'The test management role is primarily responsible for test analysis and test design, while the testing role is primarily responsible for test implementation and test execution',
     ],
-    correctAnswer: 3,
-    explanation: "During the test planning phase, the test scope, approach, resources, and schedule are defined. Test case design is part of test design, test execution involves running test cases, and analyzing test results is part of test completion."
+    correctAnswer: 2,
+    explanation: 'In Agile, some test management tasks are handled by the team itself, while cross-team test management activities are typically handled by a test manager outside the team.',
   },
   {
     id: 7,
-    domain: "Chapter 2: Testing Throughout the SDLC",
-    question: "What is the primary goal of maintenance testing when a software system is modified?",
+    domain: 'Chapter 1: Fundamentals of Testing',
+    question: 'Which of the following is an advantage of the whole-team approach?',
     options: [
-      "To ensure no new functionality was added",
-      "To replace all existing test cases with new ones",
-      "To confirm that the changes work correctly and that existing functionality is not adversely affected",
-      "To stop testing once the changes are deployed"
+      'Teams with no testers',
+      'Improved team dynamics',
+      'Specialist team members',
+      'Larger team sizes',
     ],
-    correctAnswer: 2,
-    explanation: "Maintenance testing aims to confirm that changes work correctly and that existing functionality is not adversely affected. It includes regression testing (re-testing existing functionality) and impact analysis (identifying areas affected by changes). It does not remove new functionality or replace all existing tests."
+    correctAnswer: 1,
+    explanation: 'The whole-team approach leverages diverse skill sets effectively, fostering superior team dynamics, robust communication, collaboration, and a synergistic effect.',
   },
   {
     id: 8,
-    domain: "Chapter 2: Testing Throughout the SDLC",
-    question: "Which test level is typically performed by developers in the development environment?",
+    domain: 'Chapter 1: Fundamentals of Testing',
+    question: 'Which of the following statements about the independence of testing is CORRECT?',
     options: [
-      "System testing",
-      "Component testing",
-      "Acceptance testing",
-      "Integration testing"
+      'Independent testers will find defects due to their different technical perspective from developers, but their independence may lead to an adversarial relationship with the developers',
+      'Developers\' familiarity with their own code means they only find a few defects in it, however their shared software background with testers means these defects would also be found by the testers',
+      'Independent testing requires testers who are outside the developer\'s team and ideally from outside the organization, however these testers find it difficult to understand the application domain',
+      'Testers from outside the developer\'s team are more independent than testers from within the team, but the testers from within the team are more likely to be blamed for delays in product release',
     ],
-    correctAnswer: 1,
-    explanation: "Component testing (also known as unit testing) is typically performed by developers in the development environment. System testing is performed by testers in a test environment, acceptance testing is performed by users or customers, and integration testing can be performed by developers or testers."
+    correctAnswer: 0,
+    explanation: 'Independent testers identify different defects due to varied backgrounds, but a downside is potential isolation from the development team, which can lead to an adversarial relationship and blame for delays.',
   },
   {
     id: 9,
-    domain: "Chapter 2: Testing Throughout the SDLC",
-    question: "In an iterative SDLC, when should testing activities ideally begin?",
+    domain: 'Chapter 2: Testing Throughout the SDLC',
+    question: 'Which of the following is a good testing practice that applies to all software development lifecycles?',
     options: [
-      "As early as possible in the lifecycle",
-      "Only after all code is written",
-      "Only after the first iteration is complete",
-      "Only during the final iteration before release"
-    ],
-    correctAnswer: 0,
-    explanation: "Testing activities should begin as early as possible in the lifecycle (shift-left testing). Early testing helps identify defects when they are cheaper to fix and prevents the accumulation of defects. In iterative models, testing is performed continuously throughout each iteration."
-  },
-
-  // Chapter 3: Static Testing (10%) - Questions 10-13
-  {
-    id: 10,
-    domain: "Chapter 3: Static Testing",
-    question: "Which review type is the most formal, uses defined roles, and requires documented results and metrics?",
-    options: [
-      "Informal review",
-      "Walkthrough",
-      "Technical review",
-      "Inspection"
+      'For each test level, there is a corresponding development level',
+      'For each test objective, there is a corresponding development objective',
+      'For every test activity, there is a corresponding user activity',
+      'For every development activity, there is a corresponding test activity',
     ],
     correctAnswer: 3,
-    explanation: "Inspection is the most formal review type. It uses defined roles (e.g., moderator, author, reader), requires documented results, collects metrics, and follows a formal process. Informal reviews are ad-hoc, walkthroughs are led by the author, and technical reviews are less formal than inspections."
+    explanation: 'Quality control applies to all development activities, meaning every software development activity has a corresponding test activity regardless of the SDLC used.',
+  },
+  {
+    id: 10,
+    domain: 'Chapter 2: Testing Throughout the SDLC',
+    question: 'Which of the following is an example of a test-first approach to development?',
+    options: [
+      'Component Test-Driven Development',
+      'Integration Test-Driven Development',
+      'System Test-Driven Development',
+      'Acceptance Test-Driven Development',
+    ],
+    correctAnswer: 3,
+    explanation: 'Acceptance Test-Driven Development (ATDD) is a well-known test-first approach where tests are defined and agreed upon with business stakeholders before the code is written.',
   },
   {
     id: 11,
-    domain: "Chapter 3: Static Testing",
-    question: "Which static analysis tool can be used to measure the complexity of code by counting the number of independent paths?",
+    domain: 'Chapter 2: Testing Throughout the SDLC',
+    question: 'Which of the following provides the BEST description of shift-left?',
     options: [
-      "A linter",
-      "A code formatter",
-      "A cyclomatic complexity analyzer",
-      "A debugger"
+      'When agreed by the developers, manual activities on the left-hand side of the test process are automated to support the principle of "early testing saves time and money"',
+      'Where cost-effective, test activities are moved earlier in the software development lifecycle (SDLC) to reduce the total cost of quality by reducing the number of defects found later in the SDLC',
+      'When they have spare time available, testers are required to automate tests for regression testing, starting with component tests and component integration tests',
+      'When available, testers are trained to perform tasks early in the SDLC to allow more test activities to be automated later in the SDLC',
     ],
-    correctAnswer: 2,
-    explanation: "Cyclomatic complexity measures the number of linearly independent paths through a program's source code. It is a metric used in static analysis to assess code complexity. A linter checks for style violations, a code formatter formats code, and a debugger is a dynamic testing tool."
+    correctAnswer: 1,
+    explanation: 'Shift-left emphasizes moving test activities earlier in the SDLC where cost-effective, reducing total cost of quality by catching defects earlier.',
   },
   {
     id: 12,
-    domain: "Chapter 3: Static Testing",
-    question: "What is the primary benefit of conducting reviews early in the SDLC?",
+    domain: 'Chapter 2: Testing Throughout the SDLC',
+    question: 'Which of the following is LEAST likely to occur as a result of a retrospective?',
     options: [
-      "It eliminates the need for dynamic testing",
-      "It finds defects before they propagate to later phases, reducing rework costs",
-      "It ensures the code is automatically optimized",
-      "It replaces the need for a test plan"
+      'The quality of future test objects improves by identifying improvements in development practices',
+      'Test efficiency improves by speeding up the configuration of test environments through automation',
+      'End users\' understanding of the development and test processes is improved',
+      'Automated test scripts are enhanced through feedback from developers',
     ],
-    correctAnswer: 1,
-    explanation: "Reviews conducted early in the SDLC find defects before they propagate to later phases, reducing rework costs. Early defect detection is significantly cheaper than finding defects during testing or in production. Reviews do not eliminate dynamic testing, optimize code, or replace test plans."
+    correctAnswer: 2,
+    explanation: 'Retrospectives typically include testers, developers, architects, product owners, and business analysts, but end users are rarely invited, so their understanding of dev/test processes is unlikely to improve.',
   },
   {
     id: 13,
-    domain: "Chapter 3: Static Testing",
-    question: "Which of the following is a typical activity in a walkthrough review?",
+    domain: 'Chapter 2: Testing Throughout the SDLC',
+    question: 'Which of the following test levels is MOST likely being performed if the testing is focused on validation and is not being performed by testers?',
     options: [
-      "The author guiding participants through the work product to gather feedback",
-      "Collecting metrics and formal follow-up",
-      "Formal entry and exit criteria evaluation",
-      "A trained moderator leading the review without the author"
-    ],
-    correctAnswer: 0,
-    explanation: "In a walkthrough, the author typically guides participants through the work product to gather feedback and explain the content. Walkthroughs are less formal than inspections and do not typically involve formal metrics, entry/exit criteria, or a trained moderator leading without the author."
-  },
-
-  // Chapter 4: Test Techniques (25%) - Questions 14-23
-  {
-    id: 14,
-    domain: "Chapter 4: Test Techniques",
-    question: "In equivalence partitioning, if a valid input range is 1 to 100, which of the following is an invalid equivalence class?",
-    options: [
-      "Values between 1 and 100 inclusive",
-      "Values between 1 and 50",
-      "Values between 51 and 100",
-      "Values less than 1"
+      'Component testing',
+      'Component integration testing',
+      'System integration testing',
+      'Acceptance testing',
     ],
     correctAnswer: 3,
-    explanation: "In equivalence partitioning, valid equivalence classes are ranges of valid inputs (1 to 100), while invalid equivalence classes are ranges outside the valid input (values less than 1 and values greater than 100). Values between 1 and 50 or 51 and 100 are subsets of the valid class, not distinct equivalence classes."
+    explanation: 'Acceptance testing focuses on validating the system meets user business needs and is ideally performed by end users rather than dedicated testers.',
+  },
+  {
+    id: 14,
+    domain: 'Chapter 2: Testing Throughout the SDLC',
+    question: 'The navigation system software has been updated due to it suggesting routes that break traffic laws, such as driving the wrong way down one-way streets. Which of the following BEST describes the testing that will be performed?',
+    options: [
+      'Only confirmation testing',
+      'Confirmation testing then regression testing',
+      'Only regression testing',
+      'Regression testing then confirmation testing',
+    ],
+    correctAnswer: 1,
+    explanation: 'Confirmation testing first verifies the fix for the traffic law defect works correctly, then regression testing ensures the update has not introduced or uncovered defects elsewhere.',
   },
   {
     id: 15,
-    domain: "Chapter 4: Test Techniques",
-    question: "Using 3-value boundary value analysis (BVA) for a valid range of 10 to 50, which test values should be selected?",
+    domain: 'Chapter 3: Static Testing',
+    question: 'Given the following example defects: (i) Two different parts of the design specification disagree due to the complexity of the design, (ii) A response time is too long and so makes users lose patience, (iii) A path in the code cannot be reached during execution, (iv) A variable is declared but never subsequently used in the program, (v) The amount of memory needed by the program to generate a report is too high. Which of the following BEST identifies example defects that could be found by static testing (rather than dynamic testing)?',
     options: [
-      "9, 10, 50, 51",
-      "10, 50",
-      "9, 10, 11, 49, 50, 51",
-      "8, 9, 10, 50, 51, 52"
+      'ii, v',
+      'iii, v',
+      'i, ii, iv',
+      'i, iii, iv',
     ],
-    correctAnswer: 2,
-    explanation: "3-value BVA includes the boundary value itself, the value just below the boundary, and the value just above the boundary. For a range of 10 to 50, the test values are 9, 10, 11 (lower boundary) and 49, 50, 51 (upper boundary). 2-value BVA would only include 9, 10, 50, 51."
+    correctAnswer: 3,
+    explanation: 'Static testing most easily finds specification defects (i), and coding defects like unreachable code (iii) and unused variables (iv). Response time (ii) and memory (v) require execution to detect.',
   },
   {
     id: 16,
-    domain: "Chapter 4: Test Techniques",
-    question: "A decision table has 3 conditions. How many rules are needed for full coverage if all conditions are binary?",
+    domain: 'Chapter 3: Static Testing',
+    question: 'Which of the following is a benefit of early and frequent stakeholder feedback?',
     options: [
-      "3",
-      "8",
-      "6",
-      "9"
+      'Changes to requirements are understood and implemented earlier',
+      'It ensures business stakeholders understand user requirements',
+      'It allows product owners to change their requirements as often as they want',
+      'End users are told which requirements will not be implemented prior to release',
     ],
-    correctAnswer: 1,
-    explanation: "For a decision table with 3 binary conditions, the number of rules is 2^3 = 8. Each condition can be true or false, so the total number of combinations is 2 raised to the power of the number of conditions. For n binary conditions, there are 2^n rules."
+    correctAnswer: 0,
+    explanation: 'Early and frequent stakeholder feedback facilitates early communication of issues, prevents requirement misunderstandings, and ensures changes in stakeholder requirements are understood and implemented sooner.',
   },
   {
     id: 17,
-    domain: "Chapter 4: Test Techniques",
-    question: "In state transition testing, which of the following describes an event that causes a change from one state to another?",
+    domain: 'Chapter 3: Static Testing',
+    question: 'Given the following review types: (1) Technical review, (2) Informal review, (3) Inspection, (4) Walkthrough. And the following descriptions: A. Includes objectives such as gaining consensus, generating new ideas, and motivating authors to improve. B. Includes objectives such as educating reviewers, gaining consensus, generating new ideas and detecting potential defects. C. The main objective is detecting potential defects and it requires metrics collection to support process improvement. D. The main objective is detecting potential defects and it generates no formal documented output. Which of the following BEST matches the review types and the descriptions?',
     options: [
-      "An event",
-      "A state",
-      "A transition",
-      "An action"
+      '1A, 2B, 3C, 4D',
+      '1A, 2D, 3C, 4B',
+      '1B, 2C, 3D, 4A',
+      '1C, 2D, 3A, 4B',
     ],
-    correctAnswer: 0,
-    explanation: "An event is a trigger that causes a transition from one state to another. A state is a condition of the system, a transition is the change from one state to another, and an action is the output or behavior that occurs during or after a transition."
+    correctAnswer: 1,
+    explanation: 'Technical review matches A (gaining consensus, new ideas, motivating), informal review matches D (no formal documented output), inspection matches C (metrics collection), and walkthrough matches B (educating reviewers).',
   },
   {
     id: 18,
-    domain: "Chapter 4: Test Techniques",
-    question: "In use case testing, which element describes the sequence of interactions between an actor and the system?",
+    domain: 'Chapter 3: Static Testing',
+    question: 'Which of the following is a factor that contributes to a successful review?',
     options: [
-      "The actor",
-      "The precondition",
-      "The postcondition",
-      "The scenario"
+      'Ensure management participate as reviewers',
+      'Split large work products into smaller parts',
+      'Set reviewer evaluation as an objective',
+      'Plan to cover one document per review',
     ],
-    correctAnswer: 3,
-    explanation: "In use case testing, a scenario describes the sequence of interactions between an actor and the system. An actor is the user or external system interacting with the system. Preconditions and postconditions describe the state before and after the use case."
+    correctAnswer: 1,
+    explanation: 'To ensure successful reviews, work products should be broken into small enough parts to be reviewed in a reasonable timescale, preventing reviewers from losing focus.',
   },
   {
     id: 19,
-    domain: "Chapter 4: Test Techniques",
-    question: "A tester uses their experience to guess that a form might fail when submitting with special characters in the name field. Which test technique is being used?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'What is the MAIN difference between black-box test techniques and experience-based test techniques?',
     options: [
-      "Equivalence partitioning",
-      "Boundary value analysis",
-      "Error guessing",
-      "Decision table testing"
+      'The test object',
+      'The test level at which the test technique is used',
+      'The test basis',
+      'The software development lifecycle (SDLC) in which the test technique can be used',
     ],
     correctAnswer: 2,
-    explanation: "Error guessing is a test technique where the tester uses their experience and intuition to guess where defects might occur. It relies on common errors and past experience. Equivalence partitioning and BVA are systematic techniques, and decision table testing is used for complex business rules."
+    explanation: 'Black-box (specification-based) techniques rely on a specification as the test basis, whereas experience-based techniques rely on the tester\'s knowledge and experience and may not use the specification at all.',
   },
   {
     id: 20,
-    domain: "Chapter 4: Test Techniques",
-    question: "Which statement BEST describes exploratory testing?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'You are testing a PIN validator, which accepts valid PINs and rejects invalid PINs. A PIN is a sequence of digits. A PIN is valid if it consists of four digits, which are not all the same digit. You have identified the following valid equivalence partitions: Variable: PIN code length - the partition "length correct" (four-digit PINs) and the partition "length incorrect" (PINs with length other than 4). Variable: Number of different digits - the partition "number of different digits correct" (PINs with at least two different digits) and the partition "number of different digits incorrect" (PINs with all digits being the same). Which of the following is the BEST set of input test data to cover the identified equivalence partitions?',
     options: [
-      "Testing without any documentation or test cases",
-      "Simultaneous learning, test design, and test execution",
-      "Testing that is only performed after all test cases are written",
-      "Testing that follows a strict predefined script without deviation"
+      '12, 1111, 1234, 12345',
+      '1, 123, 1111, 1234',
+      '11, 12, 1111, 12345',
+      '123, 1222, 12345',
     ],
-    correctAnswer: 1,
-    explanation: "Exploratory testing is an approach where the tester simultaneously learns about the system, designs tests, and executes them. It is not testing without documentation (test charters are often used), nor is it strictly predefined or performed only after test cases are written."
+    correctAnswer: 0,
+    explanation: '12 covers length incorrect (too few), 1111 covers length correct with same digits, 1234 covers length correct with different digits, and 12345 covers length incorrect (too many), thus covering all four partitions.',
   },
   {
     id: 21,
-    domain: "Chapter 4: Test Techniques",
-    question: "If an input field accepts values from 0 to 100, which values should be tested using 2-value boundary value analysis?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'A developer was asked to implement the following business rule: INPUT: value (integer number). IF (value <= 100 OR value >= 200) THEN write "value incorrect" ELSE write "value OK". You design the test cases using 2-value boundary value analysis. Which of the following sets of test inputs achieves the greatest coverage?',
     options: [
-      "-1, 0, 100, 101",
-      "0, 50, 100",
-      "-1, 0, 1, 99, 100, 101",
-      "0, 100"
+      '100, 150, 200, 201',
+      '99, 100, 200, 201',
+      '98, 99, 100, 101',
+      '101, 150, 199, 200',
     ],
-    correctAnswer: 0,
-    explanation: "2-value boundary value analysis tests the boundary value and the value just outside the boundary. For a range of 0 to 100, the test values are -1, 0, 100, 101. The value just below the lower boundary (-1), the lower boundary (0), the upper boundary (100), and the value just above the upper boundary (101)."
+    correctAnswer: 3,
+    explanation: 'The boundaries are 100, 101, 199, and 200. Option d includes 101, 199, and 200, achieving 75% coverage, the highest of the given sets.',
   },
   {
     id: 22,
-    domain: "Chapter 4: Test Techniques",
-    question: "In a decision table, what does a rule represent?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'You are working on a project to develop a system to analyze driving test results. You have been asked to design test cases based on the following decision table. R1: First attempt? - - F; Theoretical passed? T F -; Practical passed? T - F; Action: Issue license? X (blank) (blank); Request additional lessons? (blank) X (blank); Request retake? (blank) X. What test data will show that there are contradictory rules in the decision table?',
     options: [
-      "A single condition",
-      "A single action",
-      "The number of conditions in the table",
-      "A combination of conditions that lead to a set of actions"
+      'C1 = T, C2 = T, C3 = F',
+      'C1 = T, C2 = F, C3 = T',
+      'C1 = T, C2 = T, C3 = T and C1 = F, C2 = T, C3 = T',
+      'C1 = F, C2 = F, C3 = F',
     ],
     correctAnswer: 3,
-    explanation: "In a decision table, a rule represents a specific combination of condition values (true/false) that leads to a set of actions. Each rule is a column that defines what actions should be taken when the conditions match that specific combination."
+    explanation: 'The combination (F, F, F) matches both R2 and R3, but R2 and R3 specify different actions (additional lessons vs. retake exam), revealing a contradiction between these two rules.',
   },
   {
     id: 23,
-    domain: "Chapter 4: Test Techniques",
-    question: "Which black-box test technique is most suitable for testing a system with complex business rules involving multiple conditions?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'You are designing test cases based on the following state transition diagram. What is the MINIMUM number of test cases required to achieve 100% valid transitions coverage?',
     options: [
-      "Equivalence partitioning",
-      "Boundary value analysis",
-      "Decision table testing",
-      "State transition testing"
+      '3',
+      '2',
+      '5',
+      '6',
     ],
-    correctAnswer: 2,
-    explanation: "Decision table testing is most suitable for testing complex business rules involving multiple conditions. It systematically captures all combinations of conditions and their corresponding actions. Equivalence partitioning and BVA are better for input ranges, and state transition testing is for systems with distinct states."
+    correctAnswer: 0,
+    explanation: 'Three transitions (REQUESTING→CONFIRMED, WAITING LIST→CONFIRMED, WAITING LIST→END) cannot appear in the same test case, requiring at least three test cases to cover all valid transitions.',
   },
-
-  // Chapter 5: Test Management (20%) - Questions 24-31
   {
     id: 24,
-    domain: "Chapter 5: Test Management",
-    question: "Which of the following is typically included in a test plan?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'You want to apply branch testing to the code represented by the following control flow graph. How many coverage items do you need to test?',
     options: [
-      "The detailed code of the system under test",
-      "The test scope, approach, resources, and schedule",
-      "The user manual for the application",
-      "The source code repository URL"
+      '2',
+      '4',
+      '8',
+      '7',
     ],
-    correctAnswer: 1,
-    explanation: "A test plan typically includes the test scope, approach, resources, and schedule. It may also include test levels, entry and exit criteria, and risk assessment. It does not include the detailed code, user manual, or repository URL."
+    correctAnswer: 2,
+    explanation: 'In branch testing, the coverage items are the branches (edges) of the control flow graph, of which there are 8 in the diagram.',
   },
   {
     id: 25,
-    domain: "Chapter 5: Test Management",
-    question: "A test manager uses historical data from similar projects to estimate the testing effort. Which estimation technique is being used?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'How can white-box testing be useful in support of black-box testing?',
     options: [
-      "Metrics-based estimation",
-      "Expert-based estimation",
-      "Top-down estimation",
-      "Bottom-up estimation"
+      'White-box coverage measures can help testers evaluate black-box tests in terms of the code coverage achieved by these black-box tests',
+      'White-box coverage analysis can help testers identify unreachable fragments of the source code',
+      'Branch testing subsumes black-box test techniques, so achieving full branch coverage guarantees achieving full coverage of any black-box technique',
+      'White-box test techniques can provide coverage items for black-box techniques',
     ],
     correctAnswer: 0,
-    explanation: "Metrics-based estimation (also known as analogous or formula-based estimation) uses historical data and metrics from similar projects to estimate effort. Expert-based estimation relies on the experience of experts. Top-down and bottom-up are approaches to breaking down estimation work."
+    explanation: 'White-box coverage measures provide an objective measure of code coverage, helping testers evaluate their black-box tests and generate additional tests where coverage is lacking.',
   },
   {
     id: 26,
-    domain: "Chapter 5: Test Management",
-    question: "What are exit criteria used for in test management?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'Consider the following list: Correct input not accepted, Incorrect input accepted, Wrong output format, Division by zero. What test technique is MOST PROBABLY used by the tester who uses this list when performing testing?',
     options: [
-      "To determine when to start testing",
-      "To identify the test environment requirements",
-      "To specify the test data needed for execution",
-      "To define the conditions that must be met to conclude a test level"
+      'Exploratory testing',
+      'Fault attack',
+      'Checklist-based testing',
+      'Boundary value analysis',
     ],
-    correctAnswer: 3,
-    explanation: "Exit criteria define the conditions that must be met to conclude a test level or test phase. They help determine when testing is complete and whether the system is ready for the next phase. Entry criteria determine when to start testing, not exit criteria."
+    correctAnswer: 1,
+    explanation: 'The list represents possible errors, defects, and failures, which is the hallmark of a fault attack, a methodical approach to error guessing.',
   },
   {
     id: 27,
-    domain: "Chapter 5: Test Management",
-    question: "In defect management, what does severity indicate?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'Which of the following BEST describes how using checklist-based testing can result in increased coverage?',
     options: [
-      "The order in which the defect should be fixed",
-      "The tester who reported the defect",
-      "The impact of the defect on the system's functionality",
-      "The estimated time to fix the defect"
+      'Checklist items can be defined at a sufficiently low level of detail, so the tester can implement and execute detailed test cases based on these items',
+      'Checklists can be automated, so each time an automated test execution covers the checklist items, it results in additional coverage',
+      'Each checklist item should be tested separately and independently, so the elements cover different areas of the software',
+      'Two testers designing and executing tests based on the same high-level checklist items will typically perform the testing in slightly different ways',
     ],
-    correctAnswer: 2,
-    explanation: "Severity indicates the impact of the defect on the system's functionality. Priority indicates the order in which the defect should be fixed. Severity is typically assigned by the tester, while priority is assigned by the project manager or development team."
+    correctAnswer: 3,
+    explanation: 'When checklists are high-level, two testers may use different test data and steps, so each may cover areas the other misses, resulting in greater overall coverage.',
   },
   {
     id: 28,
-    domain: "Chapter 5: Test Management",
-    question: "Which of the following is a product risk in risk-based testing?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'Which of the following provides the BEST example of a scenario-oriented acceptance criterion?',
     options: [
-      "Delays in test environment availability",
-      "A defect in the login functionality that prevents user access",
-      "Lack of skilled testers on the project",
-      "Budget overruns due to extended testing"
+      'The application must allow users to delete their account and all associated data upon request',
+      'When a customer adds an item to their cart and proceeds to checkout, they should be prompted to log in or create an account if they haven\'t already done so',
+      'IF (contain(product(23).Name, cart.products())) THEN return FALSE',
+      'The website must comply with the ICT Accessibility 508 Standards and ensure that all content is accessible to users with disabilities',
     ],
     correctAnswer: 1,
-    explanation: "Product risks are risks related to the quality of the work product (e.g., defects, performance issues). A defect in the login functionality is a product risk. Project risks (delays, lack of resources, budget overruns) relate to the project management and execution."
+    explanation: 'A scenario-oriented acceptance criterion describes a specific example scenario that must be realized by the system, which option b does by describing the customer checkout flow.',
   },
   {
     id: 29,
-    domain: "Chapter 5: Test Management",
-    question: "Which test activity involves comparing actual test results with expected results and documenting discrepancies?",
+    domain: 'Chapter 4: Test Techniques',
+    question: 'You are using acceptance test-driven development and designing test cases based on the following user story: As a Regular or Special user, I want to be able to use my electronic floor card, to access specific floors. Acceptance Criteria: AC1: Regular users have access to floors 1 to 3. AC2: Floor 4 is only accessible to Special users. AC3: Special users have all the access rights of Regular users. Which test case is the MOST reasonable one to test AC3?',
     options: [
-      "Test execution",
-      "Test planning",
-      "Test monitoring",
-      "Test completion"
+      'Check that a Regular user can access floors 1 and 3',
+      'Check that a Regular user cannot access floor 4',
+      'Check that a Special user can access floor 5',
+      'Check that a Special user can access floors 1, 2 and 3',
     ],
-    correctAnswer: 0,
-    explanation: "Test execution involves running test cases, comparing actual results with expected results, and documenting discrepancies as defects. Test planning defines the approach, test monitoring tracks progress, and test completion involves finalizing test activities and reporting."
+    correctAnswer: 3,
+    explanation: 'AC3 requires checking that Special users have the access rights of Regular users, so the test must verify a Special user can access the floors (1, 2, 3) that Regular users can access.',
   },
   {
     id: 30,
-    domain: "Chapter 5: Test Management",
-    question: "What is the primary purpose of test monitoring?",
+    domain: 'Chapter 5: Test Management',
+    question: 'Which of the following is NOT a purpose of a test plan?',
     options: [
-      "To create test cases",
-      "To execute test cases",
-      "To fix defects found during testing",
-      "To track test progress and identify deviations from the plan"
+      'To define test data and expected results for component tests and component integration tests',
+      'To define as exit criteria from the component test level that "100% statement coverage and 100% branch coverage must be achieved"',
+      'To describe what fields the test progress report shall contain and what should be the form of this report',
+      'To explain why system integration testing will be excluded from testing, although the test strategy requires this test level',
     ],
-    correctAnswer: 3,
-    explanation: "Test monitoring is the activity of tracking test progress and identifying deviations from the test plan. It involves collecting metrics, comparing actual progress against planned progress, and reporting status. It does not involve creating test cases, executing them, or fixing defects."
+    correctAnswer: 0,
+    explanation: 'A test plan may include test data requirements but not the detailed test data and expected results for individual test cases, since such detail is usually not yet known at the planning stage.',
   },
   {
     id: 31,
-    domain: "Chapter 5: Test Management",
-    question: "Which document is typically used to track the lifecycle of a defect from discovery to closure?",
+    domain: 'Chapter 5: Test Management',
+    question: 'At the beginning of each iteration, the team estimates the amount of work (in person-days) they will need to complete during the iteration. Let E(n) be the estimated amount of work for iteration n, and let A(n) be the actual amount of work done in iteration n. From the third iteration, the team uses the following estimation model based on extrapolation: E(n) = (3*A(n-1) + A(n-2)) / 4. The graph shows the estimated and actual amount of work for the first four iterations. What is the estimated amount of work for iteration #5?',
     options: [
-      "Test plan",
-      "Test case specification",
-      "Defect report",
-      "Test strategy"
+      '10.5 person-days',
+      '8.25 person-days',
+      '6.5 person-days',
+      '9.4 person-days',
     ],
     correctAnswer: 2,
-    explanation: "A defect report (or bug report) is used to track the lifecycle of a defect from discovery to closure. It includes details such as the defect description, severity, priority, status, and resolution. The test plan defines the overall approach, test cases specify test steps, and the test strategy defines high-level testing guidelines."
+    explanation: 'From the graph, A(4)=6 and A(3)=8. Using the formula, E(5) = (3*6 + 8) / 4 = 26 / 4 = 6.5 person-days.',
   },
-
-  // Chapter 6: Test Tools and Automation (12%) - Questions 32-36
   {
     id: 32,
-    domain: "Chapter 6: Test Tools and Automation",
-    question: "Which type of test tool is used to manage test cases, test execution, and defect tracking?",
+    domain: 'Chapter 5: Test Management',
+    question: 'You are preparing a test execution schedule for executing seven test cases TC 1 to TC 7. The following figure includes the priorities of these test cases (1=highest priority, 3 = lowest priority). The figure also shows the dependencies between test cases using arrows. For instance, the arrow from TC 4 to TC 5 means that TC 5 can only be executed if TC 4 was previously executed. Which test case should be executed sixth?',
     options: [
-      "A performance testing tool",
-      "A test management tool",
-      "A static analysis tool",
-      "A test execution tool"
+      'TC 3',
+      'TC 5',
+      'TC 6',
+      'TC 2',
     ],
-    correctAnswer: 1,
-    explanation: "A test management tool is used to manage test cases, test execution, and defect tracking. It provides a centralized repository for test assets and traceability. Performance testing tools test load and stress, static analysis tools analyze code without execution, and test execution tools automate test execution."
+    correctAnswer: 0,
+    explanation: 'Considering both priorities and dependencies, the schedule is TC 4 – TC 7 – TC 1 – TC 2 – TC 5 – TC 3 – TC 6, making TC 3 the sixth test case to be executed.',
   },
   {
     id: 33,
-    domain: "Chapter 6: Test Tools and Automation",
-    question: "In keyword-driven automation, what does a keyword represent?",
+    domain: 'Chapter 5: Test Management',
+    question: 'What does the test pyramid model show?',
     options: [
-      "A high-level action or operation that can be reused across test scripts",
-      "A programming language construct",
-      "A specific test data value",
-      "A defect severity classification"
+      'That tests may have different priorities',
+      'That tests may have different granularity',
+      'That tests may require different coverage criteria',
+      'That tests may depend on other tests',
     ],
-    correctAnswer: 0,
-    explanation: "In keyword-driven automation, a keyword represents a high-level action or operation (e.g., 'Login', 'ClickButton', 'VerifyText') that can be reused across test scripts. Testers create test cases by combining keywords and test data, without needing to write code."
+    correctAnswer: 1,
+    explanation: 'The test pyramid model illustrates that different tests have different levels of granularity, with many small low-level tests at the base and fewer broad high-level tests at the top.',
   },
   {
     id: 34,
-    domain: "Chapter 6: Test Tools and Automation",
-    question: "Which test automation approach separates test data from test scripts, allowing the same script to be run with multiple data sets?",
+    domain: 'Chapter 5: Test Management',
+    question: 'What is the relationship between the testing quadrants, test levels and test types?',
     options: [
-      "Scripted testing",
-      "Keyword-driven testing",
-      "Manual testing",
-      "Data-driven testing"
+      'Testing quadrants represent particular combinations of test levels and test types, defining their location in the software development lifecycle',
+      'Testing quadrants describe the degree of granularity of individual test types performed at each test level',
+      'Testing quadrants assign the test types that can be performed to the test levels',
+      'Testing quadrants group test levels and test types by several criteria such as targeting specific stakeholders',
     ],
     correctAnswer: 3,
-    explanation: "Data-driven testing separates test data from test scripts, allowing the same script to be executed with multiple data sets. This improves maintainability and coverage. Scripted testing has hardcoded data, keyword-driven testing uses reusable actions, and manual testing is not automated."
+    explanation: 'Testing quadrants group test levels, test types, test activities, techniques, and work products by criteria such as whether tests are business- or technology-facing and whether they support the team or critique the product.',
   },
   {
     id: 35,
-    domain: "Chapter 6: Test Tools and Automation",
-    question: "Which category of test tools is used to check code without executing it, such as checking for unreachable code or potential security vulnerabilities?",
+    domain: 'Chapter 5: Test Management',
+    question: 'Which of the following is an example of how product risk analysis may influence the thoroughness and scope of testing?',
     options: [
-      "Test execution tools",
-      "Performance testing tools",
-      "Static testing tools",
-      "Test management tools"
+      'Continuous risk monitoring allows us to identify an emerging risk as soon as possible',
+      'Risk identification allows us to implement risk mitigation activities and reduce the risk level',
+      'The assessed risk level helps us to select the rigor of testing',
+      'Risk analysis allows us to derive coverage items',
     ],
     correctAnswer: 2,
-    explanation: "Static testing tools analyze code without executing it. They can check for unreachable code, coding standard violations, and potential security vulnerabilities. Test execution tools run tests, performance testing tools measure performance, and test management tools manage test assets."
+    explanation: 'The assessed risk level directly informs the rigor and thoroughness of testing performed, with higher-risk areas receiving more extensive testing than lower-risk ones.',
   },
   {
     id: 36,
-    domain: "Chapter 6: Test Tools and Automation",
-    question: "Which of the following is a benefit of test automation?",
+    domain: 'Chapter 5: Test Management',
+    question: 'Which of the following activities in the test process makes the MOST use of test progress reports?',
     options: [
-      "It eliminates the need for manual testing entirely",
-      "It reduces regression testing time and increases repeatability",
-      "It guarantees that all defects will be found",
-      "It removes the need for test planning"
+      'Test design',
+      'Test completion',
+      'Test analysis',
+      'Test planning',
     ],
     correctAnswer: 1,
-    explanation: "Test automation reduces regression testing time and increases repeatability. It does not eliminate the need for manual testing entirely (exploratory testing is still valuable), guarantee that all defects will be found, or remove the need for test planning."
+    explanation: 'Test progress reports are most heavily used during test monitoring, test control, and test completion, where the test completion report consolidates information from progress reports.',
   },
-
-  // Additional questions to cover all 40 and ensure realistic distribution
-  // Chapter 1: Fundamentals of Testing - 1 more
   {
     id: 37,
-    domain: "Chapter 1: Fundamentals of Testing",
-    question: "Which statement about the objectives of testing is TRUE?",
+    domain: 'Chapter 5: Test Management',
+    question: 'Which of the following is NOT an example of how configuration management supports testing?',
     options: [
-      "Testing can provide confidence about the quality of the software and help identify risks",
-      "Testing only aims to find defects in the code",
-      "Testing guarantees that the software will meet all business requirements",
-      "Testing is only performed after the coding phase is complete"
-    ],
-    correctAnswer: 0,
-    explanation: "Testing objectives include finding defects, providing confidence about the level of quality, and helping identify risks. Testing does not guarantee that all business requirements are met, nor is it only about finding code defects. Testing can also be performed throughout the SDLC, not just after coding."
-  },
-
-  // Chapter 2: Testing Throughout the SDLC - 2 more (already have 6)
-  {
-    id: 38,
-    domain: "Chapter 2: Testing Throughout the SDLC",
-    question: "Which test activity involves verifying that test objectives have been met and documenting lessons learned?",
-    options: [
-      "Test planning",
-      "Test analysis",
-      "Test monitoring",
-      "Test completion"
+      'All commits to the repository are uniquely identified and version controlled',
+      'All changes in the test environment elements are tracked',
+      'All requirement specifications are referenced unambiguously in test plans',
+      'All identified defects have an assigned status',
     ],
     correctAnswer: 3,
-    explanation: "Test completion involves verifying that test objectives have been met, documenting lessons learned, and archiving test assets. Test planning defines the approach, test analysis identifies what to test, and test monitoring tracks progress."
+    explanation: 'Tracking defect status is the role of defect management, not configuration management. CM supports testing by uniquely identifying versions, tracking environment changes, and unambiguous referencing.',
+  },
+  {
+    id: 38,
+    domain: 'Chapter 5: Test Management',
+    question: 'Consider the following defect report for a web-based shopping application: Application: WebShop v0.99. Defect: Login button not working. Steps to Reproduce: Launch the website, Click on the login button. Expected result: The user should be redirected to the login page. Actual result: The login button does not respond when clicked. Severity: High. Priority: Urgent. What is the MOST important information that is missing from this defect report?',
+    options: [
+      'Name of the tester and date',
+      'Test environment elements and their version numbers',
+      'Identification of the test object',
+      'Impact on the interests of stakeholders',
+    ],
+    correctAnswer: 1,
+    explanation: 'Browser and device information are the most important missing elements, since such defects can be browser- or device-specific and that information helps developers reproduce the issue.',
   },
   {
     id: 39,
-    domain: "Chapter 2: Testing Throughout the SDLC",
-    question: "In a waterfall SDLC, when is the test completion report typically produced?",
+    domain: 'Chapter 6: Test Tools and Automation',
+    question: 'Tools from which of the following categories help with the organization of test cases, detected defects and configuration management?',
     options: [
-      "At the beginning of the project",
-      "During the requirements phase",
-      "At the end of the testing phase",
-      "After the software is deployed to production"
+      'Test execution and coverage tools',
+      'Test design and implementation tools',
+      'Defect management tools',
+      'Test management tools',
     ],
-    correctAnswer: 2,
-    explanation: "In a waterfall SDLC, the test completion report is typically produced at the end of the testing phase. It summarizes the testing activities, results, defects found, and whether exit criteria were met. In iterative models, it may be produced at the end of each iteration."
+    correctAnswer: 3,
+    explanation: 'Test management tools increase process efficiency by facilitating management of the SDLC, requirements, tests, defects, and configuration management.',
   },
-
-  // Chapter 3: Static Testing - 1 more (already have 4)
   {
     id: 40,
-    domain: "Chapter 3: Static Testing",
-    question: "Which review role is typically responsible for ensuring the review process is followed and for scheduling the review meeting?",
+    domain: 'Chapter 6: Test Tools and Automation',
+    question: 'Which of the following is MOST likely to be a benefit of test automation?',
     options: [
-      "The author",
-      "The moderator",
-      "The reviewer",
-      "The manager"
+      'The capability of generating test cases without access to the test basis',
+      'The achievement of increased coverage through more objective assessment',
+      'The increase in test execution times available with higher processing power',
+      'The prevention of human errors through greater consistency and repeatability',
     ],
-    correctAnswer: 1,
-    explanation: "The moderator (or facilitator) is responsible for ensuring the review process is followed, scheduling the review meeting, and managing the review process. The author is the creator of the work product, reviewers examine the work product, and the manager may authorize resources but does not typically run the review."
-  }
+    correctAnswer: 3,
+    explanation: 'Test automation prevents human errors through greater consistency and repeatability: tests are consistently derived from requirements, test data is created systematically, and tests are executed in the same way each time.',
+  },
 ];
-

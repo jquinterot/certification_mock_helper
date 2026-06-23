@@ -4,79 +4,79 @@ export const questions: ExamQuestion[] = [
   {
     id: 1,
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
-    question: "In a RAG-based testing tool, what is 'query transformation' and why is it important?",
+    question: "In a RAG system, what is the role of embeddings in the retrieval process?",
     options: [
-      "It transforms the LLM's output into a different format",
-      "It rewrites or expands the user's query before retrieval to improve the relevance of retrieved test artifacts",
-      "It converts the test results into a report",
-      "It changes the model's training parameters"
+      "They compress the LLM's parameters to fit in memory",
+      "Each chunk of the document corpus is encoded into a high-dimensional vector using pre-trained models, enabling efficient similarity-based retrieval at runtime",
+      "They replace the need for a vector database",
+      "They store the LLM's training data"
     ],
     correctAnswer: 1,
-    explanation: "Query transformation rewrites or expands the user's original query before retrieval. For example, it might decompose a complex query ('find test cases for payment failures in checkout') into sub-queries for each concept, improving retrieval relevance."
+    explanation: "During preprocessing in a RAG system, each chunk is cleaned, processed, and encoded into a high-dimensional vector (embedding) using pre-trained models. These embeddings are stored in vector databases, enabling efficient similarity-based retrieval at runtime (inference)."
   },
   {
     id: 2,
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
-    question: "What is 'hybrid retrieval' in a RAG pipeline for test case management and what advantage does it provide?",
+    question: "According to the syllabus, which of the following are the two steps of the user query processing phase in a RAG system?",
     options: [
-      "It uses only the LLM's internal knowledge without external data",
-      "It combines semantic (vector) search with keyword (BM25) search to improve retrieval accuracy for test cases that contain specific identifiers",
-      "It retrieves from both public and private databases simultaneously",
-      "It uses two different LLMs for retrieval"
+      "Encoding and Decoding",
+      "Retrieval (retrieving relevant information from vector databases) and Generation (the LLM generates a response using retrieved information)",
+      "Tokenization and Embedding",
+      "Authentication and Authorization"
     ],
     correctAnswer: 1,
-    explanation: "Hybrid retrieval combines semantic vector search (which finds conceptually similar content) with keyword search like BM25 (which finds exact keyword matches). This is advantageous because test cases often contain specific identifiers that semantic search alone may miss."
+    explanation: "In the user prompt processing phase, a RAG system works through a two-step process: (1) Retrieval — given a user query, the system retrieves relevant information from previously created vector databases based on semantic similarity; (2) Generation — the retrieved information is fed to the LLM, which generates a response combining its existing knowledge with the newly acquired data."
   },
   {
     id: 3,
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
-    question: "An LLM-powered test agent autonomously navigates a web application and reports defects. What is the role of the 'action space' in this agent's design?",
+    question: "What is the difference between autonomous and semi-autonomous LLM-powered agents in test processes?",
     options: [
-      "It defines the agent's training data requirements",
-      "It defines the set of actions the agent can take (e.g., click, type, navigate, assert) during autonomous test execution",
-      "It specifies the agent's context window size",
-      "It determines the agent's API pricing"
+      "Autonomous agents require human approval for every action, while semi-autonomous agents operate independently",
+      "Autonomous agents operate independently with minimal human intervention, while semi-autonomous agents perform tasks with periodic human oversight to ensure output meets user-defined goals",
+      "Autonomous agents are used for testing, while semi-autonomous agents are used for development",
+      "There is no difference between autonomous and semi-autonomous agents"
     ],
     correctAnswer: 1,
-    explanation: "The action space defines all possible actions an LLM-powered test agent can take during autonomous execution, such as clicking elements, typing text, navigating URLs, or making assertions. A well-designed action space enables the agent to effectively explore while preventing harmful actions."
+    explanation: "Autonomous agents operate independently, performing tasks with minimal human intervention using predefined rules, reinforcement learning, and adaptive feedback loops. Semi-autonomous agents perform tasks with periodic human oversight to ensure that the output meets user-defined goals. In test processes, semi-autonomous agents can be used for critical tasks where human verification of results is important."
   },
   {
     id: 4,
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
-    question: "Which LLMOps practice involves 'prompt regression testing' and why is it critical for testing teams?",
+    question: "Which of the following is a challenge of fine-tuning a GenAI model for software testing, as described in the syllabus?",
     options: [
-      "Testing the prompts themselves for grammatical correctness",
-      "Running a standardized set of prompts against new model versions to verify that output quality and format have not degraded",
-      "Removing old prompts that are no longer used",
-      "Testing whether the LLM can generate regression tests"
+      "LLMs become too small to process test cases",
+      "Mitigating overfitting, where the model becomes too specialized to the training data, negatively impacting its performance on new, unseen data",
+      "LLMs lose the ability to process English text after fine-tuning",
+      "Fine-tuning always reduces the model's accuracy on any task"
     ],
     correctAnswer: 1,
-    explanation: "Prompt regression testing runs a standardized suite of prompts against new model versions or updated prompts to verify that output quality, format, and accuracy have not degraded. This is critical because model updates can silently change outputs, breaking automated test generation pipelines."
+    explanation: "The syllabus describes four challenges of fine-tuning: (1) Avoiding biased or inaccurate results by ensuring high-quality training datasets, (2) Mitigating overfitting to maintain generalization across different scenarios, (3) Addressing opacity in the model's reasoning, which complicates debugging and validation, and (4) Managing significant computational resources required for fine-tuning LLMs."
   },
   {
     id: 5,
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
-    question: "What is the role of a 'guardrail' in an LLM-powered test automation pipeline?",
+    question: "According to the syllabus, which of the following is one of the three possible approaches for using GenAI in an organization's test processes?",
     options: [
-      "It prevents the LLM from generating any output",
-      "It validates and filters LLM outputs to ensure they comply with safety, format, and organizational policies before execution",
-      "It speeds up the LLM's inference time",
-      "It encrypts the prompts before sending them to the API"
+      "Using a public cloud LLM, using a private on-premise LLM, or using a hybrid cloud-on-premise LLM",
+      "Using an AI chatbot, using a test tool with generative AI capabilities, or in-house development of a test tool based on generative AI",
+      "Using open-source models only, using commercial models only, or using a combination of both",
+      "Using RAG, using fine-tuning, or using prompt engineering only"
     ],
     correctAnswer: 1,
-    explanation: "A guardrail validates and filters LLM outputs to ensure they comply with safety rules, format requirements, and organizational policies before being executed. For test automation, this prevents harmful actions and ensures generated test cases meet quality standards."
+    explanation: "The syllabus describes three possible approaches for using GenAI in an organization's test processes: (1) Using an AI chatbot — managing data privacy/security risks while optimizing cost; (2) Using a test tool with generative AI capabilities — evaluating data security and performance assurances from the tool provider; (3) In-house development of a test tool based on generative AI — emphasizing comprehensive control of data privacy, security, and AI operating costs."
   },
   {
     id: 6,
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
-    question: "In the context of LLM-powered testing tools, what is 'function calling' (also known as 'tool use') and how does it enhance test automation?",
+    question: "Which of the following correctly describes the typical architecture of an LLM-powered test infrastructure, as described in the syllabus?",
     options: [
-      "It allows the LLM to call arbitrary functions on the user's machine",
-      "It enables the LLM to invoke predefined functions/APIs (e.g., get_test_results, create_test_case) to interact with external systems",
-      "It is a technique for calling the LLM API itself",
-      "It refers to writing unit test functions"
+      "It uses a single monolithic application with no external data sources",
+      "It consists of a front-end (user interface), a back-end (authentication, data retrieval, prompt preparation, LLM interaction), and an LLM (third-party or custom) that generates responses based on structured prompts",
+      "It requires no back-end because the LLM handles all processing",
+      "It uses a rule-based system instead of an LLM"
     ],
     correctAnswer: 1,
-    explanation: "Function calling enables the LLM to invoke predefined functions or APIs that interact with external systems. In test automation, this allows the LLM to retrieve test results, create test cases in a management tool, or trigger test execution in a CI/CD pipeline."
+    explanation: "The typical architecture of an LLM-powered test infrastructure follows a multi-component design: (1) The front-end serves as the user interface; (2) The back-end processes user input and manages authentication, data retrieval, prompt preparation, and interaction with the LLM; (3) The LLM, hosted as a third-party service (via API) or as a custom in-house model, generates responses based on structured prompts."
   }
 ];

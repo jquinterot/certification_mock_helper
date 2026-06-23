@@ -21,9 +21,10 @@ export function shuffleQuestions(questions: ExamQuestion[], seed?: number): Shuf
   const random = seededRandom(seed ?? Date.now());
 
   return questions.map((q) => {
-    if (Array.isArray(q.correctAnswer)) {
+    const correctIndices = q.correctAnswers ?? (Array.isArray(q.correctAnswer) ? q.correctAnswer : null);
+
+    if (correctIndices && Array.isArray(correctIndices)) {
       const shuffledOptions = shuffleArray(q.options, random);
-      const correctIndices = q.correctAnswer as number[];
       const shuffledCorrectIndex = correctIndices.map(idx => shuffledOptions.indexOf(q.options[idx]));
       return {
         ...q,

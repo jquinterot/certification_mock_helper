@@ -4,15 +4,15 @@ export const questions: ExamQuestion[] = [
   {
     id: 1,
     domain: "Chapter 5: Deploying and Integrating GenAI",
-    question: "What is 'AI literacy' training as mandated by the EU AI Act, and why is it relevant for testing teams?",
+    question: "According to the syllabus, which of the following is a risk of shadow AI that testing organizations should address?",
     options: [
-      "It is training on how to read AI-generated text",
-      "It is mandatory training ensuring staff have sufficient understanding of AI systems to oversee them responsibly, including understanding capabilities, limitations, and risks",
-      "It is a certification for AI engineers",
-      "It is optional training on AI history"
+      "AI tools generate too many test cases",
+      "Compliance and regulatory issues from using unapproved AI tools that may lead to non-compliance with industry standards and regulations",
+      "AI tools are too fast for testers to review",
+      "AI tools only work in English"
     ],
     correctAnswer: 1,
-    explanation: "The EU AI Act mandates AI literacy training for staff deploying or operating AI systems. For testing teams, this means ensuring all team members understand LLM capabilities, limitations (hallucinations, bias), risks (data privacy, over-reliance), and their oversight responsibilities."
+    explanation: "The syllabus identifies three risks of shadow AI: (1) Information security and data privacy weaknesses — personal AI tools may lack robust security; (2) Compliance and regulatory issues — using unapproved AI tools can lead to non-compliance with industry standards and regulations; (3) Vague intellectual property — unclear licensing agreements can expose users to IP disputes."
   },
   {
     id: 2,
@@ -72,11 +72,11 @@ export const questions: ExamQuestion[] = [
     question: "Which approach to scaling GenAI testing tools across multiple teams is MOST likely to maintain quality and consistency?",
     options: [
       "Each team chooses and deploys their own LLM tools independently",
-      "Establish a centralized platform team that provides approved tools, shared prompt libraries, common guardrails, and best practices while allowing team-level customization",
+      "Establish a centralized platform team that provides approved tools, shared prompt libraries, and best practices while allowing team-level customization",
       "Deploy identical configurations to all teams with no customization allowed",
       "Only allow one team to use GenAI until perfect results are achieved"
     ],
     correctAnswer: 1,
-    explanation: "A centralized platform team providing approved tools, shared prompt libraries, common guardrails, and best practices ensures consistency and compliance while allowing team-level customization for specific testing needs."
+    explanation: "A centralized platform team providing approved tools, shared prompt libraries, and best practices ensures consistency and compliance while allowing team-level customization for specific testing needs. A GenAI strategy should include process guidelines, approved tools, and best practices to maintain quality and compliance across teams."
   }
 ];

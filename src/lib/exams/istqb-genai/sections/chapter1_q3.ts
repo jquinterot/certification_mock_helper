@@ -4,67 +4,67 @@ export const questions: ExamQuestion[] = [
   {
     id: 1,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is a 'mixture of experts' (MoE) architecture in LLMs and how does it relate to testing?",
+    question: "Which of the following correctly describes classical machine learning in the AI spectrum?",
     options: [
-      "A system where multiple human experts review LLM outputs",
-      "An architecture that routes inputs to specialized sub-models, reducing compute while maintaining capability for testing tasks",
-      "A testing methodology that requires expert-level test cases",
-      "A technique for combining test results from multiple manual testers"
+      "It uses rule-based systems with symbols and logical rules",
+      "It is a data-driven approach that requires data preparation, feature selection, and model training, usable for defect categorization and predicting software problems",
+      "It creates new content by learning and mimicking patterns from training data",
+      "It uses neural networks to automatically learn features without manual feature definition"
     ],
     correctAnswer: 1,
-    explanation: "Mixture of Experts (MoE) routes input tokens to specialized sub-models (experts) rather than activating the entire model. This reduces computational cost while maintaining capability, making it viable to run sophisticated LLM-powered testing tools more efficiently."
+    explanation: "Classical machine learning is a data-driven approach that requires data preparation, feature selection, and model training. It can be used for tasks such as defect categorization and predicting software problems. Unlike deep learning, it requires users to manually define features."
   },
   {
     id: 2,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which type of AI model is MOST suitable for automatically identifying duplicate defect reports from a large bug database?",
+    question: "In the context of LLMs, what does it mean that 'plausible is not necessarily correct'?",
     options: [
-      "A generative text model that creates new bug reports",
-      "A discriminative model using embedding-based semantic similarity to identify near-duplicate reports",
-      "A reinforcement learning model that maximizes reward signals",
-      "A diffusion model that generates images of bugs"
+      "The transformer model can generate new text that is statistically plausible based on training data and the prompt, but this text may still be factually incorrect",
+      "The model always produces correct output if the temperature is low enough",
+      "Plausibility refers to the model's ability to encrypt its output",
+      "The model can only produce output that has been explicitly verified by experts"
     ],
-    correctAnswer: 1,
-    explanation: "A discriminative model using embedding-based semantic similarity is best suited for identifying duplicate defect reports. It converts each report into embeddings and computes pairwise similarity, finding near-duplicates based on semantic content rather than exact text matching."
+    correctAnswer: 0,
+    explanation: "The transformer model can generate new text that is statistically plausible based on training data and the prompt, but plausible is not necessarily correct. This is why LLMs can produce hallucinations—output that appears plausible but is factually incorrect or irrelevant to the given task."
   },
   {
     id: 3,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is 'knowledge distillation' and how can it benefit testing organizations deploying LLM-powered tools?",
+    question: "Which of the following is a key LLM capability for test tasks related to 'test automation support'?",
     options: [
-      "A process of removing all knowledge from a model",
-      "A technique where a smaller 'student' model learns from a larger 'teacher' model, enabling cost-effective deployment of testing tools",
-      "A method for encrypting model knowledge",
-      "A process of training a model on testing documentation only"
+      "LLMs can generate test scripts from test case descriptions and improve existing test scripts by suggesting changes",
+      "LLMs can automatically deploy applications to production",
+      "LLMs can physically test hardware devices",
+      "LLMs can replace all manual testing without any human oversight"
     ],
-    correctAnswer: 1,
-    explanation: "Knowledge distillation transfers knowledge from a large, expensive 'teacher' model to a smaller, cheaper 'student' model. This enables testing organizations to deploy cost-effective models that retain much of the teacher's testing capability, reducing inference costs."
+    correctAnswer: 0,
+    explanation: "Test automation support is a key LLM capability: LLMs can help generate test scripts from test case descriptions and improve existing test scripts by suggesting changes and identifying appropriate test design techniques. They can also create automated test scripts from structured test cases compatible with various test automation frameworks."
   },
   {
     id: 4,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following best describes 'emergent abilities' in large language models and their relevance to testing?",
+    question: "A tester uses an AI chatbot to iteratively refine acceptance criteria through prompt chaining. Which advantage of AI chatbots does this scenario highlight?",
     options: [
-      "Abilities that appear suddenly in humans when using LLMs",
-      "Capabilities that arise at scale but are absent in smaller models, enabling complex test generation tasks",
-      "Abilities that emerge from proper prompt engineering alone",
-      "Skills that only appear in closed-source models"
+      "AI chatbots are better at automated test execution than LLM-powered applications",
+      "AI chatbots provide a conversational interface that is particularly effective for dynamic, iterative refinement through prompt chaining",
+      "AI chatbots can only be used by technical stakeholders",
+      "AI chatbots do not require any prompt engineering"
     ],
     correctAnswer: 1,
-    explanation: "Emergent abilities are capabilities that appear in large models but are absent in smaller models of the same architecture. For testing, this means certain complex test generation tasks (like reasoning about multi-step test scenarios) may only be possible with sufficiently large models."
+    explanation: "AI chatbots provide a conversational interface enabling testers to communicate directly with LLMs through natural language. This interaction model is particularly effective for dynamic exploration of requirements, iterative prompt refinement, and exploratory testing. Their intuitive interface makes them accessible even to non-technical stakeholders."
   },
   {
     id: 5,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is the key difference between a generative model and a discriminative model in the context of AI-powered testing tools?",
+    question: "Which of the following correctly describes 'instruction-tuned LLMs' as defined in the syllabus?",
     options: [
-      "Generative models are always more accurate than discriminative models",
-      "Discriminative models can only classify existing test cases, while generative models can create new test cases",
-      "Discriminative models are faster at generating test data",
-      "Generative models cannot be used for classification tasks"
+      "Models trained on vast and diverse datasets without any further adaptation",
+      "Models derived from foundation models, fine-tuned using datasets that pair prompts with expected responses to enhance alignment with human instructions",
+      "Models that only perform mathematical calculations",
+      "Models that are always smaller than foundation models"
     ],
     correctAnswer: 1,
-    explanation: "Discriminative models learn to classify or label existing data (e.g., classifying a test case as pass/fail), while generative models can create new data (e.g., generating new test cases). In testing, generative models create test cases and test data, while discriminative models classify results."
+    explanation: "Instruction-tuned LLMs are derived from foundation models and are fine-tuned using datasets that pair prompts with expected responses. This stage enhances their alignment with human instructions, improving usability in real-world applications by optimizing for task adherence, instruction following, and response coherence."
   },
   {
     id: 6,

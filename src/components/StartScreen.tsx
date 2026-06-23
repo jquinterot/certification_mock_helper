@@ -43,7 +43,9 @@ export function StartScreen() {
   const sectionQuestionCount = selectedSectionStats
     ? selectedTestSet === 1
       ? selectedSectionStats.set1Count
-      : selectedSectionStats.set2Count
+      : selectedTestSet === 2
+      ? selectedSectionStats.set2Count
+      : selectedSectionStats.set3Count || 0
     : 0;
 
   const currentQuestionCount = examMode === 'full' ? totalQuestions : sectionQuestionCount;
@@ -169,6 +171,7 @@ export function StartScreen() {
             selectedDomain={selectedDomain}
             sectionDomainStats={sectionDomainStats}
             testSet={selectedTestSet}
+            maxTestSets={maxTestSets}
             onSetDomain={setSelectedDomain}
             onSetTestSet={setSelectedTestSet}
             sectionStep={sectionStep}

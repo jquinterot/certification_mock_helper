@@ -3,9 +3,9 @@ import type { ExamConfig } from '../types';
 export const examConfig: ExamConfig = {
   id: 'istqb-genai',
   name: 'ISTQB Testing with Generative AI',
-  shortName: 'Practice Exam (CT-GenAI v1.1)',
+  shortName: 'Practice Exam (CT-GenAI v1.0)',
   category: 'ISTQB Testing',
-  description: 'ISTQB Certified Tester - Testing with Generative AI (CT-GenAI v1.1)',
+  description: 'ISTQB Certified Tester - Testing with Generative AI (CT-GenAI v1.0)',
   questionCount: 40,
   durationMinutes: 60,
   passingScore: 65,

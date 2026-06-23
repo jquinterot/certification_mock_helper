@@ -7,7 +7,7 @@ test.describe('Category Menu', () => {
     });
 
     await test.step('Category heading is visible', async () => {
-      await expect(page.getByRole('heading', { name: 'AWS Cloud' })).toBeVisible();
+      await expect(page.getByRole('heading', { name: 'AWS Cloud', exact: true })).toBeVisible();
     });
 
     await test.step('Exam cards are displayed', async () => {

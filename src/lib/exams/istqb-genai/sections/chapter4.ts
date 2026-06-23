@@ -124,7 +124,7 @@ export const questions: ExamQuestion[] = [
     explanation: "A semi-autonomous agent should require human approval for critical or high-risk actions such as deleting a test environment, which could result in data loss or disruption. Executing low-priority tests, logging minor defects, and running standard regression suites are low-risk operations that can be handled autonomously."
   },
 
-  // K4 - Analyze (1 question)
+  // K3 - Apply (1 question)
   {
     id: 10,
     domain: "Chapter 4: LLM-Powered Test Infrastructure",
@@ -264,7 +264,7 @@ export const questions2: ExamQuestion[] = [
     explanation: "Using an LLM to generate synthetic data preserves statistical properties (distributions, correlations, edge cases) while protecting privacy since no real customer data is used. Using production data directly violates privacy, constant placeholders lose data utility, and empty strings make testing impossible."
   },
 
-  // K4 - Analyze (1 question)
+  // K3 - Apply (1 question)
   {
     id: 20,
     domain: "Chapter 4: LLM-Powered Test Infrastructure",

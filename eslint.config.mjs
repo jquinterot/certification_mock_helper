@@ -12,6 +12,14 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Test artefacts (Playwright reports, traces, traces):
+    "playwright-report/**",
+    "test-results/**",
+    "blob-report/**",
+    // End-to-end tests use Playwright's `use()` helper which collides with
+    // React's hooks naming convention. The fixtures are not React components
+    // and we lint them separately if needed.
+    "e2e/**",
   ]),
 ]);
 

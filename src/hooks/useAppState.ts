@@ -62,10 +62,12 @@ export function useAppState() {
     return selectedExamConfig.domains.map((domain) => {
       const q1 = getSectionQuestions(selectedExamId, domain, 1);
       const q2 = getSectionQuestions(selectedExamId, domain, 2);
+      const q3 = getSectionQuestions(selectedExamId, domain, 3);
       return {
         domain,
         set1Count: q1.length,
         set2Count: q2.length,
+        set3Count: q3.length,
       };
     });
   }, [selectedExamId, selectedExamConfig]);
@@ -302,7 +304,7 @@ export function useAppState() {
 
   const totalQuestions = questions.length;
 
-  const maxTestSets = selectedExamId === 'aws-ml' ? 4 : selectedExamId === 'istqb-genai' ? 3 : 2;
+  const maxTestSets = selectedExamId === 'aws-ml' ? 4 : selectedExamId === 'istqb-genai' ? 3 : selectedExamId === 'istqb-foundation' ? 3 : 2;
 
   return {
     phase,

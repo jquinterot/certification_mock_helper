@@ -107,7 +107,7 @@ export const questions: ExamQuestion[] = [
   },
   {
     id: 9,
-    domain: "Chapter 2: Prompt Engineering for Testing",
+    domain: "Chapter 3: Managing Risks of GenAI in Testing",
     question: "What is the primary risk of using a high temperature setting for test case generation?",
     options: [
       "The output may be too creative and inconsistent",
@@ -116,7 +116,7 @@ export const questions: ExamQuestion[] = [
       "The model will refuse to generate"
     ],
     correctAnswer: 0,
-    explanation: "A high temperature increases randomness and creativity, which can lead to inconsistent, non-deterministic test cases. For test case generation, consistency and reproducibility are often more important than creativity."
+    explanation: "A high temperature increases randomness and creativity, which can lead to inconsistent, non-deterministic test cases. Temperature control is a mitigation technique for non-deterministic behavior (Chapter 3). For test case generation, consistency and reproducibility are often more important than creativity."
   },
   {
     id: 10,
@@ -344,8 +344,8 @@ export const questions2: ExamQuestion[] = [
   },
   {
     id: 11,
-    domain: "Chapter 2: Prompt Engineering for Testing",
-    question: "Which of the following is a prompt injection attack in the context of LLM-based testing tools?",
+    domain: "Chapter 3: Managing Risks of GenAI in Testing",
+    question: "Which of the following is a request manipulation attack in the context of LLM-based testing tools?",
     options: [
       "A user accidentally typing the wrong prompt",
       "A network firewall blocking the API request",

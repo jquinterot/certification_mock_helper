@@ -55,13 +55,13 @@ test.describe('Results Screen', () => {
   test('should navigate back to start screen from results', async ({ completedExamPage: page }) => {
     await test.step('Click back to home button', async () => {
       await page.getByTestId('back-button').click();
-      await expect(page.getByTestId('category-card-aws-cloud')).toBeVisible();
+      await expect(page.getByTestId('category-card-istqb-testing')).toBeVisible();
     });
 
     await test.step('Navigate to start screen', async () => {
-      await page.getByTestId('category-card-aws-cloud').click();
-      await expect(page.getByRole('heading', { name: 'AWS Cloud' })).toBeVisible();
-      await page.getByTestId('exam-card-aws-ml').click();
+      await page.getByTestId('category-card-istqb-testing').click();
+      await expect(page.getByRole('heading', { name: 'ISTQB Testing', exact: true })).toBeVisible();
+      await page.getByTestId('exam-card-istqb-foundation').click();
     });
 
     await test.step('Start screen is visible', async () => {

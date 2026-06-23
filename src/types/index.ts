@@ -4,6 +4,7 @@ export interface ExamQuestion {
   question: string;
   options: string[];
   correctAnswer: number | number[];
+  correctAnswers?: number[];
   explanation: string;
 }
 

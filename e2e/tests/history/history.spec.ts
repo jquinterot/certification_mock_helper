@@ -4,10 +4,10 @@ test.describe('Exam History', () => {
   test('should show progress stats after completing an exam', async ({ completedExamPage: page }) => {
     await test.step('Navigate back to start screen', async () => {
       await page.getByTestId('back-button').click();
-      await expect(page.getByTestId('category-card-aws-cloud')).toBeVisible();
-      await page.getByTestId('category-card-aws-cloud').click();
-      await expect(page.getByRole('heading', { name: 'AWS Cloud' })).toBeVisible();
-      await page.getByTestId('exam-card-aws-ml').click();
+      await expect(page.getByTestId('category-card-istqb-testing')).toBeVisible();
+      await page.getByTestId('category-card-istqb-testing').click();
+      await expect(page.getByRole('heading', { name: 'ISTQB Testing', exact: true })).toBeVisible();
+      await page.getByTestId('exam-card-istqb-foundation').click();
     });
 
     await test.step('Progress section is visible', async () => {

@@ -202,15 +202,15 @@ export const questions2: ExamQuestion[] = [
   {
     id: 16,
     domain: "Domain 1: Introduction to AI and Testing",
-    question: "In the context of NLP, what is a transformer model?",
+    question: "Which of the following is a machine learning technique that uses multiple decision trees to improve prediction accuracy and reduce overfitting?",
     options: [
-      "A model that transforms numerical data into categorical data",
-      "A neural network architecture that uses self-attention mechanisms to process sequential data in parallel",
-      "A hardware device that accelerates AI processing",
-      "A model that can only work with short text inputs",
+      "A support vector machine (SVM) that finds the optimal hyperplane to separate data classes",
+      "A neural network that uses multiple hidden layers to learn hierarchical features",
+      "A Bayesian model that updates probabilities as new evidence becomes available",
+      "A rule engine that applies IF-THEN rules derived from human expert knowledge"
     ],
-    correctAnswer: 2,
-    explanation: "Transformer models use self-attention mechanisms to process sequential data in parallel, capturing relationships between all positions in the input. This architecture revolutionized NLP and forms the basis of models like BERT and GPT."
+    correctAnswer: 0,
+    explanation: "A Support Vector Machine (SVM) is a machine learning technique that finds the optimal hyperplane to maximize the margin between data classes. SVMs are listed in the CT-AI syllabus as a recognized ML technology used to implement AI-based systems."
   },
   {
     id: 17,

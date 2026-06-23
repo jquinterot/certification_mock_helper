@@ -7,7 +7,7 @@ export const questions: ExamQuestion[] = [
     question: "What is 'data poisoning' in the context of LLMs used for testing and how can it affect test case quality?",
     options: [
       "An attacker corrupts the training data to make the model produce incorrect or biased test cases",
-      "The model's output is poisoned by high temperature settings",
+      "The model adds intentionally harmful data to its own training set",
       "Test data is physically destroyed in storage",
       "The prompt contains toxic language"
     ],
@@ -43,15 +43,15 @@ export const questions: ExamQuestion[] = [
   {
     id: 4,
     domain: "Chapter 3: Managing Risks of GenAI in Testing",
-    question: "What is 'jailbreaking' in the context of LLM-based testing tools and what risk does it pose?",
+    question: "Which of the following is an example of 'request manipulation' as an attack vector in GenAI test processes and tools, as described in the syllabus?",
     options: [
-      "Breaking the physical server housing the LLM",
-      "Crafting inputs that bypass the model's safety restrictions, potentially causing it to generate harmful or non-compliant test instructions",
-      "Using the LLM without an internet connection",
-      "Restarting the LLM to reset its memory"
+      "Sending excessively long prompts to extract training data from the LLM",
+      "Introducing data that disrupts the AI's output, such as images that lure the AI into a different context, provoking hallucinations on acceptance criteria",
+      "Manipulating training data by providing fake evaluations when rating AI-generated test reports",
+      "Physically breaking into the server hosting the LLM"
     ],
     correctAnswer: 1,
-    explanation: "Jailbreaking involves crafting inputs that bypass the LLM's safety restrictions and alignment. In testing tools, this could cause the model to generate harmful test instructions, bypass security constraints in automated test execution, or produce non-compliant outputs that violate organizational policies."
+    explanation: "Request manipulation involves introducing data that disrupts the AI's output. The syllabus example is images that lure the AI into a different context, thus provoking hallucinations on elements such as acceptance criteria. Data exfiltration is a different attack vector (sending long prompts to extract training data), and data poisoning involves manipulating training data."
   },
   {
     id: 5,

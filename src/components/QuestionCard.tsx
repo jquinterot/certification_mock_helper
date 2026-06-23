@@ -25,6 +25,7 @@ function getOptionClass(
   isCorrectOption: boolean,
   showCorrectness: boolean,
   showResults: boolean,
+  isMultiple: boolean,
   theme: Theme
 ): string {
   const base = 'w-full text-left p-4 rounded-xl border transition-all';
@@ -48,9 +49,10 @@ function getBadgeClass(
   showCorrectness: boolean,
   isCorrectOption: boolean,
   isSelected: boolean,
+  isMultiple: boolean,
   theme: Theme
 ): string {
-  const base = 'flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold';
+  const base = 'flex-shrink-0 w-8 h-8 rounded-md flex items-center justify-center text-sm font-semibold';
 
   if (showCorrectness) {
     if (isCorrectOption) return `${base} bg-green-500 text-white`;
@@ -77,14 +79,20 @@ function QuestionCardComponent({
 }: QuestionCardProps) {
   const options = question.shuffledOptions;
   const correctAnswer = question.shuffledCorrectIndex;
+  const isMultiple = Array.isArray(correctAnswer);
 
   return (
     <div className={`${theme.bgCard} backdrop-blur-lg rounded-2xl p-6 ${theme.borderColor} border shadow-xl mb-4`} data-test-id={`question-${questionIndex}`}>
       {/* Domain Badge */}
-      <div className="mb-4">
+      <div className="mb-4 flex items-center gap-2 flex-wrap">
         <span className={`inline-block ${theme.explanationBadge} ${theme.explanationBadgeText} text-xs font-semibold px-3 py-1 rounded-full`} data-test-id="domain-badge">
           {question.domain}
         </span>
+        {isMultiple && (
+          <span className="inline-block bg-blue-500/20 border border-blue-500/40 text-blue-700 dark:text-blue-300 text-xs font-semibold px-3 py-1 rounded-full" data-test-id="multi-select-badge">
+            Select {correctAnswer.length} options
+          </span>
+        )}
       </div>
 
       {/* Question */}
@@ -103,15 +111,45 @@ function QuestionCardComponent({
             <button
               key={idx}
               onClick={() => onSelectAnswer(questionIndex, idx)}
-              className={getOptionClass(isSelected, isCorrectOption, showResult, showResults, theme)}
+              className={getOptionClass(isSelected, isCorrectOption, showResult, showResults, isMultiple, theme)}
               disabled={showResults}
               aria-label={`Option ${String.fromCharCode(65 + idx)}: ${option}`}
+              aria-pressed={isSelected}
               data-test-id={`answer-option-${questionIndex}-${String.fromCharCode(65 + idx).toLowerCase()}`}
             >
               <div className="flex items-center gap-3">
-                <span className={getBadgeClass(showResult, isCorrectOption, isSelected, theme)}>
-                  {String.fromCharCode(65 + idx)}
-                </span>
+                {isMultiple ? (
+                  <span
+                    className={`flex-shrink-0 w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${
+                      showResult
+                        ? isCorrectOption
+                          ? 'border-green-500 bg-green-500'
+                          : isSelected
+                          ? 'border-red-500 bg-red-500'
+                          : 'border-slate-300 dark:border-slate-600'
+                        : isSelected
+                        ? `${theme.selectedCorrectAnswer} border-transparent`
+                        : 'border-slate-300 dark:border-slate-600'
+                    }`}
+                    aria-hidden="true"
+                  >
+                    {(isSelected || (showResult && isCorrectOption)) && (
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        className="w-4 h-4 text-white"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    )}
+                  </span>
+                ) : (
+                  <span className={getBadgeClass(showResult, isCorrectOption, isSelected, isMultiple, theme)}>
+                    {String.fromCharCode(65 + idx)}
+                  </span>
+                )}
                 <span className="flex-1">{option}</span>
                 {showResult && isCorrectOption && (
                   <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" aria-hidden="true" />

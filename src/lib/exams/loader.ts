@@ -5,7 +5,8 @@ import { questions as awsMlQuestions4, questions2 as awsMlQuestions4Set2 } from 
 import { questions as awsSaaQuestions1 } from './aws-saa/questions';
 import { questions2 as awsSaaQuestions2 } from './aws-saa/questions2';
 import { questions as istqbQuestions1 } from './istqb-foundation/questions';
-import { questions2 as istqbQuestions2 } from './istqb-foundation/questions2';
+import { questions as istqbQuestions2 } from './istqb-foundation/questions2';
+import { questions as istqbQuestions3 } from './istqb-foundation/questions3';
 import { questions as istqbGenaiQuestions1, questions2 as istqbGenaiQuestions2 } from './istqb-genai/questions';
 import { questions as istqbGenaiQuestions3 } from './istqb-genai/questions3';
 import type { ExamQuestion } from '@/types';
@@ -73,7 +74,10 @@ export function getQuestions(examId: string, testSet: number): ExamQuestion[] {
     return testSet === 1 ? awsSaaQuestions1 : awsSaaQuestions2;
   }
   if (examId === 'istqb-foundation') {
-    return testSet === 1 ? istqbQuestions1 : istqbQuestions2;
+    if (testSet === 1) return istqbQuestions1;
+    if (testSet === 2) return istqbQuestions2;
+    if (testSet === 3) return istqbQuestions3;
+    return istqbQuestions1;
   }
   if (examId === 'istqb-genai') {
     if (testSet === 1) return istqbGenaiQuestions1;

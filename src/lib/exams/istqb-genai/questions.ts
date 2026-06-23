@@ -240,7 +240,7 @@ export const questions: ExamQuestion[] = [
   },
   {
     id: 19,
-    domain: "Chapter 2: Prompt Engineering for Testing",
+    domain: "Chapter 3: Managing Risks of GenAI in Testing",
     question: "What is the primary risk of using a high temperature setting (e.g., 0.9) for test case generation?",
     options: [
       "The model will run slower",
@@ -249,7 +249,7 @@ export const questions: ExamQuestion[] = [
       "The model will refuse to generate"
     ],
     correctAnswer: 2,
-    explanation: "A high temperature increases randomness and creativity, which can lead to inconsistent, non-deterministic test cases. For test case generation, consistency and reproducibility are often more important than creativity."
+    explanation: "A high temperature increases randomness and creativity, which can lead to inconsistent, non-deterministic test cases. For test case generation, consistency and reproducibility are often more important than creativity. Temperature control is a mitigation technique for non-deterministic behavior (see Chapter 3)."
   },
   {
     id: 20,
@@ -375,13 +375,13 @@ export const questions: ExamQuestion[] = [
     domain: "Chapter 3: Managing Risks of GenAI in Testing",
     question: "Which risk is MOST relevant when sending production-equivalent test data to a public LLM API?",
     options: [
-      "Data privacy and security violations (GDPR, HIPAA)",
+      "Data privacy and security violations (GDPR)",
       "The model will generate too many test cases",
       "The test cases will be too complex",
       "The API will be too slow"
     ],
     correctAnswer: 0,
-    explanation: "Sending production-equivalent test data containing PII or sensitive information to a public LLM API violates data privacy regulations (GDPR, HIPAA). This is a critical risk in regulated industries."
+    explanation: "Sending production-equivalent test data containing PII or sensitive information to a public LLM API violates data privacy regulations such as GDPR. This is a critical risk, as GenAI tools may store and process sensitive data without explicit user consent or control."
   },
   {
     id: 30,
@@ -537,67 +537,67 @@ export const questions2: ExamQuestion[] = [
   {
     id: 1,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following AI types involves training a model to maximize a reward signal through trial and error?",
+    question: "Which type of AI represents knowledge using symbols and logical rules in a rule-based system?",
     options: [
-      "Reinforcement learning",
-      "Supervised learning",
-      "Unsupervised learning",
-      "Transfer learning"
+      "Symbolic AI",
+      "Classical machine learning",
+      "Deep learning",
+      "Generative AI"
     ],
     correctAnswer: 0,
-    explanation: "Reinforcement learning involves training an agent to maximize a reward signal through trial and error. This is used in RLHF (Reinforcement Learning from Human Feedback) to align LLM outputs with human preferences."
+    explanation: "Symbolic AI uses a rule-based system to mimic human decision-making. It represents knowledge using symbols and logical rules, which is fundamentally different from data-driven approaches like classical machine learning or deep learning."
   },
   {
     id: 2,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following is a generative AI model architecture primarily used for generating images from text descriptions?",
+    question: "What is the key advantage of using GenAI for software testing compared to classical machine learning approaches?",
     options: [
-      "Transformer",
-      "Recurrent Neural Network (RNN)",
-      "Convolutional Neural Network (CNN)",
-      "Diffusion Model"
+      "GenAI models are always more accurate than classical ML models",
+      "GenAI uses pre-trained models that can be applied directly to test tasks without the need for an additional training phase",
+      "GenAI does not require any data to function",
+      "GenAI models are always smaller and faster than classical ML models"
     ],
-    correctAnswer: 3,
-    explanation: "Diffusion Models are generative AI architectures primarily used for generating images from text descriptions. They work by gradually denoising random noise to create coherent images, which is useful for generating test screenshots or UI mockups."
+    correctAnswer: 1,
+    explanation: "The key advantage of using GenAI for software testing is that it uses pre-trained models that can be applied directly to test tasks without the need for an additional training phase, although this does come with some risks such as hallucinations and non-deterministic behavior."
   },
   {
     id: 3,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which technique is used to reduce the size of an LLM while maintaining performance, making it suitable for deployment on resource-constrained testing environments?",
+    question: "In the transformer model, how does the model generate coherent and contextually appropriate text during inference?",
     options: [
-      "Data augmentation",
-      "Feature engineering",
-      "Model quantization",
-      "Cross-validation"
+      "By retrieving pre-stored responses from a database",
+      "By predicting the next token in a sequence, leveraging learned relationships between tokens",
+      "By copying the most similar sentence from the training data",
+      "By applying predefined grammar rules to the input"
     ],
-    correctAnswer: 2,
-    explanation: "Model quantization reduces the precision of model weights (e.g., from 32-bit to 8-bit or 4-bit), significantly reducing model size and memory requirements. This makes LLMs deployable on resource-constrained environments without major performance loss."
+    correctAnswer: 1,
+    explanation: "During inference, LLMs predict the next token in a sequence, leveraging learned relationships between tokens to generate coherent and contextually appropriate text. The transformer model can generate new text that is statistically plausible based on training data and the prompt, though plausible is not necessarily correct."
   },
   {
     id: 4,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following best describes a Generative Adversarial Network (GAN)?",
+    question: "What is a Small Language Model (SLM) and when is it preferred over an LLM for testing tasks?",
     options: [
-      "A single neural network that generates text",
-      "Two neural networks (generator and discriminator) competing against each other",
-      "A transformer model with attention mechanism",
-      "A database for storing training data"
+      "An SLM is a model that can only process small text inputs",
+      "An SLM is a compact model with fewer parameters, designed to provide lightweight and focused GenAI solutions for specific, narrow tasks",
+      "An SLM is always less accurate than an LLM",
+      "An SLM is a model that does not use the transformer architecture"
     ],
     correctAnswer: 1,
-    explanation: "A GAN consists of two neural networks: a generator that creates synthetic data and a discriminator that tries to distinguish real from generated data. They compete against each other, improving generation quality over time."
+    explanation: "Small Language Models (SLMs) are compact models with fewer parameters compared to large language models, designed to provide lightweight and focused GenAI solutions. They are preferred for narrow, specific tasks where efficiency and cost-effectiveness are important, such as repetitive test data generation."
   },
   {
     id: 5,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is the purpose of model pruning in the context of LLMs for testing?",
+    question: "How do embeddings enable LLMs to understand word relationships and retain context?",
     options: [
-      "To remove unnecessary parameters and reduce model size without significant performance loss",
-      "To increase the model's training data",
-      "To add more layers to the model",
-      "To change the model's architecture"
+      "By compressing words into shorter strings",
+      "By converting tokens into dense numerical vectors, where tokens with similar meanings are positioned closely together in a high-dimensional space",
+      "By sorting tokens alphabetically in memory",
+      "By encrypting tokens to prevent unauthorized access"
     ],
-    correctAnswer: 0,
-    explanation: "Model pruning removes unnecessary or redundant parameters from a neural network. This reduces model size, memory footprint, and inference time while maintaining acceptable performance for testing tasks."
+    correctAnswer: 1,
+    explanation: "Embeddings are numerical representations of tokens that encode their semantic, syntactic, and contextual relationships. Each token is transformed into a vector in a high-dimensional space. Tokens with similar meanings or contextual roles have embeddings positioned closely together, enabling LLMs to understand word relationships, retain context, and generate coherent responses."
   },
   {
     id: 6,
@@ -668,7 +668,7 @@ export const questions2: ExamQuestion[] = [
   },
   {
     id: 11,
-    domain: "Chapter 2: Prompt Engineering for Testing",
+    domain: "Chapter 3: Managing Risks of GenAI in Testing",
     question: "Which of the following is a prompt injection attack in the context of LLM-based testing tools?",
     options: [
       "A user accidentally typing the wrong prompt",
@@ -1073,13 +1073,13 @@ export const questions3: ExamQuestion[] = [
     domain: "Chapter 1: Introduction to GenAI for Testing",
     question: "Which of the following is a type of generative AI model used for text generation?",
     options: [
-      "Generative Adversarial Network (GAN)",
+      "Large Language Model (LLM) based on the transformer architecture",
       "Support Vector Machine",
       "Decision Tree",
       "K-Means Clustering"
     ],
     correctAnswer: 0,
-    explanation: "Generative Adversarial Networks (GANs) are a type of generative AI model. While primarily used for images, they represent the generative approach. LLMs are the primary text generation models in testing."
+    explanation: "Large Language Models (LLMs) based on the transformer architecture are the primary generative AI models used for text generation in testing. They are pre-trained on large textual datasets and can generate coherent text for test tasks."
   },
   {
     id: 2,
@@ -1353,10 +1353,10 @@ export const questions3: ExamQuestion[] = [
       "The model will generate too few test cases",
       "The test cases will be too complex",
       "The model will run too slowly",
-      "Sending protected health information (PHI) to an external LLM API violates HIPAA"
+      "Sending patient names and medical record numbers to an external LLM API risks unintentional data exposure and violates data privacy regulations like GDPR"
     ],
     correctAnswer: 3,
-    explanation: "Sending protected health information (PHI) to an external LLM API violates HIPAA and other privacy regulations. The tester must anonymize data, use a private LLM, or process data on-premise."
+    explanation: "Sending personally identifiable information (PII) such as patient names and medical record numbers to an external LLM API risks unintentional data exposure and violates data privacy regulations like GDPR. The tester must anonymize data, use a private LLM, or process data on-premise."
   },
   {
     id: 23,

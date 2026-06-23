@@ -4,28 +4,28 @@ export const questions: ExamQuestion[] = [
   {
     id: 1,
     domain: "Chapter 2: Prompt Engineering for Testing",
-    question: "What is 'self-consistency prompting' and how is it applied to improve test case generation?",
+    question: "Which of the following is NOT one of the three core prompting techniques described in the syllabus for software testing?",
     options: [
-      "Generating one response and checking it for internal consistency",
-      "Generating multiple responses with high temperature and selecting the most common or consistent answer",
-      "Ensuring the prompt itself is grammatically consistent",
-      "Having the model verify that its prompt follows the organization's style guide"
+      "Prompt chaining",
+      "Few-shot prompting",
+      "Meta prompting",
+      "Chain-of-thought prompting"
     ],
-    correctAnswer: 1,
-    explanation: "Self-consistency prompting generates multiple responses to the same prompt with high temperature and then selects the most common or consistent answer. For test case generation, this can improve quality by aggregating diverse outputs and selecting the most frequently generated test scenarios."
+    correctAnswer: 3,
+    explanation: "The syllabus describes three core prompting techniques commonly used for test tasks: (1) Prompt chaining — breaking a task into a series of intermediate steps with each checked before proceeding; (2) Few-shot prompting — providing the LLM with examples in the prompt; (3) Meta prompting — leveraging the AI's ability to generate or refine its own prompts. Chain-of-thought is not listed as a core technique."
   },
   {
     id: 2,
     domain: "Chapter 2: Prompt Engineering for Testing",
-    question: "What is 'tree-of-thought' (ToT) prompting and when is it beneficial for test design?",
+    question: "A tester is unsure how to craft an effective prompt for generating test cases from a complex requirements document. They ask the LLM to help create an effective prompt for this task. Which prompting technique are they using?",
     options: [
-      "A technique that generates only two possible solutions",
-      "A technique that explores multiple reasoning paths (branches) before selecting the best one, beneficial for complex test design",
-      "A method for organizing test cases in a tree structure",
-      "A technique that forces the model to always choose the shortest path"
+      "Prompt chaining",
+      "Few-shot prompting",
+      "Meta prompting",
+      "Zero-shot prompting"
     ],
-    correctAnswer: 1,
-    explanation: "Tree-of-thought (ToT) prompting encourages the model to explore multiple reasoning paths (branches of a thought tree) and evaluate each before selecting the best one. In test design, this is beneficial when there are multiple valid testing approaches and trade-offs to consider."
+    correctAnswer: 2,
+    explanation: "Meta prompting leverages the AI's ability to generate or refine its own prompts. The tester collaborates with the LLM to co-create an effective prompt. This is especially beneficial when the tester is unsure how to craft an effective prompt, reflecting a form of pairing with the GenAI tool."
   },
   {
     id: 3,
@@ -56,15 +56,15 @@ export const questions: ExamQuestion[] = [
   {
     id: 5,
     domain: "Chapter 2: Prompt Engineering for Testing",
-    question: "What is 'retrieval-augmented prompting' and how does it differ from standard prompting for test case generation?",
+    question: "According to the syllabus, which prompting technique is MOST appropriate for a repetitive test task that requires a specific output format, such as generating keyword-driven test scripts?",
     options: [
-      "It retrieves the model's previous responses from cache",
-      "It augments the prompt with context retrieved from a knowledge base (e.g., project requirements, test history) before sending it to the LLM",
-      "It retrieves prompts from a public database",
-      "It augments the user's input with spell corrections"
+      "Meta prompting, because it generates its own prompts",
+      "Few-shot prompting, because it provides examples to GenAI for repetitive generation with a specific pattern",
+      "Prompt chaining, because it breaks the task into smaller steps",
+      "Zero-shot prompting, because it relies on the model's pre-existing knowledge"
     ],
     correctAnswer: 1,
-    explanation: "Retrieval-augmented prompting (RAG-based prompting) retrieves relevant context from a knowledge base and augments the prompt with it before sending to the LLM. This grounds test case generation in actual project data rather than relying solely on the model's training data."
+    explanation: "According to the syllabus, few-shot prompting is recommended for repetitive or specific/constrained output format tasks. It provides examples to GenAI for repetitive generation with a specific pattern, making it ideal for keyword-driven test scripts, Gherkin-style test cases, or test reporting with a specific output format."
   },
   {
     id: 6,

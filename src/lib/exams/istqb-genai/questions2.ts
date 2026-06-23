@@ -17,15 +17,15 @@ export const questions: ExamQuestion[] = [
   {
     id: 2,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is the key difference between supervised learning and unsupervised learning in the context of AI models used for testing?",
+    question: "Which type of AI uses a data-driven approach that requires data preparation, feature selection, and model training for tasks such as defect categorization and predicting software problems?",
     options: [
-      "Supervised learning uses labeled data, while unsupervised learning finds patterns in unlabeled data",
-      "Supervised learning is always more accurate than unsupervised learning",
-      "Unsupervised learning requires more computational resources",
-      "Supervised learning cannot be used for classification tasks"
+      "Symbolic AI",
+      "Classical machine learning",
+      "Deep learning",
+      "Generative AI"
     ],
-    correctAnswer: 0,
-    explanation: "Supervised learning trains models on labeled data (input-output pairs), while unsupervised learning finds hidden patterns in unlabeled data. In testing, supervised learning can classify defects, while unsupervised learning can cluster similar test cases."
+    correctAnswer: 1,
+    explanation: "Classical machine learning is a data-driven approach that requires data preparation, feature selection, and model training. It can be used for tasks such as defect categorization and predicting software problems. Unlike GenAI, it requires users to manually define features for the task at hand."
   },
   {
     id: 3,
@@ -56,15 +56,15 @@ export const questions: ExamQuestion[] = [
   {
     id: 5,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is Reinforcement Learning from Human Feedback (RLHF) primarily used for in LLM development?",
+    question: "Deep learning uses neural networks to automatically learn features from data. How does this differ from classical machine learning?",
     options: [
-      "To increase the model's training data volume",
-      "To align model outputs with human preferences and values",
-      "To reduce the model's context window size",
-      "To convert the model from text-only to multimodal"
+      "Deep learning requires manual feature definition, while classical ML does not",
+      "Deep learning can find patterns in very large and complex datasets without users manually defining features, while classical ML requires manual feature selection",
+      "Deep learning can only be used for image processing, not text",
+      "Deep learning does not require any data, while classical ML does"
     ],
     correctAnswer: 1,
-    explanation: "RLHF is used to align LLM outputs with human preferences and values. Human evaluators rate model outputs, and this feedback trains a reward model that guides the LLM toward producing more helpful, safe, and accurate responses."
+    explanation: "Deep learning uses neural networks to automatically learn features from data. It can find patterns in very large and complex datasets (images, video, audio, text) without the need for users to manually define features, though it may still require human involvement in data annotation, model tuning, or result validation. Classical machine learning requires manual feature selection."
   },
   {
     id: 6,
@@ -298,7 +298,7 @@ export const questions: ExamQuestion[] = [
       "Anonymizing and masking all personally identifiable information and financial data"
     ],
     correctAnswer: 3,
-    explanation: "Anonymizing and masking PII and financial data is the most critical step before sending data to a public LLM API. Financial data is subject to strict regulations (GDPR, PCI-DSS), and exposing it to third-party APIs could result in violations and data breaches."
+    explanation: "Anonymizing and masking PII and financial data is the most critical step before sending data to a public LLM API. Financial data is subject to strict regulations such as GDPR, and exposing it to third-party APIs could result in data privacy violations and security risks."
   },
   {
     id: 24,
@@ -527,15 +527,15 @@ export const questions2: ExamQuestion[] = [
   {
     id: 1,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following best describes transfer learning in the context of LLMs for testing?",
+    question: "Which of the following is an example of an LLM capability for test tasks, as described in the syllabus?",
     options: [
-      "Moving a model from one server to another",
-      "Transferring test data between different databases",
-      "Leveraging knowledge learned during pre-training on broad data and applying it to a specific testing task through fine-tuning",
-      "Copying a model's weights to a different architecture"
+      "Automatically deploying test environments to the cloud",
+      "Requirements analysis and improvement: identifying ambiguities, inconsistencies, or missing information in requirements",
+      "Replacing all human testers in a test organization",
+      "Manually executing test scripts on physical devices"
     ],
-    correctAnswer: 2,
-    explanation: "Transfer learning leverages knowledge from pre-training on broad data and applies it to specific testing tasks through fine-tuning. The model transfers general language understanding to domain-specific testing tasks, requiring less task-specific data than training from scratch."
+    correctAnswer: 1,
+    explanation: "Requirements analysis and improvement is a key LLM capability for test tasks. LLMs can help analyze requirements by identifying ambiguities, inconsistencies, or missing information, and can generate meaningful questions to help clarify requirements during discussions with stakeholders."
   },
   {
     id: 2,
@@ -704,7 +704,7 @@ export const questions2: ExamQuestion[] = [
       "The production data with PII may be stored, logged, or used by the API provider, violating privacy regulations"
     ],
     correctAnswer: 3,
-    explanation: "Sending PII to public LLM APIs risks the data being stored, logged, or used by the provider, potentially violating GDPR, HIPAA, and other privacy regulations. Data anonymization or using private/self-hosted models mitigates this risk."
+    explanation: "Sending PII to public LLM APIs risks the data being stored, logged, or used by the provider, potentially violating GDPR and other data privacy regulations. Data anonymization, pseudonymization, or using private/self-hosted models mitigates this risk."
   },
   {
     id: 15,

@@ -8,12 +8,14 @@ interface SectionDomainStats {
   domain: string;
   set1Count: number;
   set2Count: number;
+  set3Count?: number;
 }
 
 interface DomainSelectionProps {
   selectedDomain: string;
   sectionDomainStats: SectionDomainStats[];
   testSet: number;
+  maxTestSets: number;
   onSetDomain: (domain: string) => void;
   onSetTestSet: (set: number) => void;
   sectionStep: 'domain' | 'testset';
@@ -25,6 +27,7 @@ export function DomainSelection({
   selectedDomain,
   sectionDomainStats,
   testSet,
+  maxTestSets,
   onSetDomain,
   onSetTestSet,
   sectionStep,
@@ -43,6 +46,7 @@ export function DomainSelection({
 
   if (sectionStep === 'testset' && selectedDomain) {
     const selectedSectionStats = sectionDomainStats.find((s) => s.domain === selectedDomain);
+    const hasSet3 = maxTestSets >= 3;
     return (
       <div className="mb-8">
         <button
@@ -54,7 +58,7 @@ export function DomainSelection({
         </button>
         <h3 className={`font-semibold mb-2 ${theme.primaryLightText}`}>{selectedDomain}</h3>
         <p className={`${theme.bgTextSecondary} text-sm mb-4`}>Select Test Set</p>
-        <div className="grid grid-cols-2 gap-4">
+        <div className={`grid gap-4 ${hasSet3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
           <TestSetCard
             active={testSet === 1}
             onClick={() => onSetTestSet(1)}
@@ -69,6 +73,15 @@ export function DomainSelection({
             count={selectedSectionStats?.set2Count || 0}
             theme={theme}
           />
+          {hasSet3 && (
+            <TestSetCard
+              active={testSet === 3}
+              onClick={() => onSetTestSet(3)}
+              number={3}
+              count={selectedSectionStats?.set3Count || 0}
+              theme={theme}
+            />
+          )}
         </div>
       </div>
     );

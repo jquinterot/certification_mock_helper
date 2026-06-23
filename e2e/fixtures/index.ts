@@ -48,7 +48,9 @@ async function cleanHomePage(page: Page): Promise<void> {
 async function navigateToStartScreen(page: Page, categoryId: string, examId: string): Promise<void> {
   const categoryKey = categoryId === CATEGORIES.AWS ? 'aws' : 'istqb';
   await page.getByTestId(`category-card-${categoryKey === 'aws' ? 'aws-cloud' : 'istqb-testing'}`).click();
-  await expect(page.getByRole('heading', { name: categoryId })).toBeVisible();
+  // Use exact: true to avoid strict mode violation when exam card headings also
+  // contain the category name (e.g. "ISTQB Foundation Level" matches "ISTQB Testing").
+  await expect(page.getByRole('heading', { name: categoryId, exact: true })).toBeVisible();
   await page.getByTestId(`exam-card-${examId}`).click();
   await expect(page.getByTestId('start-exam-button')).toBeVisible();
 }
@@ -63,7 +65,9 @@ async function startExam(page: Page): Promise<void> {
 
 /**
  * Completes an exam by answering all questions with option 'a', submitting, and confirming.
- * Waits for the results screen to appear.
+ * Waits for the results screen to appear. Uses sequential navigation to keep the UI
+ * in sync — clicking each navigator item ensures the correct question is rendered
+ * before answering.
  */
 async function completeExam(page: Page): Promise<void> {
   const examScreen = new ExamScreenPage(page);
@@ -84,20 +88,30 @@ async function completeExam(page: Page): Promise<void> {
 
 /**
  * Full exam flow: navigate to start screen, start exam, complete it, and land on results.
+ * Uses ISTQB Foundation (40 questions) for speed — other tests already cover the
+ * AWS ML exam in detail. The fixture is purely for setup of downstream assertions.
  */
 async function completeFullExam(page: Page): Promise<void> {
-  await navigateToStartScreen(page, CATEGORIES.AWS, EXAM_IDS.AWS_ML);
+  await navigateToStartScreen(page, CATEGORIES.ISTQB, EXAM_IDS.ISTQB_FOUNDATION);
   await startExam(page);
   await completeExam(page);
 }
 
 /**
- * Navigate from results back to the start screen.
+ * Navigate from results back to the start screen. Defaults to ISTQB Foundation to
+ * match the exam that `completeFullExam` uses; override via `category` and `examId`
+ * when needed.
  */
-async function navigateBackToStartScreen(page: Page): Promise<void> {
+async function navigateBackToStartScreen(
+  page: Page,
+  category: string = CATEGORIES.ISTQB,
+  examId: string = EXAM_IDS.ISTQB_FOUNDATION
+): Promise<void> {
   await page.getByTestId('back-button').click();
-  await expect(page.getByTestId('category-card-aws-cloud')).toBeVisible();
-  await navigateToStartScreen(page, CATEGORIES.AWS, EXAM_IDS.AWS_ML);
+  const categoryCardId =
+    category === CATEGORIES.AWS ? 'category-card-aws-cloud' : 'category-card-istqb-testing';
+  await expect(page.getByTestId(categoryCardId)).toBeVisible();
+  await navigateToStartScreen(page, category, examId);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

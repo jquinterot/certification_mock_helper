@@ -164,6 +164,10 @@ test.describe('Exam Taking Flow', () => {
   });
 
   test('should complete exam and show results', async ({ page }) => {
+    // AWS ML has 65 questions which takes time to answer; allow extra time for the
+    // full setup, click loop, and submit-dialog -> results transition.
+    test.setTimeout(120_000);
+
     await test.step('Start exam', async () => {
       await page.getByTestId('start-exam-button').click();
       await expect(page.getByTestId('question-0')).toBeVisible();
@@ -184,7 +188,7 @@ test.describe('Exam Taking Flow', () => {
     });
 
     await test.step('Results screen is displayed', async () => {
-      await expect(page.getByTestId('results-pass-fail-badge')).toBeVisible({ timeout: 15000 });
+      await expect(page.getByTestId('results-pass-fail-badge')).toBeVisible({ timeout: 30000 });
     });
   });
 

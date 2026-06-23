@@ -176,28 +176,28 @@ export const questions2: ExamQuestion[] = [
   {
     id: 2,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following AI types involves training a model to maximize a reward signal through trial and error?",
+    question: "Which type of AI uses neural networks to automatically learn features from data without users manually defining features?",
     options: [
-      "Supervised learning",
-      "Unsupervised learning",
-      "Transfer learning",
-      "Reinforcement learning"
+      "Symbolic AI",
+      "Classical machine learning",
+      "Deep learning",
+      "Rule-based systems"
     ],
-    correctAnswer: 3,
-    explanation: "Reinforcement learning involves training an agent to maximize a reward signal through trial and error. This is used in RLHF (Reinforcement Learning from Human Feedback) to align LLM outputs with human preferences."
+    correctAnswer: 2,
+    explanation: "Deep learning uses neural networks to automatically learn features from data. It can find patterns in very large and complex datasets such as images, video, audio, or text, without the need for users to manually define features, though it may still require human involvement in data annotation, model tuning, or result validation."
   },
   {
     id: 3,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which technique is used to reduce the size of an LLM while maintaining performance?",
+    question: "Which of the following correctly describes what a 'token' is in the context of LLMs?",
     options: [
-      "Data augmentation",
-      "Feature engineering",
-      "Model quantization",
-      "Cross-validation"
+      "A security credential for accessing the LLM API",
+      "A smaller unit of text that the LLM processes, which can be as small as a character or as large as a sub-word or word",
+      "A type of neural network layer",
+      "A unit of measurement for the model's accuracy"
     ],
-    correctAnswer: 2,
-    explanation: "Model quantization reduces the precision of model weights (e.g., from 32-bit to 8-bit or 4-bit), significantly reducing model size and memory requirements while maintaining acceptable performance."
+    correctAnswer: 1,
+    explanation: "Tokenization is the process of breaking down text into smaller units called tokens. Tokens can be as small as a character or as large as a sub-word or word. When an LLM processes a sentence, it first tokenizes the input so that each token can be understood individually while maintaining the overall context."
   },
   {
     id: 4,
@@ -215,41 +215,41 @@ export const questions2: ExamQuestion[] = [
   {
     id: 5,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following is a generative AI model architecture primarily used for generating images from text descriptions?",
+    question: "Which of the following describes a key LLM capability for software testing related to test data?",
     options: [
-      "Diffusion Model",
-      "Transformer",
-      "Recurrent Neural Network (RNN)",
-      "Convolutional Neural Network (CNN)"
+      "LLMs can automatically deploy test environments",
+      "LLMs can generate datasets, set boundary values, and create different combinations of test data",
+      "LLMs can physically interact with devices under test",
+      "LLMs can replace all human judgment in test execution"
     ],
-    correctAnswer: 0,
-    explanation: "Diffusion Models are generative AI architectures primarily used for generating images from text descriptions. They work by gradually denoising random noise to create coherent images."
+    correctAnswer: 1,
+    explanation: "Test data generation is a key LLM capability. LLMs can generate datasets, set boundary values, and create different combinations of test data. They can also create representative, data privacy-preserving synthetic test data that resembles production data for functional and non-functional testing."
   },
   {
     id: 6,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is the purpose of model pruning in the context of LLMs for testing?",
+    question: "What is a key characteristic of LLMs that affects their use in software testing?",
     options: [
-      "To increase the model's training data",
-      "To add more layers to the model",
-      "To change the model's architecture",
-      "To remove unnecessary parameters and reduce model size without significant performance loss"
+      "LLMs always produce identical output for the same input",
+      "LLMs exhibit non-deterministic behavior due to the probabilistic nature of their inference mechanisms and hyper-parameter settings",
+      "LLMs can only process text in English",
+      "LLMs require manual feature engineering like classical machine learning"
     ],
-    correctAnswer: 3,
-    explanation: "Model pruning removes unnecessary or redundant parameters from a neural network. This reduces model size, memory footprint, and inference time while maintaining acceptable performance for testing tasks."
+    correctAnswer: 1,
+    explanation: "LLMs exhibit non-deterministic behavior primarily due to the probabilistic nature of their inference mechanisms and hyper-parameter settings. This inherent randomness can lead to variations in outputs even when the same input is provided multiple times, which is important to account for in testing."
   },
   {
     id: 7,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following best describes a Generative Adversarial Network (GAN)?",
+    question: "How do multimodal LLMs extend the capabilities of text-only LLMs for software testing?",
     options: [
-      "A single neural network that generates text",
-      "A transformer model with attention mechanism",
-      "Two neural networks (generator and discriminator) competing against each other",
-      "A database for storing training data"
+      "They replace the transformer architecture with a more efficient model",
+      "They can process multiple data types including text, images, sound, and video, enabling analysis of screenshots and GUI wireframes",
+      "They only generate images instead of text",
+      "They require less computational power than text-only LLMs"
     ],
-    correctAnswer: 2,
-    explanation: "A GAN consists of two neural networks: a generator that creates synthetic data and a discriminator that tries to distinguish real from generated data. They compete against each other, improving generation quality over time."
+    correctAnswer: 1,
+    explanation: "Multimodal LLMs extend the traditional transformer model to process multiple data modalities including text, images, sound, and video. In software testing, they can analyze visual elements like screenshots and GUI wireframes along with textual descriptions like defect reports, enabling richer test case generation."
   },
   {
     id: 8,
@@ -293,7 +293,7 @@ export const questions2: ExamQuestion[] = [
   {
     id: 11,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following is the 'AI spectrum' from least to most complex?",
+    question: "Which of the following correctly orders the AI spectrum from rule-based to content-generating?",
     options: [
       "Generative AI, Deep Learning, Classical ML, Symbolic AI",
       "Deep Learning, Classical ML, Symbolic AI, Generative AI",
@@ -301,7 +301,7 @@ export const questions2: ExamQuestion[] = [
       "Classical ML, Symbolic AI, Deep Learning, Generative AI"
     ],
     correctAnswer: 2,
-    explanation: "The AI spectrum progresses from Symbolic AI (rule-based), to Classical ML (statistical learning), to Deep Learning (neural networks), to Generative AI (creating new content). This progression represents increasing complexity and capability."
+    explanation: "The AI spectrum progresses from Symbolic AI (rule-based, using symbols and logical rules), to Classical ML (data-driven, requires feature selection and model training), to Deep Learning (neural networks that automatically learn features), and finally to Generative AI (uses deep learning to create new content by learning and mimicking patterns from training data)."
   },
   {
     id: 12,

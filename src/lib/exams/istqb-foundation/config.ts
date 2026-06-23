@@ -3,7 +3,7 @@ import type { ExamConfig } from '../types';
 export const examConfig: ExamConfig = {
   id: 'istqb-foundation',
   name: 'ISTQB Foundation Level',
-  shortName: 'Practice Exam (CTFL v4.0)',
+  shortName: 'Practice Exam (CTFL v4.0.1)',
   category: 'ISTQB Testing',
   description: 'ISTQB Certified Tester Foundation Level (CTFL v4.0)',
   questionCount: 40,

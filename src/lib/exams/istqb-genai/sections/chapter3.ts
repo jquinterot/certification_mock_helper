@@ -38,7 +38,7 @@ export const questions: ExamQuestion[] = [
       "The API will be too slow"
     ],
     correctAnswer: 2,
-    explanation: "Sending production test data containing PII or sensitive information to a public LLM API violates data privacy regulations (GDPR, HIPAA). This is a critical risk in regulated industries."
+    explanation: "Sending production test data containing PII or sensitive information to a public LLM API violates data privacy regulations such as GDPR. This is a critical risk, as GenAI tools may store and process sensitive data without explicit user consent or control."
   },
   {
     id: 4,
@@ -184,7 +184,7 @@ export const questions2: ExamQuestion[] = [
       "Potential violation of data privacy regulations"
     ],
     correctAnswer: 3,
-    explanation: "In regulated industries, sending sensitive data to external LLM APIs may violate data privacy regulations (GDPR, HIPAA). This requires data anonymization, use of private LLMs, or on-premise deployment."
+    explanation: "In regulated industries, sending sensitive data to external LLM APIs may violate data privacy regulations such as GDPR. This requires data anonymization, use of private LLMs, or on-premise deployment."
   },
   {
     id: 5,
@@ -245,11 +245,11 @@ export const questions2: ExamQuestion[] = [
     options: [
       "The model will generate too few test cases",
       "The test cases will be too complex",
-      "Sending protected health information (PHI) to an external LLM API violates HIPAA",
+      "Sending patient names and medical record numbers to an external LLM API risks unintentional data exposure and violates data privacy regulations like GDPR",
       "The model will run too slowly"
     ],
     correctAnswer: 2,
-    explanation: "Sending protected health information (PHI) to an external LLM API violates HIPAA and other privacy regulations. The tester must anonymize data, use a private LLM, or process data on-premise."
+    explanation: "Sending personally identifiable information such as patient names and medical record numbers to an external LLM API risks unintentional data exposure and violates data privacy regulations like GDPR. The tester must anonymize data, use a private LLM, or process data on-premise."
   },
   {
     id: 10,

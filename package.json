@@ -17,7 +17,17 @@
     "test:e2e:firefox": "PLAYWRIGHT_FORCE_ASYNC_LOADER=1 playwright test --project=firefox",
     "test:e2e:webkit": "PLAYWRIGHT_FORCE_ASYNC_LOADER=1 playwright test --project=webkit",
     "test:e2e:headed": "PLAYWRIGHT_FORCE_ASYNC_LOADER=1 playwright test --headed",
-    "test:e2e:debug": "playwright test --debug"
+    "test:e2e:debug": "playwright test --debug",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "vitest related --run"
+    ],
+    "*.{js,mjs,cjs,json,md,yml,yaml}": [
+      "eslint --fix"
+    ]
   },
   "dependencies": {
     "lucide-react": "^1.21.0",
@@ -38,7 +48,11 @@
     "@vitest/coverage-v8": "^2.1.9",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "eslint-plugin-no-secrets": "^2.3.3",
+    "eslint-plugin-security": "^4.0.1",
+    "husky": "^9.1.7",
     "jsdom": "^25.0.1",
+    "lint-staged": "^17.0.8",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^2.1.9"

@@ -1,12 +1,13 @@
 'use client';
 
-import { Award, ChevronRight, Sun, Moon } from 'lucide-react';
+import { Award, ChevronRight } from 'lucide-react';
 import { allExams } from '@/lib/exams';
 import { getCategoryTheme, getIcon } from '@/lib/constants/ui';
 import { useApp } from '@/contexts/AppContext';
+import { ThemeToggle } from './ThemeToggle';
 
 export function HomePage() {
-  const { handleSelectCategory, theme, themeMode, toggleThemeMode } = useApp();
+  const { handleSelectCategory, theme } = useApp();
 
   const categories = [
     { name: 'AWS Cloud', description: 'Amazon Web Services certifications for cloud professionals', icon: 'Cloud' },
@@ -36,14 +37,7 @@ export function HomePage() {
 
         {/* Theme Toggle */}
         <div className="flex justify-center mb-8">
-          <button
-            onClick={toggleThemeMode}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
-            data-test-id="theme-toggle"
-          >
-            {themeMode === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            <span className="text-sm font-medium">{themeMode === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-          </button>
+          <ThemeToggle theme={theme} size="md" label="long" />
         </div>
 
         {/* Category Cards */}

@@ -8,6 +8,12 @@ export const formatTime = (seconds: number): string => {
   return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 };
 
+export const formatRemainingTime = (seconds: number): string => {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+};
+
 export const formatDate = (timestamp: number): string => {
   return new Date(timestamp).toLocaleString('en-US', {
     month: 'short',
@@ -17,16 +23,12 @@ export const formatDate = (timestamp: number): string => {
   });
 };
 
-export const isCorrectAnswer = (
-  answer: number | number[] | undefined,
-  correctAnswer: number | number[]
-): boolean => {
-  if (Array.isArray(correctAnswer)) {
-    if (!Array.isArray(answer)) return false;
-    if (correctAnswer.length !== answer.length) return false;
-    return correctAnswer.every((c) => answer.includes(c));
-  }
-  return answer === correctAnswer;
+export const formatLongDate = (timestamp: number): string => {
+  return new Date(timestamp).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
 };
 
 export const getDomainScores = (
@@ -66,3 +68,12 @@ export const getActiveQuestions = (
   }
   return questions;
 };
+
+/**
+ * Generates a short, unique-enough ID for local persistence (saved tests,
+ * exam attempts). Combines a timestamp with a random base-36 suffix to
+ * avoid collisions when multiple records are created in the same millisecond.
+ */
+export function generateLocalId(): string {
+  return `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+}

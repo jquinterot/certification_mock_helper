@@ -2,45 +2,77 @@ import { useCallback } from 'react';
 import type { UseExamStateReturn } from './useExamState';
 import type { ExamRuntimeConfig } from '@/types';
 
-export function useExamActions(state: UseExamStateReturn) {
-  const { activeQuestions, setPhase, setCurrentQuestion, setAnswers, setShowExplanation, setFlaggedQuestions, setShowResults, setConfig, configRef } = state;
+const DEFAULT_CONFIG: ExamRuntimeConfig = { mode: 'full', selectedDomain: '', testSet: 1 };
 
-  const start = useCallback((newConfig: ExamRuntimeConfig) => {
-    setConfig(newConfig);
-    configRef.current = newConfig;
-    setPhase('exam');
+export function useExamActions(state: UseExamStateReturn) {
+  const {
+    activeQuestions,
+    setPhase,
+    setCurrentQuestion,
+    setAnswers,
+    setShowExplanation,
+    setFlaggedQuestions,
+    setShowResults,
+    setConfig,
+    configRef,
+  } = state;
+
+  const applyConfig = useCallback(
+    (newConfig: ExamRuntimeConfig) => {
+      setConfig(newConfig);
+      configRef.current = newConfig;
+    },
+    [setConfig, configRef]
+  );
+
+  const resetTransientState = useCallback(() => {
     setCurrentQuestion(0);
     setAnswers({});
     setShowExplanation({});
     setFlaggedQuestions(new Set());
     setShowResults(false);
-  }, [setConfig, configRef, setPhase, setCurrentQuestion, setAnswers, setShowExplanation, setFlaggedQuestions, setShowResults]);
+  }, [setCurrentQuestion, setAnswers, setShowExplanation, setFlaggedQuestions, setShowResults]);
 
-  const resume = useCallback((
-    newConfig: ExamRuntimeConfig,
-    newCurrentQuestion: number,
-    newAnswers: Record<number, number | number[]>,
-    newFlaggedQuestions: number[]
-  ) => {
-    setConfig(newConfig);
-    configRef.current = newConfig;
-    setPhase('exam');
-    setCurrentQuestion(newCurrentQuestion);
-    setAnswers(newAnswers);
-    setShowExplanation({});
-    setFlaggedQuestions(new Set(newFlaggedQuestions));
-    setShowResults(false);
-  }, [setConfig, configRef, setPhase, setCurrentQuestion, setAnswers, setShowExplanation, setFlaggedQuestions, setShowResults]);
+  const start = useCallback(
+    (newConfig: ExamRuntimeConfig) => {
+      applyConfig(newConfig);
+      resetTransientState();
+      setPhase('exam');
+    },
+    [applyConfig, resetTransientState, setPhase]
+  );
+
+  const resume = useCallback(
+    (
+      newConfig: ExamRuntimeConfig,
+      newCurrentQuestion: number,
+      newAnswers: Record<number, number | number[]>,
+      newFlaggedQuestions: number[]
+    ) => {
+      applyConfig(newConfig);
+      setCurrentQuestion(newCurrentQuestion);
+      setAnswers(newAnswers);
+      setShowExplanation({});
+      setFlaggedQuestions(new Set(newFlaggedQuestions));
+      setShowResults(false);
+      setPhase('exam');
+    },
+    [
+      applyConfig,
+      setCurrentQuestion,
+      setAnswers,
+      setShowExplanation,
+      setFlaggedQuestions,
+      setShowResults,
+      setPhase,
+    ]
+  );
 
   const reset = useCallback(() => {
     setPhase('idle');
-    setCurrentQuestion(0);
-    setAnswers({});
-    setShowExplanation({});
-    setFlaggedQuestions(new Set());
-    setShowResults(false);
-    setConfig({ mode: 'full', selectedDomain: '', testSet: 1 });
-  }, [setPhase, setCurrentQuestion, setAnswers, setShowExplanation, setFlaggedQuestions, setShowResults, setConfig]);
+    resetTransientState();
+    setConfig(DEFAULT_CONFIG);
+  }, [setPhase, resetTransientState, setConfig]);
 
   const submit = useCallback(() => {
     setPhase('results');

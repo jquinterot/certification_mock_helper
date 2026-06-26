@@ -9,9 +9,11 @@ import { getExamConfig } from '@/lib/exams';
 import { getTheme } from '@/lib/theme';
 import { getExamHistorySummary, getWeaknessAnalysis, deleteAttempt } from '@/lib/study-history';
 import { shuffleQuestions } from '@/lib/questions/shuffle';
+import { calculateExamDuration } from '@/lib/exam-duration';
+import { generateLocalId } from '@/lib/utils';
 
 function generateSessionSeed(): number {
-  return Math.floor(Math.random() * 1000000);
+  return Math.floor(Math.random() * 1_000_000);
 }
 
 export function useAppState() {
@@ -123,11 +125,14 @@ export function useAppState() {
     exam.start(config);
     timer.reset();
     timer.start();
-    const totalSeconds = (selectedExamConfig?.durationMinutes ?? 60) * 60;
-    const duration = examMode === 'section' && selectedExamConfig
-      ? Math.max(900, Math.round(totalSeconds * questions.length / selectedExamConfig.questionCount))
-      : totalSeconds;
-    setExamDuration(duration);
+    setExamDuration(
+      calculateExamDuration(
+        examMode,
+        selectedExamConfig?.durationMinutes ?? 60,
+        selectedExamConfig?.questionCount ?? 0,
+        questions.length
+      )
+    );
     setPhase('exam');
   }, [exam, timer, examMode, selectedDomain, selectedTestSet, selectedExamConfig, questions.length]);
 
@@ -166,11 +171,14 @@ export function useAppState() {
       timer.set(savedTest.timer);
       timer.start();
       autoSubmittedRef.current = false;
-      const totalSeconds = (selectedExamConfig?.durationMinutes ?? 60) * 60;
-      const duration = savedTest.mode === 'section' && selectedExamConfig
-        ? Math.max(900, Math.round(totalSeconds * savedTest.questionCount / selectedExamConfig.questionCount))
-        : totalSeconds;
-      setExamDuration(duration);
+      setExamDuration(
+        calculateExamDuration(
+          savedTest.mode,
+          selectedExamConfig?.durationMinutes ?? 60,
+          selectedExamConfig?.questionCount ?? 0,
+          savedTest.questionCount
+        )
+      );
       setPhase('exam');
     }
   }, [exam, timer, selectedExamConfig]);
@@ -188,7 +196,7 @@ export function useAppState() {
       setCurrentSavedTestId(null);
     }
     const savedTest = {
-      id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+      id: generateLocalId(),
       examId: selectedExamId,
       timestamp: Date.now(),
       mode: exam.config.mode,
@@ -209,7 +217,7 @@ export function useAppState() {
 
   const handleSave = useCallback(() => {
     const savedTest = {
-      id: `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+      id: generateLocalId(),
       examId: selectedExamId,
       timestamp: Date.now(),
       mode: exam.config.mode,

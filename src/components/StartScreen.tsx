@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { BookOpen, History, TrendingUp, AlertTriangle, Sun, Moon } from 'lucide-react';
+import { BookOpen, History, TrendingUp, AlertTriangle } from 'lucide-react';
 import type { ExamMode } from '@/types';
 import { useApp } from '@/contexts/AppContext';
+import { ThemeToggle } from './ThemeToggle';
 import {
   SavedTestList,
   ModeSelection,
@@ -23,8 +24,6 @@ export function StartScreen() {
     totalQuestions,
     maxTestSets,
     theme,
-    themeMode,
-    toggleThemeMode,
     examHistory,
     weaknessAnalysis,
     handleResumeTest,
@@ -79,14 +78,7 @@ export function StartScreen() {
 
         {/* Theme Toggle */}
         <div className="flex justify-end mb-4">
-          <button
-            onClick={toggleThemeMode}
-            className={`flex items-center gap-2 px-3 py-2 rounded-lg ${theme.bgButton} ${theme.borderColor} border transition-all hover:scale-105`}
-            data-test-id="theme-toggle"
-          >
-            {themeMode === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            <span className="text-xs font-medium">{themeMode === 'dark' ? 'Light' : 'Dark'}</span>
-          </button>
+          <ThemeToggle theme={theme} size="sm" />
         </div>
 
         <div className="text-center mb-8">

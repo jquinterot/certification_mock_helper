@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 import { StickyNote, ChevronDown, ChevronUp } from 'lucide-react';
 import type { Theme } from '@/lib/theme';
-import { useNotes } from '@/hooks/useNotes';
+import { useNotes } from '@/hooks';
 
 interface QuestionNotesProps {
   noteKey: string;

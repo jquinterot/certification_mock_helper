@@ -1,4 +1,5 @@
 import type { ExamQuestion, ShuffledQuestion } from '@/types';
+import { isCorrectAnswer } from './check';
 
 function seededRandom(seed: number): () => number {
   let state = seed;
@@ -49,13 +50,5 @@ export function checkAnswer(
   question: ShuffledQuestion,
   selectedIndex: number | number[]
 ): boolean {
-  if (Array.isArray(question.shuffledCorrectIndex)) {
-    if (!Array.isArray(selectedIndex)) return false;
-    const sortedSelected = [...selectedIndex].sort();
-    const sortedCorrect = [...question.shuffledCorrectIndex].sort();
-    return sortedSelected.length === sortedCorrect.length &&
-      sortedSelected.every((v, i) => v === sortedCorrect[i]);
-  }
-
-  return selectedIndex === question.shuffledCorrectIndex;
+  return isCorrectAnswer(selectedIndex, question.shuffledCorrectIndex);
 }

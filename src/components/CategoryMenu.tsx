@@ -1,12 +1,13 @@
 'use client';
 
-import { ArrowRight, Clock, FileText, Sun, Moon } from 'lucide-react';
+import { ArrowRight, Clock, FileText } from 'lucide-react';
 import { getCategoryTheme, getIcon } from '@/lib/constants/ui';
 import { getExamsByCategory } from '@/lib/exams';
 import { useApp } from '@/contexts/AppContext';
+import { ThemeToggle } from './ThemeToggle';
 
 export function CategoryMenu() {
-  const { selectedCategory, handleSelectExam, handleBackToHome, theme, themeMode, toggleThemeMode } = useApp();
+  const { selectedCategory, handleSelectExam, handleBackToHome, theme } = useApp();
   const exams = getExamsByCategory(selectedCategory);
   const colors = getCategoryTheme(selectedCategory);
 
@@ -32,14 +33,7 @@ export function CategoryMenu() {
 
         {/* Theme Toggle */}
         <div className="flex justify-center mb-8">
-          <button
-            onClick={toggleThemeMode}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
-            data-test-id="theme-toggle"
-          >
-            {themeMode === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            <span className="text-sm font-medium">{themeMode === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-          </button>
+          <ThemeToggle theme={theme} size="md" label="long" />
         </div>
 
         {/* Exam Cards */}

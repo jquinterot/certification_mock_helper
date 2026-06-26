@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Flag, Eye, EyeOff, CheckCircle2, Sun, Moon, Clock } from 'lucide-react';
 import { QuestionCard } from './QuestionCard';
 import { QuestionNavigator } from './QuestionNavigator';
 import { checkAnswer } from '@/lib/questions/shuffle';
-import { formatTime } from '@/lib/utils';
+import { formatTime, formatRemainingTime } from '@/lib/utils';
 import { useApp } from '@/contexts/AppContext';
+import { useGlobalKeydown, isTypingInForm } from '@/hooks/useKeyboardShortcuts';
 
 export function ExamScreen() {
   const {
@@ -48,16 +48,9 @@ export function ExamScreen() {
   const isLowTime = remainingTime !== null && remainingTime < 600;
   const isCriticalTime = remainingTime !== null && remainingTime < 300;
 
-  const formatRemaining = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-  };
-
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+  useGlobalKeydown((e) => {
     if (showResults) return;
-    const target = e.target as HTMLElement;
-    if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
+    if (isTypingInForm(e.target)) return;
 
     switch (e.key.toLowerCase()) {
       case 'n':
@@ -78,12 +71,7 @@ export function ExamScreen() {
           if (idx < activeQuestions.length) goToQuestion(idx);
         }
     }
-  }, [showResults, isLast, isFirst, goToNext, goToPrevious, toggleFlag, currentQuestion, toggleExplanation, activeQuestions.length, goToQuestion]);
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown]);
+  });
 
   const timerColor = isCriticalTime ? 'text-red-500' : isLowTime ? 'text-yellow-400' : theme.primaryLightText;
   const timerBg = isCriticalTime ? 'bg-red-500/10' : isLowTime ? 'bg-yellow-500/10' : '';
@@ -160,7 +148,7 @@ export function ExamScreen() {
               >
                 <Clock className={`w-4 h-4 ${timerColor}`} aria-hidden="true" />
                 <span className={`font-mono font-semibold ${timerColor}`}>
-                  {remainingTime !== null ? formatRemaining(remainingTime) : formatTime(timer.timer)}
+                  {remainingTime !== null ? formatRemainingTime(remainingTime) : formatTime(timer.timer)}
                 </span>
                 {remainingTime !== null && (
                   <span className={`hidden sm:inline ${timerColor}`}>

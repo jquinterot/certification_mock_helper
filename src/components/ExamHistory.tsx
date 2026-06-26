@@ -1,9 +1,10 @@
 'use client';
 
-import { History, TrendingUp, AlertTriangle, Trash2, Target, Sun, Moon, ExternalLink } from 'lucide-react';
-import { formatTime } from '@/lib/utils';
+import { History, TrendingUp, AlertTriangle, Trash2, Target, ExternalLink } from 'lucide-react';
+import { formatTime, formatDate } from '@/lib/utils';
 import { useApp } from '@/contexts/AppContext';
 import { getStudyResources } from '@/lib/study-resources';
+import { ThemeToggle } from './ThemeToggle';
 
 export function ExamHistory() {
   const {
@@ -12,8 +13,6 @@ export function ExamHistory() {
     examHistory,
     weaknessAnalysis,
     theme,
-    themeMode,
-    toggleThemeMode,
     handleBackFromHistory,
     handleStudyDomain,
     handleDeleteAttempt,
@@ -24,16 +23,6 @@ export function ExamHistory() {
 
   const handleDelete = (attemptId: string) => {
     handleDeleteAttempt(attemptId);
-  };
-
-  const formatDate = (timestamp: number) => {
-    return new Date(timestamp).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
   };
 
   const bestScore = attempts.length > 0 ? Math.max(...attempts.map(a => a.percentage)) : 0;
@@ -53,14 +42,7 @@ export function ExamHistory() {
             Back to Home
           </button>
           <h1 className="text-xl font-bold">{examName} - History</h1>
-          <button
-            onClick={toggleThemeMode}
-            className={`flex items-center gap-2 px-3 py-2 rounded-lg ${theme.bgCard} ${theme.borderColor} border transition-all hover:scale-105`}
-            data-test-id="theme-toggle"
-          >
-            {themeMode === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            <span className="text-xs font-medium">{themeMode === 'dark' ? 'Light' : 'Dark'}</span>
-          </button>
+          <ThemeToggle theme={theme} size="sm" />
         </div>
 
         {attempts.length === 0 ? (

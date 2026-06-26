@@ -17,3 +17,11 @@ export function calculateExamDuration(
   }
   return totalSeconds;
 }
+
+/**
+ * Generates a numeric seed used to shuffle questions consistently within a
+ * session. The seed is a positive integer derived from a random number.
+ */
+export function generateSessionSeed(): number {
+  return Math.floor(Math.random() * 1_000_000);
+}

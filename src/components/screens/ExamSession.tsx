@@ -11,8 +11,8 @@ export function ExamSession() {
     theme,
     showExitDialog,
     showSubmitDialog,
-    setShowExitDialog,
-    setShowSubmitDialog,
+    closeExitDialog,
+    closeSubmitDialog,
     handleSave,
     handleLeave,
     handleConfirmSubmit,
@@ -29,7 +29,7 @@ export function ExamSession() {
         flaggedCount={exam.flaggedCount}
         onSave={handleSave}
         onLeave={handleLeave}
-        onCancel={() => setShowExitDialog(false)}
+        onCancel={closeExitDialog}
         theme={theme}
       />
 
@@ -39,7 +39,7 @@ export function ExamSession() {
         totalCount={exam.activeQuestions.length}
         flaggedCount={exam.flaggedCount}
         onConfirm={handleConfirmSubmit}
-        onCancel={() => setShowSubmitDialog(false)}
+        onCancel={closeSubmitDialog}
         theme={theme}
       />
     </>

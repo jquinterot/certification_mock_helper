@@ -7,6 +7,7 @@ import { checkAnswer } from '@/lib/questions/shuffle';
 import { formatTime, formatRemainingTime } from '@/lib/utils';
 import { useApp } from '@/contexts/AppContext';
 import { useGlobalKeydown, isTypingInForm } from '@/hooks/useKeyboardShortcuts';
+import { useTimerUrgency } from '@/hooks/useTimerUrgency';
 
 export function ExamScreen() {
   const {
@@ -44,9 +45,7 @@ export function ExamScreen() {
   const isFirst = currentQuestion === 0;
   const isLast = currentQuestion === activeQuestions.length - 1;
 
-  const remainingTime = examDuration > 0 ? Math.max(0, examDuration - timer.timer) : null;
-  const isLowTime = remainingTime !== null && remainingTime < 600;
-  const isCriticalTime = remainingTime !== null && remainingTime < 300;
+  const { remainingTime, isLowTime, isCriticalTime } = useTimerUrgency(examDuration, timer.timer);
 
   useGlobalKeydown((e) => {
     if (showResults) return;

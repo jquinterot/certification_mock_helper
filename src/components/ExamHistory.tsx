@@ -2,6 +2,7 @@
 
 import { History, TrendingUp, AlertTriangle, Trash2, Target, ExternalLink } from 'lucide-react';
 import { formatTime, formatDate } from '@/lib/utils';
+import { PASSING_SCORE } from '@/lib/constants';
 import { useApp } from '@/contexts/AppContext';
 import { getStudyResources } from '@/lib/study-resources';
 import { ThemeToggle } from './ThemeToggle';
@@ -20,10 +21,6 @@ export function ExamHistory() {
 
   const attempts = examHistory?.attempts || [];
   const examName = selectedExamConfig!.name;
-
-  const handleDelete = (attemptId: string) => {
-    handleDeleteAttempt(attemptId);
-  };
 
   const bestScore = attempts.length > 0 ? Math.max(...attempts.map(a => a.percentage)) : 0;
   const avgScore = attempts.length > 0
@@ -86,7 +83,7 @@ export function ExamHistory() {
                         <div className="w-full flex items-end" style={{ height: '120px' }}>
                           <div
                             className={`w-full rounded-t-md transition-all hover:opacity-80 ${
-                              attempt.percentage >= 72
+                              attempt.percentage >= PASSING_SCORE
                                 ? 'bg-green-500'
                                 : 'bg-red-500'
                             }`}
@@ -100,14 +97,14 @@ export function ExamHistory() {
                   })}
                 </div>
                 <div className="flex items-center justify-center gap-4 mt-3 text-xs text-slate-500">
-                  <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 rounded bg-green-500" />
-                    <span>Pass (&ge;72%)</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 rounded bg-red-500" />
-                    <span>Fail (&lt;72%)</span>
-                  </div>
+                <div className="flex items-center gap-1">
+                  <div className="w-3 h-3 rounded bg-green-500" />
+                  <span>Pass (&ge;{PASSING_SCORE}%)</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="w-3 h-3 rounded bg-red-500" />
+                  <span>Fail (&lt;{PASSING_SCORE}%)</span>
+                </div>
                 </div>
               </div>
             )}
@@ -208,7 +205,7 @@ export function ExamHistory() {
                           {attempt.passed ? 'Pass' : 'Fail'}
                         </span>
                         <button
-                          onClick={() => handleDelete(attempt.id)}
+                          onClick={() => handleDeleteAttempt(attempt.id)}
                           className="text-slate-400 hover:text-red-400 transition-colors p-1"
                           title="Delete attempt"
                           data-test-id={`delete-attempt-${attempt.id}`}

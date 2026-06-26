@@ -5,8 +5,17 @@ export { useAppState } from './useAppState';
 export type { ExamState } from './useExam';
 
 export { useTimer } from './useTimer';
+export { useTimerUrgency, LOW_TIME_THRESHOLD_SECONDS, CRITICAL_TIME_THRESHOLD_SECONDS } from './useTimerUrgency';
+export { useTimerAutoSubmit } from './useTimerAutoSubmit';
 export { useLocalStorage } from './useLocalStorage';
 export { useSavedTests } from './useSavedTests';
 export { useNotes } from './useNotes';
 export { useSubmitResults } from './useSubmitResults';
 export { useGlobalKeydown, isTypingInForm } from './useKeyboardShortcuts';
+export { useThemeMode } from './useThemeMode';
+export type { ThemeMode } from './useThemeMode';
+export { useDialogState } from './useDialogState';
+export type { DialogState } from './useDialogState';
+export { useExamSelection } from './useExamSelection';
+export type { UseExamSelectionResult } from './useExamSelection';
+export { useStudyHistoryRefresh } from './useStudyHistoryRefresh';

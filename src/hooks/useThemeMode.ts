@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useMemo } from 'react';
 import { getTheme } from '@/lib/theme';
-import type { Theme } from '@/lib/theme';
 
 export type ThemeMode = 'light' | 'dark';
 

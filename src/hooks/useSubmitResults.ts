@@ -5,6 +5,7 @@ import type { ExamAttempt, DomainScore, ShuffledQuestion } from '@/types';
 import { isCorrectAnswer } from '@/lib/questions/check';
 import { saveAttempt, updateQuestionAnalytics } from '@/lib/study-history';
 import { generateLocalId } from '@/lib/utils';
+import { logger } from '@/lib/logger';
 
 interface UseSubmitResultsOptions {
   selectedExamId: string;
@@ -60,6 +61,17 @@ export function useSubmitResults(options: UseSubmitResultsOptions): number {
     options.questions.forEach((q) => {
       const userAnswer = options.answers[q.id];
       updateQuestionAnalytics(q.id, options.selectedExamId, isCorrectAnswer(userAnswer, q.correctAnswer));
+    });
+
+    logger.info('Exam submitted', {
+      examId: options.selectedExamId,
+      testSet: options.config.testSet,
+      mode: options.config.mode,
+      score: options.score.correct,
+      totalQuestions: options.score.total,
+      percentage: options.score.percentage,
+      passed: options.passed,
+      timeElapsed: options.timeElapsed,
     });
   }, [options]);
 

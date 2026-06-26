@@ -1,11 +1,16 @@
 import { useState, useCallback } from 'react';
+import { logger } from '@/lib/logger';
 
 function getInitialValue<T>(key: string, initialValue: T): T {
   if (typeof window === 'undefined') return initialValue;
   try {
     const item = window.localStorage.getItem(key);
     return item ? JSON.parse(item) : initialValue;
-  } catch {
+  } catch (error) {
+    logger.warn('Failed to parse localStorage value, falling back to default', {
+      key,
+      error: error instanceof Error ? error.message : String(error),
+    });
     return initialValue;
   }
 }
@@ -22,7 +27,11 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T 
           return newValue;
         });
       } catch (error) {
-        console.error(`Error setting localStorage key "${key}":`, error);
+        logger.error(
+          'Failed to write localStorage value',
+          { key },
+          error instanceof Error ? error : new Error(String(error))
+        );
       }
     },
     [key]

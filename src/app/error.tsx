@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { logger } from '@/lib/logger';
 
 interface ErrorPageProps {
   error: Error & { digest?: string };
@@ -9,7 +10,7 @@ interface ErrorPageProps {
 
 export default function ErrorPage({ error, reset }: ErrorPageProps) {
   useEffect(() => {
-    console.error('Next.js error boundary:', error);
+    logger.error('Next.js route error boundary', { digest: error?.digest }, error);
   }, [error]);
 
   return (

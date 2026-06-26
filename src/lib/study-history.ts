@@ -1,6 +1,7 @@
 'use client';
 
 import type { ExamAttempt, ExamHistory, QuestionAnalytics, WeaknessAnalysis } from '@/types';
+import { logger } from './logger';
 
 const ATTEMPTS_KEY_PREFIX = 'exam-attempts-';
 const QUESTION_ANALYTICS_KEY = 'question-analytics';
@@ -13,11 +14,28 @@ function getAttemptsKey(examId: string): string {
 function getAllAttempts(examId: string): ExamAttempt[] {
   if (typeof window === 'undefined') return [];
   const stored = localStorage.getItem(getAttemptsKey(examId));
-  return stored ? JSON.parse(stored) : [];
+  if (!stored) return [];
+  try {
+    return JSON.parse(stored);
+  } catch (error) {
+    logger.warn('Failed to parse exam attempts from localStorage, returning empty', {
+      examId,
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return [];
+  }
 }
 
 function saveAllAttempts(examId: string, attempts: ExamAttempt[]): void {
-  localStorage.setItem(getAttemptsKey(examId), JSON.stringify(attempts));
+  try {
+    localStorage.setItem(getAttemptsKey(examId), JSON.stringify(attempts));
+  } catch (error) {
+    logger.error(
+      'Failed to persist exam attempts',
+      { examId, count: attempts.length },
+      error instanceof Error ? error : new Error(String(error))
+    );
+  }
 }
 
 export function saveAttempt(attempt: ExamAttempt): void {
@@ -89,7 +107,16 @@ export function getWeaknessAnalysis(examId: string): WeaknessAnalysis | null {
 export function getQuestionAnalytics(questionId: number, examId: string): QuestionAnalytics | null {
   if (typeof window === 'undefined') return null;
   const stored = localStorage.getItem(QUESTION_ANALYTICS_KEY);
-  const allAnalytics: Record<string, QuestionAnalytics> = stored ? JSON.parse(stored) : {};
+  let allAnalytics: Record<string, QuestionAnalytics> = {};
+  if (stored) {
+    try {
+      allAnalytics = JSON.parse(stored);
+    } catch (error) {
+      logger.warn('Failed to parse question analytics from localStorage', {
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
   const key = `${examId}-${questionId}`;
   return allAnalytics[key] || null;
 }
@@ -97,11 +124,27 @@ export function getQuestionAnalytics(questionId: number, examId: string): Questi
 function getAllQuestionAnalytics(): Record<string, QuestionAnalytics> {
   if (typeof window === 'undefined') return {};
   const stored = localStorage.getItem(QUESTION_ANALYTICS_KEY);
-  return stored ? JSON.parse(stored) : {};
+  if (!stored) return {};
+  try {
+    return JSON.parse(stored);
+  } catch (error) {
+    logger.warn('Failed to parse question analytics from localStorage, returning empty', {
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return {};
+  }
 }
 
 function saveAllQuestionAnalytics(analytics: Record<string, QuestionAnalytics>): void {
-  localStorage.setItem(QUESTION_ANALYTICS_KEY, JSON.stringify(analytics));
+  try {
+    localStorage.setItem(QUESTION_ANALYTICS_KEY, JSON.stringify(analytics));
+  } catch (error) {
+    logger.error(
+      'Failed to persist question analytics',
+      { count: Object.keys(analytics).length },
+      error instanceof Error ? error : new Error(String(error))
+    );
+  }
 }
 
 export function updateQuestionAnalytics(questionId: number, examId: string, correct: boolean): void {

@@ -164,5 +164,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-merged-report
-        path: ./all-reports
-        retention-days: 7
+          path: ./all-reports
+          retention-days: 7

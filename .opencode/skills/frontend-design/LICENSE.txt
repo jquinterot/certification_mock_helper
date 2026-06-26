@@ -1,0 +1,23 @@
+Anthropic Skills License
+============================
+
+This skill is derived from the Anthropic Skills project:
+https://github.com/anthropics/skills
+
+The full license terms are available at:
+https://github.com/anthropics/skills/blob/main/skills/frontend-design/LICENSE.txt
+
+In summary, the Anthropic Skills are provided for demonstration and
+educational purposes. Many skills are open source (Apache 2.0). The
+upstream README states:
+
+"These skills are provided for demonstration and educational purposes
+only. While some of these capabilities may be available in Claude, the
+implementations and behaviors you receive from Claude may differ from
+what is shown in these skills. These skills are meant to illustrate
+patterns and possibilities. Always test skills thoroughly in your own
+environment before relying on them for critical tasks."
+
+This local copy preserves the original skill content unchanged and is
+used here as a design-quality reference for the
+certification-mock-helper project.

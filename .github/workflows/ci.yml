@@ -80,18 +80,17 @@ jobs:
           retention-days: 7
 
   e2e-tests:
-    name: E2E Tests (shard ${{ matrix.shard }})
+    # Cross-browser matrix: one job per browser. With fullyParallel: true
+    # in playwright.config.ts, tests within a project run in parallel.
+    # Total: 3 jobs × 33 tests = 99 tests across chromium / firefox / webkit.
+    name: E2E Tests (${{ matrix.project }})
     needs: [lint, build, unit-tests]
     timeout-minutes: 30
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - shard: "1/2"
-            artifact_suffix: "1-of-2"
-          - shard: "2/2"
-            artifact_suffix: "2-of-2"
+        project: [chromium, firefox, webkit]
     container:
       image: mcr.microsoft.com/playwright:v1.61.0-jammy
     steps:
@@ -110,14 +109,14 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
-      - name: Run Playwright tests
-        run: PLAYWRIGHT_FORCE_ASYNC_LOADER=1 npx playwright test --shard=${{ matrix.shard }}
+      - name: Run Playwright tests (${{ matrix.project }})
+        run: PLAYWRIGHT_FORCE_ASYNC_LOADER=1 npx playwright test --project=${{ matrix.project }}
 
       - name: Upload blob report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-blob-report-${{ matrix.artifact_suffix }}
+          name: playwright-blob-report-${{ matrix.project }}
           path: blob-report/
           retention-days: 7
 
@@ -125,7 +124,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-screenshots-${{ matrix.artifact_suffix }}
+          name: playwright-screenshots-${{ matrix.project }}
           path: test-results/
           retention-days: 7
 
@@ -133,7 +132,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-traces-${{ matrix.artifact_suffix }}
+          name: playwright-traces-${{ matrix.project }}
           path: .playwright-traces/
           retention-days: 7
 

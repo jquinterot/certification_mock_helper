@@ -9,7 +9,10 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : 3,
+  // In CI each project is its own job (3 jobs, one per browser), so we
+  // can use 2 workers per project to parallelize the 33 tests within a
+  // browser. Locally, 3 workers for the active project.
+  workers: process.env.CI ? 2 : 3,
   reporter: process.env.CI
     ? [
         ['list'],
@@ -32,6 +35,14 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
     },
   ],
   webServer: {

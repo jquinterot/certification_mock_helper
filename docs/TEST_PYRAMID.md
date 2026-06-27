@@ -15,7 +15,7 @@
 | **Performance** (Lighthouse / Web Vitals) | 0 | ~30s | Low | **Missing** |
 | **Mutation** (Stryker) | 0 | ~3 min | Medium | **Missing** |
 | **Property-based** (fast-check) | 0 | <2s | Low | **Missing** |
-| **Cross-browser** (Firefox, WebKit) | 0 (config exists) | ~2x of chromium | Medium | **Configured but unused** |
+| **Cross-browser** (Firefox, WebKit) | 99 / 3 projects | ~2x of chromium | Medium | **Enabled** (chromium, firefox, webkit) |
 
 ## What the project has today
 
@@ -196,10 +196,13 @@ roundtrips** and **hook composition**. Examples that should exist:
      untested.
 
 10. **Cross-browser E2E** (Firefox, WebKit)
-    - Add to CI matrix. The config already exists; the
-      `test:e2e:firefox` and `test:e2e:webkit` scripts are
-      ready. Just need to add the project entries and a CI
-      matrix.
+    - **DONE 2026-06-27.** Playwright config now lists three
+      projects (`chromium`, `firefox`, `webkit`). CI matrix runs
+      all three in parallel as separate jobs (one per browser).
+      All 33 tests pass on all 3 browsers locally (33×3 = 99
+      tests). `package.json` scripts `test:e2e:chromium`,
+      `test:e2e:firefox`, `test:e2e:webkit` are the per-project
+      runners.
 
 ### P3 — when applicable
 

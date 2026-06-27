@@ -35,6 +35,12 @@ const securityHeaders = [
     // 'self' blocks any unexpected outbound requests. Only inline styles (for
     // Tailwind) and lucide-react icon assets are permitted. No inline scripts,
     // no eval, no third-party origins.
+    //
+    // Dev-mode note: Next.js uses eval() in dev for stack-trace
+    // reconstruction. Production builds do not. The warning is a dev-only
+    // noise issue; tests + production are unaffected. Adding 'unsafe-eval'
+    // to script-src here would weaken the production defense for a dev-only
+    // problem, so we accept the dev-mode warning. See docs/THREAT_MODEL.md.
     value: [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline'",

@@ -110,7 +110,10 @@ jobs:
         run: npm run build
 
       - name: Run Playwright tests (${{ matrix.project }})
-        run: PLAYWRIGHT_FORCE_ASYNC_LOADER=1 npx playwright test --project=${{ matrix.project }}
+        # HOME=/root is required for Firefox in the Playwright container:
+        # Firefox refuses to launch as root when $HOME is owned by another
+        # uid. Safe to set for all projects; chromium and webkit ignore it.
+        run: HOME=/root PLAYWRIGHT_FORCE_ASYNC_LOADER=1 npx playwright test --project=${{ matrix.project }}
 
       - name: Upload blob report
         if: always()

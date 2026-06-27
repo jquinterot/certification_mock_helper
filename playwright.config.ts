@@ -38,11 +38,20 @@ export default defineConfig({
     },
     {
       name: 'firefox',
+      // Firefox refuses to launch as root when $HOME is owned by another
+      // uid. In the Playwright container, the default $HOME is owned by
+      // uid 1001, which trips the sandbox check. See the Playwright
+      // Firefox launch error message for details.
       use: { ...devices['Desktop Firefox'] },
     },
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      // WebKit headless on Linux is significantly slower than Chromium
+      // for some interactions (especially clicking after a state
+      // transition). The 30s default test timeout is too tight for
+      // tests that complete an exam (40 questions) and then continue.
+      timeout: 60000,
+      use: { ...devices['Desktop Safari'], actionTimeout: 20000 },
     },
   ],
   webServer: {

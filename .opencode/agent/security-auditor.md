@@ -1,6 +1,6 @@
 ---
-description: Use when reviewing code for security issues, auditing dependencies, validating HTTP headers, or checking for secrets, XSS, or unsafe localStorage use. Reads docs/THREAT_MODEL.md and applies its defenses. Read-only by default.
-mode: subagent
+description: Use when reviewing code for security issues, auditing dependencies, validating HTTP headers, or checking for secrets, XSS, or unsafe localStorage use. Reads docs/THREAT_MODEL.md and applies its defenses. Read-only by default. Switchable as a primary agent in the TUI (Tab) for self-driven audits.
+mode: primary
 model: anthropic/claude-sonnet-4-6
 permission:
   edit: deny

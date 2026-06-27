@@ -1,6 +1,6 @@
 ---
-description: Use when reviewing or improving the user interface — applies the frontend-design skill (distinctive visual design, opinionated typography and palette, signature elements, restraint, two-pass plan/critique/build). Read-only by default.
-mode: subagent
+description: Use when reviewing or improving the user interface — applies the frontend-design skill (distinctive visual design, opinionated typography and palette, signature elements, restraint, two-pass plan/critique/build). Read-only by default. Switchable as a primary agent in the TUI (Tab) for self-driven reviews.
+mode: primary
 model: anthropic/claude-sonnet-4-6
 permission:
   edit: deny

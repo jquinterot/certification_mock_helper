@@ -31,15 +31,15 @@ export const questions: ExamQuestion[] = [
   {
     id: 3,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following best describes the 'attention mechanism' in transformer models?",
+    question: "What is the primary advantage of using pre-trained models in generative AI for software testing?",
     options: [
-      "A mechanism that reduces the model's memory usage",
-      "A mechanism that encrypts the input data",
-      "A mechanism that allows the model to focus on relevant parts of the input when generating output",
-      "A mechanism that speeds up training by 100x"
+      "They require extensive training on test-specific data before use",
+      "They can be applied directly to test tasks without additional training, though this comes with risks like hallucinations",
+      "They only work with programming languages, not natural language",
+      "They eliminate all risks of incorrect output"
     ],
-    correctAnswer: 2,
-    explanation: "The attention mechanism allows the model to focus on relevant parts of the input when generating each part of the output. This is the core innovation that enables transformers to capture long-range dependencies in text."
+    correctAnswer: 1,
+    explanation: "Pre-trained models can be applied directly to test tasks without the need for an additional training phase. This is a key advantage of using GenAI for software testing. However, this comes with risks such as hallucinations and non-deterministic behavior that testers must manage through human review and verification."
   },
   {
     id: 4,
@@ -109,15 +109,15 @@ export const questions: ExamQuestion[] = [
   {
     id: 9,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is the purpose of 'pre-training' in foundation models?",
+    question: "What is the primary difference between a foundation model and an instruction-tuned model?",
     options: [
-      "To train the model on broad data to learn general language patterns",
-      "To make the model smaller",
-      "To remove all parameters",
-      "To make the model run faster"
+      "Foundation models are trained on broad, diverse datasets and can perform many tasks, while instruction-tuned models are fine-tuned on specific instruction-following datasets",
+      "Foundation models are smaller and faster than instruction-tuned models",
+      "Foundation models cannot generate text, only instruction-tuned models can",
+      "Instruction-tuned models are always open-source, while foundation models are proprietary"
     ],
     correctAnswer: 0,
-    explanation: "Pre-training involves training a model on broad data to learn general language patterns and world knowledge. This foundation can then be fine-tuned for specific tasks like testing."
+    explanation: "Foundation models are trained on broad, general data and can perform many tasks across domains. Instruction-tuned models are further fine-tuned on specific instruction-following datasets, making them better at understanding and executing user commands. This distinction is important for selecting the right model for testing tasks."
   },
   {
     id: 10,
@@ -563,7 +563,7 @@ export const questions2: ExamQuestion[] = [
   {
     id: 3,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "In the transformer model, how does the model generate coherent and contextually appropriate text during inference?",
+    question: "How do Large Language Models (LLMs) generate coherent and contextually appropriate text during inference?",
     options: [
       "By retrieving pre-stored responses from a database",
       "By predicting the next token in a sequence, leveraging learned relationships between tokens",
@@ -571,7 +571,7 @@ export const questions2: ExamQuestion[] = [
       "By applying predefined grammar rules to the input"
     ],
     correctAnswer: 1,
-    explanation: "During inference, LLMs predict the next token in a sequence, leveraging learned relationships between tokens to generate coherent and contextually appropriate text. The transformer model can generate new text that is statistically plausible based on training data and the prompt, though plausible is not necessarily correct."
+    explanation: "During inference, LLMs predict the next token in a sequence, leveraging learned relationships between tokens to generate coherent and contextually appropriate text. The model can generate new text that is statistically plausible based on training data and the prompt, though plausible is not necessarily correct. This is why human review is essential."
   },
   {
     id: 4,
@@ -615,15 +615,15 @@ export const questions2: ExamQuestion[] = [
   {
     id: 7,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following is a key characteristic of pre-training in foundation models compared to fine-tuning?",
+    question: "Which of the following best describes the relationship between foundation models and instruction-tuned models?",
     options: [
-      "Pre-training requires less data than fine-tuning",
-      "Pre-training is only for image models",
-      "Pre-training learns general language patterns on broad data, while fine-tuning adapts to specific tasks",
-      "Fine-tuning is always performed before pre-training"
+      "Foundation models are trained on broad, diverse datasets and can perform many tasks, while instruction-tuned models are fine-tuned on specific instruction-following datasets to better understand and execute user commands",
+      "Foundation models are only used for image generation, while instruction-tuned models are used for text",
+      "Instruction-tuned models are always larger and more expensive than foundation models",
+      "Foundation models cannot be used for software testing, only instruction-tuned models can"
     ],
-    correctAnswer: 2,
-    explanation: "Pre-training involves training on massive, broad datasets to learn general language patterns and world knowledge. Fine-tuning then adapts the pre-trained model to specific tasks or domains using smaller, task-specific datasets."
+    correctAnswer: 0,
+    explanation: "Foundation models are trained on broad, general data and can perform many tasks across domains. Instruction-tuned models are derived from foundation models and are fine-tuned on specific instruction-following datasets, making them better at understanding and executing user commands. This distinction is important for selecting the right model for testing tasks."
   },
   {
     id: 8,
@@ -1097,28 +1097,28 @@ export const questions3: ExamQuestion[] = [
   {
     id: 3,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is the purpose of 'positional encoding' in transformer models?",
+    question: "What is the primary purpose of the context window in a Large Language Model (LLM)?",
     options: [
-      "To encrypt the input data",
-      "To compress the model size",
-      "To provide information about the position of tokens in the sequence",
-      "To speed up training"
+      "To encrypt the input data for security",
+      "To compress the model size for faster processing",
+      "To limit the amount of information the model can consider at once to maintain relevance and coherence",
+      "To speed up training by reducing the number of tokens"
     ],
     correctAnswer: 2,
-    explanation: "Positional encoding provides information about the position of tokens in the sequence. Since transformers process all tokens simultaneously, they need positional encoding to understand word order."
+    explanation: "The context window refers to the amount of preceding text, measured in tokens, that the model can consider when generating responses. It limits the amount of information considered at once to maintain relevance and coherence. A larger context window allows the model to maintain coherence over longer passages, such as when analyzing large test logs, but increases computational complexity."
   },
   {
     id: 4,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following is a characteristic of the transformer architecture?",
+    question: "What is the primary advantage of using multimodal LLMs in software testing?",
     options: [
-      "It processes tokens sequentially one at a time",
-      "It processes all tokens in parallel using self-attention",
-      "It only works with numerical data",
-      "It requires recurrent connections"
+      "They can only process text, making them faster than text-only models",
+      "They can process and understand multiple types of input data (text, images, audio), enabling analysis of screenshots, UI elements, and voice interfaces",
+      "They require less training data than text-only models",
+      "They eliminate the need for human review of generated test cases"
     ],
     correctAnswer: 1,
-    explanation: "The transformer architecture processes all tokens in parallel using self-attention, rather than sequentially like RNNs. This enables efficient processing of long sequences and captures long-range dependencies."
+    explanation: "Multimodal LLMs can process and understand multiple types of input data, such as text, images, and audio. In software testing, this is particularly useful for applications that involve screenshots, UI elements, or voice interfaces. They can analyze visual elements alongside textual descriptions to identify discrepancies and generate rich test cases."
   },
   {
     id: 5,

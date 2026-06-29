@@ -4,15 +4,15 @@ export const questions: ExamQuestion[] = [
   {
     id: 1,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "Which of the following best describes how a transformer model processes input sequences?",
+    question: "Which of the following best describes how Large Language Models (LLMs) process and generate text?",
     options: [
-      "It processes all tokens in parallel using self-attention mechanisms",
-      "It processes tokens one at a time in sequential order",
-      "It only processes the first and last tokens of a sequence",
-      "It compresses all tokens into a single representation before processing"
+      "They predict the next token in a sequence based on learned relationships between tokens from training data",
+      "They process tokens one at a time in sequential order, building context incrementally",
+      "They only process the first and last tokens of a sequence to save computational resources",
+      "They compress all tokens into a single representation before generating output"
     ],
     correctAnswer: 0,
-    explanation: "Transformer models use self-attention to process all tokens in parallel, allowing each token to attend to every other token. This is more efficient than sequential processing and enables capturing long-range dependencies."
+    explanation: "LLMs process text by predicting the next token in a sequence, leveraging learned relationships between tokens from their training data. During inference, they generate coherent and contextually appropriate text that is statistically plausible based on the training data and the prompt, though plausible is not necessarily correct."
   },
   {
     id: 2,
@@ -540,15 +540,15 @@ export const questions2: ExamQuestion[] = [
   {
     id: 2,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is the primary purpose of an encoder in a transformer-based LLM?",
+    question: "What is the primary purpose of embeddings in Large Language Models (LLMs)?",
     options: [
-      "To convert the input sequence into numerical representations that capture context and relationships between tokens",
+      "To convert tokens into dense numerical vectors that capture semantic, syntactic, and contextual relationships",
       "To generate output text token by token",
       "To delete unnecessary tokens from the input",
       "To compress the model for deployment"
     ],
     correctAnswer: 0,
-    explanation: "The encoder processes the input sequence and converts it into numerical representations (embeddings) that capture context and relationships between tokens. This enables the model to understand the meaning and relationships in the input before generating output."
+    explanation: "Embeddings are numerical representations of tokens that encode their semantic, syntactic, and contextual relationships in a format suitable for processing by generative AI models. Each token is transformed into a vector in a high-dimensional space, capturing nuanced information about its meaning and usage. Tokens with similar meanings or contextual roles have embeddings positioned closely together, enabling LLMs to understand word relationships and generate coherent responses."
   },
   {
     id: 3,
@@ -566,15 +566,15 @@ export const questions2: ExamQuestion[] = [
   {
     id: 4,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is the significance of the attention mechanism for test case generation using LLMs?",
+    question: "What is the significance of hallucinations in LLM-generated test cases?",
     options: [
-      "It reduces the token count of the output",
-      "It allows the model to focus on relevant parts of the input when generating each part of the test case",
-      "It encrypts the test cases for security",
-      "It prevents the model from generating test cases for edge cases"
+      "They reduce the token count of the output",
+      "They are fictitious or irrelevant test cases, incorrect test scripts, or non-existent acceptance criteria that can mislead testers and compromise test validity",
+      "They encrypt the test cases for security",
+      "They prevent the model from generating test cases for edge cases"
     ],
     correctAnswer: 1,
-    explanation: "The attention mechanism allows the model to focus on different relevant parts of the input when generating each part of the output. For test case generation, this means the model can attend to specific requirement details, constraints, and relevant context when crafting each test case."
+    explanation: "Hallucinations occur when an LLM generates output that appears factually incorrect or irrelevant to a given task. In software testing, hallucinations can manifest as LLMs creating fictitious or irrelevant test cases, generating incorrect or non-functioning test scripts, or suggesting test cases that verify non-existent acceptance criteria. This can mislead testers and compromise the validity of test outputs, making human review essential."
   },
   {
     id: 5,
@@ -592,15 +592,15 @@ export const questions2: ExamQuestion[] = [
   {
     id: 6,
     domain: "Chapter 1: Introduction to GenAI for Testing",
-    question: "What is the primary difference between an autoregressive language model and a masked language model?",
+    question: "What is the primary characteristic of non-deterministic behavior in Large Language Models (LLMs)?",
     options: [
-      "Autoregressive models predict the next token given previous tokens, while masked models predict hidden tokens within the sequence",
-      "Autoregressive models can only process images",
-      "Masked language models are only used for text classification",
-      "There is no functional difference between them"
+      "LLMs always produce identical outputs for the same input",
+      "LLMs may produce variations in outputs even when the same input is provided multiple times, due to the probabilistic nature of their inference mechanisms",
+      "LLMs can only process numerical data",
+      "LLMs cannot process requirements documents"
     ],
-    correctAnswer: 0,
-    explanation: "Autoregressive models (like GPT) generate text by predicting the next token based on previous tokens. Masked language models (like BERT) predict hidden/masked tokens within a sequence. This distinction affects how they are used: autoregressive for generation, masked for understanding."
+    correctAnswer: 1,
+    explanation: "LLMs exhibit non-deterministic behavior primarily due to the probabilistic nature of their inference mechanisms and hyper-parameter settings. This inherent randomness can lead to variations in outputs even when the same input is provided multiple times. This is a known characteristic of LLMs that testers must manage through human review and verification."
   },
   {
     id: 7,

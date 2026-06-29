@@ -47,10 +47,6 @@ export function saveAttempt(attempt: ExamAttempt): void {
   saveAllAttempts(attempt.examId, attempts);
 }
 
-export function getExamHistory(examId: string): ExamAttempt[] {
-  return getAllAttempts(examId);
-}
-
 export function getExamHistorySummary(examId: string): ExamHistory | null {
   const attempts = getAllAttempts(examId);
   if (attempts.length === 0) return null;
@@ -102,23 +98,6 @@ export function getWeaknessAnalysis(examId: string): WeaknessAnalysis | null {
     weakestDomains,
     recommendedStudyOrder,
   };
-}
-
-export function getQuestionAnalytics(questionId: number, examId: string): QuestionAnalytics | null {
-  if (typeof window === 'undefined') return null;
-  const stored = localStorage.getItem(QUESTION_ANALYTICS_KEY);
-  let allAnalytics: Record<string, QuestionAnalytics> = {};
-  if (stored) {
-    try {
-      allAnalytics = JSON.parse(stored);
-    } catch (error) {
-      logger.warn('Failed to parse question analytics from localStorage', {
-        error: error instanceof Error ? error.message : String(error),
-      });
-    }
-  }
-  const key = `${examId}-${questionId}`;
-  return allAnalytics[key] || null;
 }
 
 function getAllQuestionAnalytics(): Record<string, QuestionAnalytics> {
@@ -177,25 +156,8 @@ export function updateQuestionAnalytics(questionId: number, examId: string, corr
   saveAllQuestionAnalytics(allAnalytics);
 }
 
-export function getAllQuestionAnalyticsForExam(examId: string): QuestionAnalytics[] {
-  const allAnalytics = getAllQuestionAnalytics();
-  return Object.values(allAnalytics).filter(a => a.examId === examId);
-}
-
-export function getMostMissedQuestions(examId: string, limit: number = 10): QuestionAnalytics[] {
-  const allAnalytics = getAllQuestionAnalyticsForExam(examId);
-  return allAnalytics
-    .filter(a => a.timesSeen >= 2)
-    .sort((a, b) => (a.timesCorrect / a.timesSeen) - (b.timesCorrect / b.timesSeen))
-    .slice(0, limit);
-}
-
 export function deleteAttempt(examId: string, attemptId: string): void {
   const attempts = getAllAttempts(examId);
   const filtered = attempts.filter(a => a.id !== attemptId);
   saveAllAttempts(examId, filtered);
-}
-
-export function clearExamHistory(examId: string): void {
-  saveAllAttempts(examId, []);
 }

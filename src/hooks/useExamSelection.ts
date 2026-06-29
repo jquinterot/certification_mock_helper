@@ -8,12 +8,6 @@ import { getQuestions, getSectionQuestions, getDomainStats } from '@/lib/exams/l
 import { shuffleQuestions } from '@/lib/questions/shuffle';
 import { generateSessionSeed } from '@/lib/exam-duration';
 
-const MAX_TEST_SETS: Record<string, number> = {
-  'aws-ml': 4,
-  'istqb-genai': 3,
-  'istqb-foundation': 3,
-};
-
 const DEFAULT_TEST_SET = 1;
 
 export interface SectionDomainStat {
@@ -46,6 +40,7 @@ export interface UseExamSelectionResult {
   studyDomain: (domain: string) => void;
   resetSelections: () => void;
   regenerateSeed: () => void;
+  restoreSeed: (seed: number) => void;
 }
 
 /**
@@ -89,7 +84,7 @@ export function useExamSelection(): UseExamSelectionResult {
   }, [selectedExamId, selectedExamConfig]);
 
   const totalQuestions = questions.length;
-  const maxTestSets = MAX_TEST_SETS[selectedExamId] ?? 2;
+  const maxTestSets = selectedExamConfig?.testSetCount ?? 2;
 
   const selectCategory = useCallback((category: string) => {
     setSelectedCategory(category);
@@ -123,6 +118,10 @@ export function useExamSelection(): UseExamSelectionResult {
 
   const regenerateSeed = useCallback(() => setQuestionSeed(generateSessionSeed()), []);
 
+  const restoreSeed = useCallback((seed: number) => {
+    setQuestionSeed(seed);
+  }, []);
+
   return {
     selectedCategory,
     selectedExamId,
@@ -146,5 +145,6 @@ export function useExamSelection(): UseExamSelectionResult {
     studyDomain,
     resetSelections,
     regenerateSeed,
+    restoreSeed,
   };
 }

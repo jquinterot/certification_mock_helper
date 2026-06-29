@@ -3,7 +3,7 @@
 import { memo } from 'react';
 import { CheckCircle2, XCircle } from 'lucide-react';
 import type { ShuffledQuestion } from '@/types';
-import { Theme } from '@/lib/theme';
+import type { Theme } from '@/lib/theme';
 import { QuestionNotes } from './QuestionNotes';
 
 interface QuestionCardProps {
@@ -25,7 +25,6 @@ function getOptionClass(
   isCorrectOption: boolean,
   showCorrectness: boolean,
   showResults: boolean,
-  isMultiple: boolean,
   theme: Theme
 ): string {
   const base = 'w-full text-left p-4 rounded-xl border transition-all';
@@ -49,7 +48,6 @@ function getBadgeClass(
   showCorrectness: boolean,
   isCorrectOption: boolean,
   isSelected: boolean,
-  isMultiple: boolean,
   theme: Theme
 ): string {
   const base = 'flex-shrink-0 w-8 h-8 rounded-md flex items-center justify-center text-sm font-semibold';
@@ -111,7 +109,7 @@ function QuestionCardComponent({
             <button
               key={idx}
               onClick={() => onSelectAnswer(questionIndex, idx)}
-              className={getOptionClass(isSelected, isCorrectOption, showResult, showResults, isMultiple, theme)}
+              className={getOptionClass(isSelected, isCorrectOption, showResult, showResults, theme)}
               disabled={showResults}
               aria-label={`Option ${String.fromCharCode(65 + idx)}: ${option}`}
               aria-pressed={isSelected}
@@ -146,7 +144,7 @@ function QuestionCardComponent({
                     )}
                   </span>
                 ) : (
-                  <span className={getBadgeClass(showResult, isCorrectOption, isSelected, isMultiple, theme)}>
+                  <span className={getBadgeClass(showResult, isCorrectOption, isSelected, theme)}>
                     {String.fromCharCode(65 + idx)}
                   </span>
                 )}

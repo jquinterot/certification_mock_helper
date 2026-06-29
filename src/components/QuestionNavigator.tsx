@@ -2,7 +2,7 @@
 
 import { memo } from 'react';
 import type { ShuffledQuestion } from '@/types';
-import { Theme } from '@/lib/theme';
+import type { Theme } from '@/lib/theme';
 import { checkAnswer } from '@/lib/questions/shuffle';
 
 interface QuestionNavigatorProps {

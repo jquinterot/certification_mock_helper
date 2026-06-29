@@ -16,8 +16,8 @@ export function HomePage() {
 
   const examsByCategory = (category: string) => allExams.filter(e => e.category === category);
   const stats = {
-    certifications: new Set(allExams.map(e => e.category)).size,
-    testSets: allExams.length,
+    certifications: allExams.length,
+    testSets: allExams.reduce((sum, e) => sum + e.testSetCount, 0),
     totalQuestions: allExams.reduce((sum, e) => sum + e.questionCount, 0),
   };
 

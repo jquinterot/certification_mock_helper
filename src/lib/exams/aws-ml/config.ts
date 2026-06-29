@@ -9,6 +9,7 @@ export const examConfig: ExamConfig = {
   questionCount: 65,
   durationMinutes: 130,
   passingScore: 72,
+  testSetCount: 4,
   domains: [
     'Domain 1: Data Preparation for ML',
     'Domain 2: ML Model Development',

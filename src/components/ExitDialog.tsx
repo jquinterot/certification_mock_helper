@@ -1,7 +1,7 @@
 'use client';
 
 import { LogOut, Save } from 'lucide-react';
-import { Theme } from '@/lib/theme';
+import type { Theme } from '@/lib/theme';
 
 interface ExitDialogProps {
   isOpen: boolean;

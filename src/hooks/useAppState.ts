@@ -116,8 +116,10 @@ export function useAppState() {
     selection.setExamMode(savedTest.mode);
     selection.setSelectedDomain(savedTest.selectedDomain);
     selection.setSelectedTestSet(savedTest.testSet);
-    if (savedTest.questionSeed) {
-      // Restore the original question order if a seed was persisted
+    if (savedTest.questionSeed != null) {
+      // Restore the original question order so the resumed attempt
+      // reproduces the same shuffled questions and option order.
+      selection.restoreSeed(savedTest.questionSeed);
     }
     setCurrentSavedTestId(savedTest.id);
     const config = {

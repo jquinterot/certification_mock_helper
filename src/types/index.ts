@@ -22,6 +22,7 @@ export interface ExamMetadataConfig {
   questionCount: number;
   durationMinutes: number;
   passingScore: number;
+  testSetCount: number;
   domains: string[];
   icon: string;
 }

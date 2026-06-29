@@ -9,6 +9,7 @@ export const examConfig: ExamConfig = {
   questionCount: 65,
   durationMinutes: 130,
   passingScore: 72,
+  testSetCount: 2,
   domains: [
     'Domain 1: Design Secure Architectures',
     'Domain 2: Design Resilient Architectures',

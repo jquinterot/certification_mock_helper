@@ -2,11 +2,10 @@
 
 import { Trophy, Eye, Bookmark, RotateCcw } from 'lucide-react';
 import { formatTime, formatLongDate } from '@/lib/utils';
+import { getPassingScore } from '@/lib/constants';
 import { useApp } from '@/contexts/AppContext';
 import { useSubmitResults } from '@/hooks/useSubmitResults';
 import { ThemeToggle } from './ThemeToggle';
-
-const SECTION_PASSING_SCORE = 65;
 
 export function ResultsScreen() {
   const {
@@ -14,6 +13,7 @@ export function ResultsScreen() {
     timer,
     theme,
     selectedExamId,
+    selectedExamConfig,
     questions,
     handleReview,
     handleReviewFlagged,
@@ -22,7 +22,13 @@ export function ResultsScreen() {
   } = useApp();
 
   const { score, domainScores, config, flaggedCount, answers } = exam;
-  const passingScore = config.mode === 'section' ? SECTION_PASSING_SCORE : 72;
+  // Use the exam's own passing score for full mode; sections always use 65.
+  // Fall back to 72 only if config is missing (defensive — should not happen
+  // because ResultsScreen is only mounted via page.tsx with a selected exam).
+  const passingScore = getPassingScore(
+    selectedExamConfig?.passingScore ?? 72,
+    config.mode
+  );
   const passed = score.percentage >= passingScore;
 
   const submittedAt = useSubmitResults({
@@ -30,7 +36,7 @@ export function ResultsScreen() {
     questions,
     config: {
       testSet: config.testSet,
-      mode: config.mode as 'full' | 'section',
+      mode: config.mode,
       selectedDomain: config.selectedDomain,
     },
     score,
@@ -43,15 +49,13 @@ export function ResultsScreen() {
   return (
     <div className={`min-h-screen bg-gradient-to-br ${theme.bgGradientFrom} ${theme.bgGradientVia} ${theme.bgGradientTo} ${theme.bgText} p-4`}>
       <div className="max-w-4xl mx-auto">
-        {handleBackToHome && (
-          <button
-            onClick={handleBackToHome}
-            className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} mb-6 transition-colors`}
-            data-test-id="back-button"
-          >
-            Back to Home
-          </button>
-        )}
+        <button
+          onClick={handleBackToHome}
+          className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} mb-6 transition-colors`}
+          data-test-id="back-button"
+        >
+          Back to Home
+        </button>
 
         {/* Theme Toggle */}
         <div className="flex justify-end mb-4">

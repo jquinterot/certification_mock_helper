@@ -136,11 +136,3 @@ export function getDomainStats(examId: string, testSet: number): Record<string, 
   });
   return stats;
 }
-
-export function getSectionDomainStats(examId: string, domain: string): Record<string, number> {
-  const q1 = getSectionQuestions(examId, domain, 1);
-  const q2 = getSectionQuestions(examId, domain, 2);
-  return {
-    [domain]: q1.length + q2.length,
-  };
-}

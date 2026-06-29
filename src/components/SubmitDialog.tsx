@@ -1,7 +1,7 @@
 'use client';
 
 import { CheckCircle2 } from 'lucide-react';
-import { Theme } from '@/lib/theme';
+import type { Theme } from '@/lib/theme';
 
 interface SubmitDialogProps {
   isOpen: boolean;

@@ -9,6 +9,7 @@ export const examConfig: ExamConfig = {
   questionCount: 40,
   durationMinutes: 60,
   passingScore: 65,
+  testSetCount: 2,
   domains: [
     'Domain 1: Introduction to AI and Testing',
     'Domain 2: Testing AI-Based Systems',

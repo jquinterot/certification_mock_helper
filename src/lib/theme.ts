@@ -87,8 +87,8 @@ const createLightTheme = (base: Omit<Theme, 'mode' | 'bgGradientFrom' | 'bgGradi
   iconDefault: 'text-slate-700',
 });
 
-const awsBase = {
-  name: 'aws' as ThemeName,
+const awsBase: Omit<Theme, 'mode' | 'bgGradientFrom' | 'bgGradientVia' | 'bgGradientTo' | 'bgText' | 'bgTextSecondary' | 'bgCard' | 'bgCardHover' | 'bgButton' | 'bgButtonHover' | 'bgInput' | 'borderColor' | 'borderHover' | 'iconDefault'> = {
+  name: 'aws',
   primary: 'orange-500',
   primaryHover: 'orange-600',
   primaryBg: 'bg-orange-500',
@@ -123,8 +123,8 @@ const awsBase = {
   accentText: 'text-orange-400',
 };
 
-const istqbBase = {
-  name: 'istqb' as ThemeName,
+const istqbBase: Omit<Theme, 'mode' | 'bgGradientFrom' | 'bgGradientVia' | 'bgGradientTo' | 'bgText' | 'bgTextSecondary' | 'bgCard' | 'bgCardHover' | 'bgButton' | 'bgButtonHover' | 'bgInput' | 'borderColor' | 'borderHover' | 'iconDefault'> = {
+  name: 'istqb',
   primary: 'blue-500',
   primaryHover: 'blue-600',
   primaryBg: 'bg-blue-500',

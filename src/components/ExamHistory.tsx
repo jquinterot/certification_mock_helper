@@ -2,7 +2,7 @@
 
 import { History, TrendingUp, AlertTriangle, Trash2, Target, ExternalLink } from 'lucide-react';
 import { formatTime, formatDate } from '@/lib/utils';
-import { PASSING_SCORE } from '@/lib/constants';
+import { DOMAIN_MASTERY_THRESHOLD } from '@/lib/constants';
 import { useApp } from '@/contexts/AppContext';
 import { getStudyResources } from '@/lib/study-resources';
 import { ThemeToggle } from './ThemeToggle';
@@ -20,12 +20,13 @@ export function ExamHistory() {
   } = useApp();
 
   const attempts = examHistory?.attempts || [];
-  const examName = selectedExamConfig!.name;
+  const examName = selectedExamConfig?.name ?? 'Exam';
+  const passingScore = selectedExamConfig?.passingScore ?? 72;
 
-  const bestScore = attempts.length > 0 ? Math.max(...attempts.map(a => a.percentage)) : 0;
-  const avgScore = attempts.length > 0
-    ? Math.round(attempts.reduce((a, b) => a + b.percentage, 0) / attempts.length)
-    : 0;
+  // Use the summary values computed by study-history (single source of truth)
+  // rather than recomputing from the attempts array.
+  const bestScore = examHistory?.bestScore ?? 0;
+  const averageScore = examHistory?.averageScore ?? 0;
 
   return (
     <div className={`min-h-screen bg-gradient-to-br ${theme.bgGradientFrom} ${theme.bgGradientVia} ${theme.bgGradientTo} ${theme.bgText} p-4`}>
@@ -56,7 +57,7 @@ export function ExamHistory() {
                 <p className={`text-sm ${theme.bgTextSecondary}`}>Best Score</p>
               </div>
               <div className={`${theme.bgCard} backdrop-blur-lg rounded-xl p-4 ${theme.borderColor} border text-center`} data-test-id="average-score">
-                <p className={`text-3xl font-bold ${theme.primaryLightText}`}>{avgScore}%</p>
+                <p className={`text-3xl font-bold ${theme.primaryLightText}`}>{averageScore}%</p>
                 <p className={`text-sm ${theme.bgTextSecondary}`}>Average</p>
               </div>
               <div className={`${theme.bgCard} backdrop-blur-lg rounded-xl p-4 ${theme.borderColor} border text-center`} data-test-id="total-attempts">
@@ -83,7 +84,7 @@ export function ExamHistory() {
                         <div className="w-full flex items-end" style={{ height: '120px' }}>
                           <div
                             className={`w-full rounded-t-md transition-all hover:opacity-80 ${
-                              attempt.percentage >= PASSING_SCORE
+                              attempt.passed
                                 ? 'bg-green-500'
                                 : 'bg-red-500'
                             }`}
@@ -99,11 +100,11 @@ export function ExamHistory() {
                 <div className="flex items-center justify-center gap-4 mt-3 text-xs text-slate-500">
                 <div className="flex items-center gap-1">
                   <div className="w-3 h-3 rounded bg-green-500" />
-                  <span>Pass (&ge;{PASSING_SCORE}%)</span>
+                  <span>Pass (&ge;{passingScore}%)</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <div className="w-3 h-3 rounded bg-red-500" />
-                  <span>Fail (&lt;{PASSING_SCORE}%)</span>
+                  <span>Fail (&lt;{passingScore}%)</span>
                 </div>
                 </div>
               </div>
@@ -226,7 +227,9 @@ export function ExamHistory() {
                             <div className="w-full bg-white/10 rounded-full h-1.5 mt-1">
                               <div
                                 className={`h-1.5 rounded-full ${
-                                  ds.percentage >= 70 ? 'bg-green-500' : 'bg-red-500'
+                                  ds.percentage >= DOMAIN_MASTERY_THRESHOLD
+                                    ? 'bg-green-500'
+                                    : 'bg-red-500'
                                 }`}
                                 style={{ width: `${ds.percentage}%` }}
                               />

@@ -69,7 +69,7 @@ export function CategoryMenu() {
                     Passing: {exam.passingScore}%
                   </span>
                   <span className={`${theme.bgButton} px-2 py-0.5 rounded text-xs`}>
-                    2 test sets
+                    {exam.testSetCount} test set{exam.testSetCount !== 1 ? 's' : ''}
                   </span>
                 </div>
               </div>

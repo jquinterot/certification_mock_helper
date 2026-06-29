@@ -20,8 +20,8 @@ const baseOptions = {
     'Ch 1': { correct: 2, total: 3, percentage: 67 },
   },
   passed: true,
-  // useSubmitResults keys answers by question ID; align with the questions below.
-  // Q1 correct, Q2 correct, Q3 missed.
+  // answers is keyed by question INDEX (position in `questions`), not by
+  // question id. Q0 missed, Q1 correct, Q2 correct.
   answers: { 1: 0, 2: 0 } as Record<number, number | number[]>,
   timeElapsed: 1234,
 };
@@ -62,18 +62,41 @@ describe('useSubmitResults', () => {
     expect(stored).toHaveLength(1);
   });
 
-  it('updates per-question analytics based on answers', () => {
+  it('records per-question analytics keyed by index, with shuffledCorrectIndex as the answer key', () => {
     renderHook(() => useSubmitResults({ ...baseOptions, questions }));
     const allAnalytics = JSON.parse(window.localStorage.getItem(ANALYTICS_KEY) || '{}');
-    // useSubmitResults keys analytics by question ID and looks up the user's
-    // answer via `options.answers[q.id]`. With answers = {1: 0, 2: 0} and
-    // every question having correctAnswer = 0, Q1 and Q2 are correct, Q3 is missed.
+    // answers = {1: 0, 2: 0} (index-keyed). Every question has
+    // shuffledCorrectIndex = 0. So Q0 (idx 0) is missed (no answer),
+    // Q1 (idx 1) and Q2 (idx 2) are correct.
     expect(allAnalytics['test-exam-1'].timesSeen).toBe(1);
-    expect(allAnalytics['test-exam-1'].timesCorrect).toBe(1);
+    expect(allAnalytics['test-exam-1'].timesCorrect).toBe(0);
     expect(allAnalytics['test-exam-2'].timesSeen).toBe(1);
     expect(allAnalytics['test-exam-2'].timesCorrect).toBe(1);
     expect(allAnalytics['test-exam-3'].timesSeen).toBe(1);
-    expect(allAnalytics['test-exam-3'].timesCorrect).toBe(0);
+    expect(allAnalytics['test-exam-3'].timesCorrect).toBe(1);
+  });
+
+  it('uses shuffledCorrectIndex (post-shuffle) — not the original correctAnswer — to judge correctness', () => {
+    // Question whose original correctAnswer is 0, but after shuffling the
+    // correct option is at position 2. The user picks option 2; analytics
+    // should mark this as correct.
+    const shuffledQuestions: ShuffledQuestion[] = [
+      makeShuffledQuestion({
+        id: 99,
+        domain: 'Ch 1',
+        correctAnswer: 0,
+        shuffledCorrectIndex: 2,
+      }),
+    ];
+    renderHook(() =>
+      useSubmitResults({
+        ...baseOptions,
+        questions: shuffledQuestions,
+        answers: { 0: 2 } as Record<number, number | number[]>,
+      })
+    );
+    const allAnalytics = JSON.parse(window.localStorage.getItem(ANALYTICS_KEY) || '{}');
+    expect(allAnalytics['test-exam-99'].timesCorrect).toBe(1);
   });
 
   it('passes the selectedDomain through (or undefined when empty)', () => {
@@ -92,7 +115,6 @@ describe('useSubmitResults', () => {
   it('stores selectedDomain as undefined when empty (omits the key gracefully)', () => {
     renderHook(() => useSubmitResults({ ...baseOptions, questions }));
     const stored = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]');
-    // When empty string, the hook stores undefined -> either key absent or null
     expect(stored[0].selectedDomain).toBeFalsy();
   });
 });

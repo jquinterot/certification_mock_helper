@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { BookOpen, History, TrendingUp, AlertTriangle } from 'lucide-react';
-import type { ExamMode } from '@/types';
 import { useApp } from '@/contexts/AppContext';
 import { ThemeToggle } from './ThemeToggle';
 import {
@@ -66,15 +65,13 @@ export function StartScreen() {
   return (
     <div className={`min-h-screen bg-gradient-to-br ${theme.bgGradientFrom} ${theme.bgGradientVia} ${theme.bgGradientTo} ${theme.bgText} flex items-center justify-center p-4`}>
       <div className={`max-w-2xl w-full ${theme.bgCard} backdrop-blur-lg rounded-2xl p-8 ${theme.borderColor} border shadow-2xl`}>
-        {handleBackToHome && (
-          <button
-            onClick={handleBackToHome}
-            className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} mb-6 transition-colors`}
-            data-test-id="back-button"
-          >
-            Back to Home
-          </button>
-        )}
+        <button
+          onClick={handleBackToHome}
+          className={`flex items-center gap-2 ${theme.bgTextSecondary} hover:${theme.bgText} mb-6 transition-colors`}
+          data-test-id="back-button"
+        >
+          Back to Home
+        </button>
 
         {/* Theme Toggle */}
         <div className="flex justify-end mb-4">
@@ -96,16 +93,14 @@ export function StartScreen() {
                 <TrendingUp className={`w-4 h-4 ${theme.primaryLightText}`} />
                 <span className={`text-sm font-medium ${theme.bgTextSecondary}`}>Your Progress</span>
               </div>
-              {handleViewHistory && (
-                <button
-                  onClick={handleViewHistory}
-                  className={`flex items-center gap-1 text-xs ${theme.primaryLightText} transition-colors`}
-                  data-test-id="view-history-button"
-                >
-                  <History className="w-3 h-3" />
-                  View History
-                </button>
-              )}
+              <button
+                onClick={handleViewHistory}
+                className={`flex items-center gap-1 text-xs ${theme.primaryLightText} transition-colors`}
+                data-test-id="view-history-button"
+              >
+                <History className="w-3 h-3" />
+                View History
+              </button>
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div className="text-center" data-test-id="progress-best-score">
@@ -143,7 +138,7 @@ export function StartScreen() {
 
         <ModeSelection
           mode={examMode}
-          onSetMode={setExamMode as (mode: ExamMode) => void}
+          onSetMode={setExamMode}
           theme={theme}
           totalQuestions={totalQuestions}
         />

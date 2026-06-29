@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useSavedTests } from './useSavedTests';
-import { makeSavedTest, makeAttempt } from '@/test/utils/factories';
+import { makeSavedTest } from '@/test/utils/factories';
 import { STORAGE_KEY } from '@/lib/constants';
 
 beforeEach(() => {
@@ -35,19 +35,5 @@ describe('useSavedTests', () => {
     act(() => result.current.addSavedTest(makeSavedTest({ id: 'b' })));
     act(() => result.current.deleteSavedTest('a'));
     expect(result.current.savedTests.map((t) => t.id)).toEqual(['b']);
-  });
-
-  it('deleteExamAttempt removes the attempt from localStorage', () => {
-    const examId = 'aws-ml';
-    const attempt = makeAttempt({ id: 'a1', examId });
-    window.localStorage.setItem(
-      `exam-attempts-${examId}`,
-      JSON.stringify([attempt])
-    );
-
-    const { result } = renderHook(() => useSavedTests());
-    act(() => result.current.deleteExamAttempt(examId, 'a1'));
-    const stored = JSON.parse(window.localStorage.getItem(`exam-attempts-${examId}`) || '[]');
-    expect(stored).toEqual([]);
   });
 });

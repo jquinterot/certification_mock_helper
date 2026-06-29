@@ -9,6 +9,7 @@ export const examConfig: ExamConfig = {
   questionCount: 40,
   durationMinutes: 60,
   passingScore: 65,
+  testSetCount: 3,
   domains: [
     'Chapter 1: Fundamentals of Testing',
     'Chapter 2: Testing Throughout the SDLC',

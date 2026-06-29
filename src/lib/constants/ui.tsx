@@ -1,11 +1,5 @@
 import { Brain, Cloud, Bug, type LucideIcon } from 'lucide-react';
 
-export const iconMap: Record<string, React.ReactNode> = {
-  Brain: <Brain className="w-10 h-10" />,
-  Cloud: <Cloud className="w-10 h-10" />,
-  Bug: <Bug className="w-10 h-10" />,
-};
-
 export const categoryTheme: Record<string, { gradient: string; bg: string; border: string; hover: string }> = {
   'AWS Cloud': {
     gradient: 'from-orange-500 to-amber-500',
@@ -25,8 +19,9 @@ export const getCategoryTheme = (category: string) => {
   return categoryTheme[category] || categoryTheme['AWS Cloud'];
 };
 
+const iconRegistry: Record<string, LucideIcon> = { Brain, Cloud, Bug };
+
 export const getIcon = (iconName: string, className: string = 'w-10 h-10') => {
-  const icons: Record<string, LucideIcon> = { Brain, Cloud, Bug };
-  const Icon = icons[iconName];
+  const Icon = iconRegistry[iconName];
   return Icon ? <Icon className={className} /> : <Brain className={className} />;
 };

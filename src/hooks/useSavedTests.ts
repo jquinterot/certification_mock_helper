@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 import type { SavedTest } from '@/lib/types';
 import { STORAGE_KEY } from '@/lib/constants';
-import { deleteAttempt } from '@/lib/study-history';
 
 export function useSavedTests() {
   const [savedTests, setSavedTests] = useLocalStorage<SavedTest[]>(STORAGE_KEY, []);
@@ -21,12 +20,5 @@ export function useSavedTests() {
     [setSavedTests]
   );
 
-  const deleteExamAttempt = useCallback(
-    (examId: string, attemptId: string) => {
-      deleteAttempt(examId, attemptId);
-    },
-    []
-  );
-
-  return { savedTests, addSavedTest, deleteSavedTest, deleteExamAttempt };
+  return { savedTests, addSavedTest, deleteSavedTest };
 }

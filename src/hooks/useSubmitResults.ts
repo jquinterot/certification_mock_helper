@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { ExamAttempt, DomainScore, ShuffledQuestion } from '@/types';
-import { isCorrectAnswer } from '@/lib/questions/check';
+import { checkAnswer } from '@/lib/questions/shuffle';
 import { saveAttempt, updateQuestionAnalytics } from '@/lib/study-history';
 import { generateLocalId } from '@/lib/utils';
 import { logger } from '@/lib/logger';
@@ -58,9 +58,15 @@ export function useSubmitResults(options: UseSubmitResultsOptions): number {
 
     saveAttempt(attempt);
 
-    options.questions.forEach((q) => {
-      const userAnswer = options.answers[q.id];
-      updateQuestionAnalytics(q.id, options.selectedExamId, isCorrectAnswer(userAnswer, q.correctAnswer));
+    // answers is keyed by question INDEX (position in the active list),
+    // not by question id, and the shuffled question's correctness lives in
+    // `shuffledCorrectIndex` (post-shuffle option positions), not
+    // `correctAnswer` (pre-shuffle). Use the high-level `checkAnswer` so
+    // both single- and multi-response questions are evaluated correctly.
+    options.questions.forEach((q, idx) => {
+      const userAnswer = options.answers[idx];
+      const correct = checkAnswer(q, userAnswer);
+      updateQuestionAnalytics(q.id, options.selectedExamId, correct);
     });
 
     logger.info('Exam submitted', {

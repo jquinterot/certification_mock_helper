@@ -87,7 +87,7 @@ export function ExamScreen() {
               aria-label="Exit exam"
               data-test-id="exit-button"
             >
-              Back to Home
+              Exit
             </button>
             <div className="text-sm font-semibold hidden sm:block">
               Question {currentQuestion + 1} of {activeQuestions.length}
@@ -302,7 +302,7 @@ export function ExamScreen() {
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
           {activeQuestions.map((_, idx) => {
             const isAnswered = answers[idx] !== undefined;
-            const isJsCorrect = checkAnswer(activeQuestions[idx], answers[idx]);
+            const isCorrect = checkAnswer(activeQuestions[idx], answers[idx]);
             const isFlagged = flaggedQuestions.has(idx);
             const isCurrent = idx === currentQuestion;
 
@@ -310,9 +310,9 @@ export function ExamScreen() {
 
             if (isCurrent) {
               className += ` ${theme.currentQuestion} text-white`;
-            } else if (isAnswered && isJsCorrect) {
+            } else if (isAnswered && isCorrect) {
               className += ' bg-green-500/30 text-green-400';
-            } else if (isAnswered && !isJsCorrect) {
+            } else if (isAnswered && !isCorrect) {
               className += ' bg-red-500/30 text-red-400';
             } else {
               className += ' bg-white/10 dark:bg-slate-700/50 text-slate-400';

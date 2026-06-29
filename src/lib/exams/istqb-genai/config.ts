@@ -9,6 +9,7 @@ export const examConfig: ExamConfig = {
   questionCount: 40,
   durationMinutes: 60,
   passingScore: 65,
+  testSetCount: 3,
   domains: [
     'Chapter 1: Introduction to GenAI for Testing',
     'Chapter 2: Prompt Engineering for Testing',
